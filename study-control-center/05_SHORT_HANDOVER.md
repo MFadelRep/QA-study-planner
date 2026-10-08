@@ -4,6 +4,7 @@ State: Day 1 / Hour 1 — in progress
 Topic: Promises + async/await transitioning into project foundation
 Project: AI QA Platform
 Last verified: 2026-10-08
+Checkpoint: SAVED
 
 Completed:
 - Git repository initialized.
@@ -20,3 +21,6 @@ Create minimal `src/index.ts`, rerun `npx tsc --noEmit`, and check the real resu
 
 Resume instruction:
 Do not restart prior setup. Continue from the TypeScript input-file blocker.
+
+Important architecture note:
+The local AI QA Platform will use a different GitHub repository. This GitHub repository is the study-control repository only and is being renamed to `QA-study-planner`.
