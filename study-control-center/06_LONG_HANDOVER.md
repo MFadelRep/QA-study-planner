@@ -10,7 +10,7 @@ The user's local project uses Node.js 22.22.1, local TypeScript 7.0.2, and tsx 4
 - Repository initialized on main.
 - Local Git identity configured.
 - Initial root commit: `f2e8917`.
-- Repository was verified clean after the commit.
+- Repository was verified clean after the root commit.
 
 ## Project foundation
 - `.gitignore` created and verified to ignore `node_modules/`.
@@ -26,3 +26,9 @@ Create minimal `src/index.ts`, rerun `npx tsc --noEmit`, inspect the actual outp
 
 ## Learning constraints
 Project-first / fast pace. Explain every terminal command line and important syntax before execution. Verify actual results. Correct minimally and retry. Preserve exact next action at checkpoints.
+
+## Repository architecture
+- Local project repository: separate GitHub repository to be chosen/used for the AI QA Platform itself.
+- Study-control repository: this GitHub repository only, intended to store curriculum control, live study state, continuity rules, and handovers.
+- The study-control repository is being renamed from `automation-platform` to `QA-study-planner` to prevent confusion with the local AI QA Platform project.
+- The local project repository must not be connected as the remote for this study-control repository.
