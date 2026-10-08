@@ -1,5 +1,7 @@
 # SHORT HANDOVER — CURRENT
 
+Canonical state version: 3.2-GITHUB-CHECKPOINT
+
 **Derived record — not authoritative.** The live study state is always `01_CURRENT_STATE.md`; operating rules are always `04_CONTINUITY_RULES.md`.
 
 State: Day 1 / Hour 1 — in progress
