@@ -1,7 +1,9 @@
 # LONG HANDOVER — CURRENT RECORD
 
+**Derived record — not authoritative.** The live study state is `01_CURRENT_STATE.md`; operating rules are `04_CONTINUITY_RULES.md`; curriculum coverage is `03_MASTER_PLAN.md`.
+
 ## Session state
-Day 1 / Hour 1 of the 45-hour Senior QA Automation + MLOps program. The AI QA Platform is the primary learning vehicle.
+Day 1 / Hour 1 of the 45-hour Senior QA Automation + MLOps program. The AI QA Platform is the primary learning vehicle. Execution mode is project-first / fast-pace.
 
 ## Verified environment
 The user's local project uses Node.js 22.22.1, local TypeScript 7.0.2, and tsx 4.23.15.
@@ -16,19 +18,32 @@ The user's local project uses Node.js 22.22.1, local TypeScript 7.0.2, and tsx 4
 - `.gitignore` created and verified to ignore `node_modules/`.
 - `src/` and `tests/` created.
 - `tsconfig.json` created.
-- TypeScript check executed with `npx tsc --noEmit`.
+- TS18003 was resolved by creating `src/index.ts`.
+- `npx tsc --noEmit` passed after adding the TypeScript input.
+- `npx tsx src/index.ts` succeeded with output: `Starting AI QA Platform`.
 
-## Latest blocker
-TS18003: no inputs were found in `tsconfig.json` because the configured `src/**/*.ts` and `tests/**/*.ts` patterns currently match no files.
+## Current resume point
+The first executable TypeScript project entry point is verified.
 
 ## Exact resume action
-Create minimal `src/index.ts`, rerun `npx tsc --noEmit`, inspect the actual output.
+Add the first small typed QA-platform model to `src/index.ts`: a `TestResult` type, a typed `reportResult(result: TestResult): void` function, a typed `loginTest`, and a call to `reportResult(loginTest)`.
+
+Then run:
+`npx tsc --noEmit`
+`npx tsx src/index.ts`
+
+Expected output: `Login test: PASSED`. Do not advance until the actual result is verified.
 
 ## Learning constraints
-Project-first / fast pace. Explain every terminal command line and important syntax before execution. Verify actual results. Correct minimally and retry. Preserve exact next action at checkpoints.
+- Project-first / fast pace.
+- Explain every terminal command line and important syntax before execution.
+- Verify actual results.
+- Correct minimally and retry.
+- Preserve the exact next action at checkpoints.
+- Use `04_CONTINUITY_RULES.md` for operating rules rather than duplicating them here.
 
 ## Repository architecture
-- Local project repository: separate GitHub repository to be chosen/used for the AI QA Platform itself.
-- Study-control repository: this GitHub repository only, intended to store curriculum control, live study state, continuity rules, and handovers.
-- The study-control repository is being renamed from `automation-platform` to `QA-study-planner` to prevent confusion with the local AI QA Platform project.
+- `QA-study-planner` is the study-control repository only.
+- The local AI QA Platform project will use a different GitHub repository.
 - The local project repository must not be connected as the remote for this study-control repository.
+- This handover is a historical/continuity aid derived from the canonical control-center state; it does not override canonical files.
