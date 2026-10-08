@@ -7,6 +7,23 @@
 - Handovers are derived records.
 - Once this GitHub system is promoted, GitHub is authoritative and Library copies are fallback only.
 
+## Single-authority principle
+Each authoritative piece of study information has exactly one canonical source in this control center.
+
+| Information | Canonical source |
+|---|---|
+| Required capability coverage and 45-hour curriculum | `03_MASTER_PLAN.md` |
+| Curriculum navigation/locator | `02_CURRICULUM_INDEX.md` |
+| Live study position and exact next action | `01_CURRENT_STATE.md` |
+| Study operating/continuity rules, including safe GitHub write protocol | `04_CONTINUITY_RULES.md` |
+| New-chat startup routing | `00_BOOT.md` |
+| New-chat recovery procedure | `07_NEW_CHAT_RECOVERY.md` |
+| Short/long handovers | `05_SHORT_HANDOVER.md` / `06_LONG_HANDOVER.md` — derived records only |
+
+Other control-center files may reference canonical information, but must not create competing copies of authoritative rules, live state, or curriculum requirements. Handovers may summarize current state because they are derived records; they never override `01_CURRENT_STATE.md` or `04_CONTINUITY_RULES.md`.
+
+Do not store a second copy of the GitHub write protocol, current resume state, or master-plan requirements in another control-center file.
+
 ## Startup
 On `STUDY`:
 1. Read `00_BOOT.md`.
