@@ -87,6 +87,13 @@ Preferred workflow: **READ → preserve current content → minimal changes → 
 
 If a write is rejected or the SHA has changed, stop and re-read the live file before retrying. Do not overwrite blindly.
 
+## Control-center validation
+A read-only validator at `tools/validate_control_center.py` checks structural consistency, canonical-source ownership, stale duplicated state/rules, required curriculum coverage, handover freshness, and required cross-file references.
+
+The GitHub Actions workflow at `.github/workflows/control-center-validation.yml` runs the validator on pull requests and pushes to `main`.
+
+The validator is a guardrail, not an authority. It may fail a change when the repository violates these rules, but it must never rewrite control-center files or override canonical content. A passing validator proves the deterministic checks pass; semantic decisions still follow the canonical files and these continuity rules.
+
 ## Anti-drift
 Never restart completed work.
 Never merge contradictory versions.
