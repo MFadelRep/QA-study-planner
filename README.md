@@ -1,6 +1,8 @@
-# AI QA Platform — Senior QA Automation + MLOps Study
+# QA Study Planner — Senior QA Automation + MLOps
 
-This repository is both the portfolio project and the authoritative home of the study-control system.
+This repository is the **authoritative study-control system** for the Senior QA Automation + MLOps curriculum.
+
+It is **not** the GitHub repository for the AI QA Platform project itself.
 
 ## Study system
 - Startup keyword: `STUDY`
@@ -14,7 +16,8 @@ This repository is both the portfolio project and the authoritative home of the 
 ## Operating model
 Build → Check → Learn on demand → Fix/Verify → Continue.
 
-The AI QA Platform is the primary learning vehicle. The curriculum defines required coverage; the live state defines the exact resume point.
+## Separation rule
+The user's local **AI QA Platform** is maintained in a separate GitHub repository. This repository stores study progress and control documents only.
 
 ## Important
-Do not store secrets in this repository. Use environment variables and local secret files that are excluded by .gitignore.
+Do not store secrets or personal credentials in this repository.
