@@ -152,7 +152,7 @@ if hour_numbers != expected_hours:
     )
 
 for required in [
-    "This index is a locator; the complete scope is in 03_MASTER_PLAN.md.",
+    "This index is a locator; the complete scope is in `03_MASTER_PLAN.md`.",
     "## Phase gates",
     "Required strengthened areas:",
 ]:
@@ -209,7 +209,7 @@ must_contain("07_NEW_CHAT_RECOVERY.md", recovery, "04_CONTINUITY_RULES.md")
 must_contain(
     "07_NEW_CHAT_RECOVERY.md",
     recovery,
-    "The live checkpoint is always read from 01_CURRENT_STATE.md at recovery time.",
+    "The live checkpoint is always read from `01_CURRENT_STATE.md` at recovery time.",
 )
 must_contain(
     "07_NEW_CHAT_RECOVERY.md",
