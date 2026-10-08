@@ -131,8 +131,8 @@ def validate(root: Path) -> list[str]:
     for required in [
         "01_CURRENT_STATE.md",
         "02_CURRICULUM_INDEX.md",
-        "03_MASTER_PLAN.md",
         "04_CONTINUITY_RULES.md",
+        "Retrieve only the relevant Master Plan section for the current work.",
     ]:
         must_contain("00_BOOT.md", boot, required)
 
@@ -205,8 +205,8 @@ def validate(root: Path) -> list[str]:
         must_contain("05_SHORT_HANDOVER.md", short, topic)
         must_contain("06_LONG_HANDOVER.md", long, topic)
 
-    must_contain("05_SHORT_HANDOVER.md", short, "## SHORT HANDOVER — CURRENT")
-    must_contain("06_LONG_HANDOVER.md", long, "## LONG HANDOVER — CURRENT RECORD")
+    must_contain("05_SHORT_HANDOVER.md", short, "# SHORT HANDOVER — CURRENT")
+    must_contain("06_LONG_HANDOVER.md", long, "# LONG HANDOVER — CURRENT RECORD")
     must_contain("05_SHORT_HANDOVER.md", short, "Immediate next action:")
     must_contain("06_LONG_HANDOVER.md", long, "## Exact resume action")
 
