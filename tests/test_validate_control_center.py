@@ -110,7 +110,7 @@ Use GitHub as primary authority.
 ## Boot protocol
 1. Read 01_CURRENT_STATE.md.
 2. Read 02_CURRICULUM_INDEX.md.
-3. Read 03_MASTER_PLAN.md.
+3. Retrieve only the relevant Master Plan section for the current work.
 4. Apply 04_CONTINUITY_RULES.md.
 
 Do NOT use the Library Control Center copies as the live study authority.
