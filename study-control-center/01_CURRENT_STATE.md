@@ -1,6 +1,6 @@
 # Current Study State
 
-**State version:** 3.2-GITHUB-CHECKPOINT
+**State version:** 3.3-GITHUB-CHECKPOINT
 **Last verified:** 2026-10-08
 **Checkpoint:** SAVED — safe resume point
 **Status:** ACTIVE — Day 1 / Hour 1 in progress
@@ -25,21 +25,25 @@
 - `npx tsc --noEmit` was executed.
 - TS18003 was resolved by creating `src/index.ts`.
 - `npx tsc --noEmit` passed after adding the TypeScript input.
-- `npx tsx src/index.ts` executed successfully with output: `Starting AI QA Platform`.
+- `src/index.ts` now contains the typed `TestResult` model, typed `reportResult`, typed `loginTest`, and `reportResult(loginTest)` call.
+- `npx tsc --noEmit` was run after adding the typed model and returned no output, confirming the type-check passed.
+- `npx tsx src/index.ts` execution for this slice is still pending.
 
 ## Latest verified result / blocker
-No active blocker.
-
-The first executable TypeScript project entry point is verified.
+- TypeScript type-check passed with no output.
+- No active blocker.
+- The typed QA test-result model is implemented and type-checked.
+- Program execution with `npx tsx src/index.ts` is still pending for this slice.
 
 ## Exact next action
-Add the first small typed QA-platform model to `src/index.ts`: a `TestResult` type, a typed `reportResult(result: TestResult): void` function, a typed `loginTest`, and a call to `reportResult(loginTest)`.
-
-Then run:
-`npx tsc --noEmit`
+Run:
 `npx tsx src/index.ts`
 
-Expected output: `Login test: PASSED`. Do not advance until the actual result is verified.
+Expected output:
+`Starting AI QA Platform`
+`Login test: PASSED`
+
+Do not advance until the actual result is verified.
 
 ## Resume constraints
 - Do not restart Git initialization, Git identity setup, or the successful initial commit.
