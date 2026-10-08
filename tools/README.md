@@ -20,10 +20,18 @@ It verifies:
 - Short and Long Handovers are explicitly derived and match the canonical state version, day/hour, and current topic;
 - required routing and repository-separation references remain intact.
 
+## Self-tests
+
+Run the validator test suite locally:
+
+    python3 -m unittest discover -s tests -v
+
+The tests use isolated temporary fixtures and intentionally inject failures for stale state, duplicated authority, missing curriculum hours, stale handover versions, and missing current-state next actions. They also verify that the validator does not modify files.
+
 ## GitHub Actions
 
-.github/workflows/control-center-validation.yml runs the validator on pushes to main and pull requests.
+.github/workflows/control-center-validation.yml runs the self-tests first and then the real validator on pushes to main and pull requests.
 
-The validator can block a change by failing the workflow, but it never edits files and never overrides the canonical control-center documents.
+The validator and tests never edit control-center files. A failure blocks the workflow; canonical documents remain the only authority.
 
 For semantic decisions, follow study-control-center/04_CONTINUITY_RULES.md.
