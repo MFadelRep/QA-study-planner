@@ -23,7 +23,7 @@ The Library contains only a small bridge/fallback because Library retrieval/uplo
 7. Record verified state in `01_CURRENT_STATE.md`.
 
 ## Authority
-GitHub is the authoritative source for live study state, curriculum-control documents, continuity rules, and derived handovers.
+GitHub is the authoritative repository for the Study Control Center. File-level ownership is defined by `04_CONTINUITY_RULES.md`; this boot file only defines startup routing and must not duplicate live state or detailed operating rules.
 
 ## Separation from project repository
 The user's local AI QA Platform project is a separate repository.
