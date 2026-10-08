@@ -58,6 +58,7 @@ After a meaningful verified slice, update `01_CURRENT_STATE.md` with:
 - timestamp/version
 
 Do not put long history into Current State.
+Every meaningful Current State update must advance the State version. Derived handovers must be refreshed to the new canonical state version; the validator checks that they match.
 
 ## Handover
 `HANDOVER` refreshes Short Handover.
