@@ -20,7 +20,7 @@ The user's local `automation-platform` project will use a different GitHub repos
 ## Library status
 The Library is only a fallback/bridge location. Do not treat the legacy Library Control Center copies as live authority.
 
-## Current saved checkpoint
-Day 1 / Hour 1 — TypeScript project foundation.
-Blocker: TS18003 because there are no TypeScript inputs.
-Next action: create minimal `src/index.ts`, run `npx tsc --noEmit`, and inspect the actual result.
+## State handling
+Do not store a copied checkpoint in this recovery file.
+The live checkpoint is always read from `01_CURRENT_STATE.md` at recovery time.
+Apply all operating rules, including the safe GitHub write protocol and single-authority principle, from `04_CONTINUITY_RULES.md`.
