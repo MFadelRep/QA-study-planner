@@ -24,6 +24,3 @@ The Library is only a fallback/bridge location. Do not treat the legacy Library 
 Do not store a copied checkpoint in this recovery file.
 The live checkpoint is always read from `01_CURRENT_STATE.md` at recovery time.
 Apply all operating rules, including the safe GitHub write protocol and single-authority principle, from `04_CONTINUITY_RULES.md`.
-
-
-TS18003
