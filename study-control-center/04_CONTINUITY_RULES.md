@@ -56,6 +56,20 @@ Before every terminal block:
 - then give the small practical action;
 - wait for the actual result before advancing.
 
+## Safe GitHub write protocol
+For any future Study Control Center GitHub checkpoint or other write/update operation:
+1. READ the current live file first.
+2. Preserve the existing content; do not reconstruct the whole file from memory.
+3. Make only the minimal targeted changes required.
+4. WRITE using the current blob SHA as the optimistic concurrency check.
+5. Commit only the intended file/change.
+6. READ the file again after the write.
+7. Verify the exact committed content and new blob SHA before reporting success.
+
+Preferred workflow: **READ → preserve current content → minimal changes → WRITE with current SHA → READ AGAIN → verify**.
+
+If a write is rejected or the SHA has changed, stop and re-read the live file before retrying. Do not overwrite blindly.
+
 ## Anti-drift
 Never restart completed work.
 Never merge contradictory versions.
