@@ -132,7 +132,7 @@ Do not store a copied checkpoint in this recovery file.
 This recovery file belongs to a different GitHub repository from the local project.
 """
 
-    short = f"""# SHORT HANDOVER — CURRENT
+    short = f"""## SHORT HANDOVER — CURRENT
 
 Canonical state version: {STATE_VERSION}
 
@@ -145,7 +145,7 @@ Immediate next action:
 Do the next verified project action.
 """
 
-    long = f"""# LONG HANDOVER — CURRENT RECORD
+    long = f"""## LONG HANDOVER — CURRENT RECORD
 
 Canonical state version: {STATE_VERSION}
 
