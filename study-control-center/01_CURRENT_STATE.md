@@ -1,8 +1,8 @@
 # Current Study State
 
-**State version:** 4.0-PLAYWRIGHT-SMOKE-TEST-PASS
+**State version:** 4.1-CHROMIUM-PROJECT-PASS-TYPECHECK
 **Last verified:** 2026-10-10
-**Checkpoint:** SAVED — first real Playwright UI smoke test against Toolshop passed; local Playwright Test installed; validator fix remains verified
+**Checkpoint:** SAVED — named Chromium Playwright smoke test passed; TypeScript check produced no errors; validator fix remains verified
 **Status:** ACTIVE — Day 1 / Hour 1 in progress
 **Execution mode:** PROJECT-FIRST / FAST-PACE
 
@@ -10,7 +10,7 @@
 - Day: 1
 - Hour: 1
 - Curriculum area: Programming + Terminal + Git Survival
-- Current topic: TypeScript asynchronous test flow — Promise, async/await
+- Current topic: TypeScript asynchronous test flow — Promise, async/await; first real Playwright UI smoke test
 - Project: AI QA Platform
 
 ## Verified project state
@@ -42,11 +42,14 @@
 - Installed local dev dependency `@playwright/test@1.63.0`; `npm ls --depth=0` showed it alongside TypeScript `7.0.2`, and `npx playwright --version` reported `1.63.0`.
 - `npx playwright install --list` found Chromium, Firefox, and WebKit browser binaries in `~/.cache/ms-playwright/`; no browser download was needed.
 - Created `tests/toolshop.spec.ts` with a homepage navigation check for HTTP 200 and visible body.
-- The first run with `--project=chromium` did not start because no named project is configured yet; rerunning without `--project` succeeded: `1 passed (3.7s)`.
-- Latest local inspection showed `package.json` and `package-lock.json` modified, and `src/`, `tsconfig.json`, and `tests/` untracked. Do not discard or overwrite these files.
+- Running `npx playwright test tests/toolshop.spec.ts` without a named project passed: `1 passed (3.7s)`.
+- Created `playwright.config.ts` with `testDir: './tests'`, Toolshop `baseURL`, and a named `chromium` project.
+- On 2026-10-10, the user ran `npx playwright test tests/toolshop.spec.ts --project=chromium`; the user confirmed it passed.
+- The user then ran `npx tsc --noEmit`; it produced no output, indicating no reported TypeScript errors.
+- Preserve `playwright.config.ts`, `tests/toolshop.spec.ts`, `src/`, `tsconfig.json`, `package.json`, and `package-lock.json`. Do not discard or overwrite these files.
 
 ## Exact next action
-Create a minimal `playwright.config.ts` for this project with `testDir: './tests'`, a Toolshop `baseURL`, and an explicitly named Chromium project. First check for an existing config (none was shown in the inspected top-level files), then run the test with `--project=chromium` and verify the result. Keep the existing passing test and source files. Do not build our own test application yet. Keep explanations short, project-first, and explain every command before use.
+Inspect the Toolshop page's actual headings using a small Playwright diagnostic in the existing test (log the page's `h1` text after navigation), run the Chromium test, and use the observed text to replace or supplement the generic visible-body assertion with a meaningful, stable user-facing assertion. Explain the edit before asking the user to make it, keep the existing passing status check, and verify the actual output. Do not build our own test application yet.
 
 ## Resume constraints
 - Do not restart Git initialization, Git identity setup, or the successful initial commit.
