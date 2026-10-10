@@ -74,6 +74,12 @@ Before every terminal block:
 - then give the small practical action;
 - wait for the actual result before advancing.
 
+## Safe GitHub write protocol
+
+Required sequence: **READ → preserve current content → minimal changes → WRITE with current SHA → READ AGAIN → verify**.
+
+For the Study Control Center, implement this with the low-level Git object workflow below: read the current branch head and target files; preserve the full content of each file; make only the necessary edits; create blobs; create a tree from the current base tree; create a commit parented to the current head; update the branch using the original head as the expected SHA; then read back the changed files and branch head and verify the exact content and SHAs. If the branch head changes, stop and re-read before rebuilding. Never report success until read-back verification passes.
+
 ## Default GitHub write protocol — low-level Git workflow
 **This is the default and required write method for the Study Control Center. Do not use the GitHub Contents API write methods (`update_file` or `create_file`) for these files; they have repeatedly been blocked by tool safety checks. Do not retry a blocked Contents API write.**
 
