@@ -105,3 +105,19 @@ Never restart completed work.
 Never merge contradictory versions.
 Never silently remove required curriculum coverage.
 Never use the old `playwright-course` directory.
+
+
+## Practice application selection
+The default external system under test (SUT) for the AI QA Platform is **Practice Software Testing — Toolshop**:
+- UI: https://practicesoftwaretesting.com/
+- REST API documentation: https://api.practicesoftwaretesting.com/api/documentation
+
+Use Toolshop as the primary shared target for Playwright UI automation, documented REST API testing, authentication, product search/filtering, cart/checkout workflows, and combined API/UI checks. Inspect the current API documentation before writing tests because hosted demo systems can change. Treat it as a third-party practice environment: avoid destructive or abusive traffic, do not assume data persists, and do not depend on undocumented behavior.
+
+Two secondary practice sites are approved for specific gaps:
+1. **Expand Testing** — https://practice.expandtesting.com/
+   Use when a lesson needs a focused, isolated UI scenario (dynamic controls, tables/pagination, locators, browser interactions, forms, status codes) or its dedicated Notes API / Practice API Swagger exercises. Switch to it when Toolshop does not expose a needed UI challenge or a smaller reproducible scenario would teach the skill more efficiently.
+2. **QA Practice API Playground** — https://www.qapractice.com/api-playground
+   Use as a focused supplementary REST API target for bearer-token authentication, products, users, orders, and explicit positive/negative login responses. Switch to it when practicing a compact API-only exercise or when Toolshop's API is unsuitable for a particular auth/status-code exercise.
+
+Selection rule: start with Toolshop by default; use a secondary site only when its stated use case materially fits the current learning objective. Do not switch targets without a reason, and do not build our own SUT yet. Reconsider a small controlled local app later only if required scenarios cannot be reliably exercised on these public targets (for example, controlled fault injection, database-level assertions, or custom AI/RAG/inference behavior).

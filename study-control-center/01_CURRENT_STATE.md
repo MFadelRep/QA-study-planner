@@ -1,8 +1,8 @@
 # Current Study State
 
-**State version:** 3.6-GITHUB-CHECKPOINT
+**State version:** 3.7-PRACTICE-TARGET-CHECKPOINT
 **Last verified:** 2026-10-10
-**Checkpoint:** SAVED — deliberate failure/exit-code behavior verified; restore passing test next
+**Checkpoint:** SAVED — passing async test/type-check re-verified; Toolshop selected as default practice SUT
 **Status:** ACTIVE — Day 1 / Hour 1 in progress
 **Execution mode:** PROJECT-FIRST / FAST-PACE
 
@@ -34,13 +34,13 @@
 - The user then ran `npx tsx src/index.ts; npx tsc --noEmit`; the login still failed because the wrong password remains in the file, while the TypeScript check produced no errors. The test failure and TypeScript check are separate outcomes.
 
 ## Latest verified result / blocker
-- The intentional wrong-password experiment correctly reports `Login test: FAILED` and throws an error.
-- The user confirmed the test command's exit code is `1` using `echo "Exit code: $?"` immediately after the command.
-- `npx tsc --noEmit` produced no errors after the failure run.
-- Current local code is intentionally left in a failing-test state (`WrongPassword!`); restore the expected test password before moving on.
+- The user restored the expected password and confirmed the program passed.
+- The user also ran the TypeScript check; it passed without reported errors/output.
+- The simulated test's failure path and exit code 1 had previously been verified.
+- Decision: use Practice Software Testing — Toolshop as the default external system under test for both UI and documented REST API automation. Secondary-site use cases are recorded in `04_CONTINUITY_RULES.md`.
 
 ## Exact next action
-Restore `password: "Test123!" as string` in the `testUser` object (currently `WrongPassword!`). Then run `npx tsx src/index.ts` and `npx tsc --noEmit` and verify the login passes with no TypeScript errors. After that, move quickly toward a real API login test instead of continuing hardcoded credential comparisons. Keep explanations short, realistic, and project-first; explain commands before use and verify actual output.
+Open https://practicesoftwaretesting.com/ in Firefox and confirm the site loads and its UI is suitable. Then begin setting up the project for Playwright UI + API tests against Toolshop, checking existing files/dependencies first and avoiding duplicate setup. Do not build our own test application yet. Keep explanations short, realistic, and project-first; explain commands before use and verify actual output.
 
 ## Resume constraints
 - Do not restart Git initialization, Git identity setup, or the successful initial commit.

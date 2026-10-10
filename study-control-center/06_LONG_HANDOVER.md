@@ -1,6 +1,6 @@
 # LONG HANDOVER — CURRENT RECORD
 
-Canonical state version: 3.6-GITHUB-CHECKPOINT
+Canonical state version: 3.7-PRACTICE-TARGET-CHECKPOINT
 
 **Derived record — not authoritative.** The live study state is `01_CURRENT_STATE.md`; operating rules are `04_CONTINUITY_RULES.md`; curriculum coverage is `03_MASTER_PLAN.md`.
 
@@ -31,13 +31,13 @@ The user's local project uses Node.js 22.22.1, local TypeScript 7.0.2, and tsx 4
 - The user deliberately changed the test password to `WrongPassword!`; the simulated login returned `Login test: FAILED`.
 - `main()` was updated to throw an error when `result.passed` is false.
 - The user verified exit code `1` with `npx tsx src/index.ts; echo "Exit code: $?"` (with echo directly after the test command); a subsequent `npx tsc --noEmit` produced no errors.
-- The user then ran `npx tsx src/index.ts; npx tsc --noEmit`; the simulated login still failed because the wrong password remains, and TypeScript emitted no errors.
+- The user later restored the expected password and confirmed the program passed; the TypeScript check also passed.
 
 ## Current resume point
-The async test flow reports failures and throws an error so the process exits nonzero; the user verified exit code 1 for the deliberate wrong-password case. TypeScript checking produced no errors. The current test is intentionally left failing because `testUser.password` is still `WrongPassword!`.
+The async test flow reports failures and throws an error so the process exits nonzero; the user verified exit code 1 for the deliberate wrong-password case, then restored the expected password and confirmed the test passed. TypeScript checking also passed. Toolshop was selected as the default UI + REST API practice target.
 
 ## Exact resume action
-Restore `password: "Test123!" as string` in `testUser` (currently `WrongPassword!`). Run `npx tsx src/index.ts` and `npx tsc --noEmit`; confirm the test passes and type-check is clean. Then move toward a real API login test instead of more hardcoded credential comparisons. Keep pace fast, examples realistic, explanations short, and verify actual output.
+Open https://practicesoftwaretesting.com/ in Firefox and confirm it loads. Then set up Playwright UI + API tests against Toolshop after checking the current files/dependencies. See `04_CONTINUITY_RULES.md` for secondary-site use cases. Do not build our own SUT yet. Keep pace fast, examples realistic, explanations short, and verify actual output.
 
 ## Learning constraints
 - Project-first / fast pace.
