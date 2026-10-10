@@ -1,13 +1,13 @@
 # LONG HANDOVER — CURRENT RECORD
 
-Canonical state version: 3.4-GITHUB-CHECKPOINT
+Canonical state version: 3.5-GITHUB-CHECKPOINT
 
 **Derived record — not authoritative.** The live study state is `01_CURRENT_STATE.md`; operating rules are `04_CONTINUITY_RULES.md`; curriculum coverage is `03_MASTER_PLAN.md`.
 
 ## Session state
 Day 1 / Hour 1 of the 45-hour Senior QA Automation + MLOps program. The AI QA Platform is the primary learning vehicle. Execution mode is project-first / fast-pace.
 
-Topic: TypeScript project foundation — typed QA test-result model; execution verified
+Topic: TypeScript asynchronous test flow — Promise, async/await; execution and type-check verified.
 
 ## Verified environment
 The user's local project uses Node.js 22.22.1, local TypeScript 7.0.2, and tsx 4.23.15.
@@ -23,14 +23,18 @@ The user's local project uses Node.js 22.22.1, local TypeScript 7.0.2, and tsx 4
 - `src/` and `tests/` created.
 - `tsconfig.json` created.
 - TS18003 was resolved by creating `src/index.ts`.
-- `npx tsc --noEmit` passed after adding the TypeScript input.
-- On 2026-10-10, the user ran `npx tsx src/index.ts`; actual output was `Starting AI QA Platform` and `Login test: PASSED`.
+- Added the typed `TestResult` model and typed `reportResult(result: TestResult): void` reporter.
+- Added `runLoginTest(): Promise<TestResult>` and `main(): Promise<void>`; `main()` awaits the login operation and reports the resolved result.
+- Removed the old synchronous `loginTest` object and `reportResult(loginTest)` call to prevent duplicate output.
+- On 2026-10-10, the user ran `npx tsx src/index.ts`; actual output was `Starting AI QA Platform` and `Login test: PASSED` exactly once.
+- The user then ran `npx tsc --noEmit`; it produced no errors/output.
+- The async/await slice is both type-checked and executed successfully.
 
 ## Current resume point
-The typed QA test-result model is implemented, type-checked, and executed successfully.
+The typed async/await flow is implemented, type-checked, and executed successfully. A short Promise-based delay and generic result-name reporting are the next slice; these changes have not yet been verified.
 
 ## Exact resume action
-Inspect the current `src/index.ts`, then introduce a realistic asynchronous test operation using `Promise` and `async/await` while preserving the working typed result model. Explain code and syntax before asking for edits. Run type-checking and execution, then verify the actual output before advancing.
+At fast pace, add a short Promise-based delay so the simulated login operation is genuinely asynchronous, and update `reportResult()` to print `result.name` instead of hardcoding `Login test`. Explain only new syntax, request one focused edit/action, then verify with `npx tsx src/index.ts` and `npx tsc --noEmit` before advancing.
 
 ## Learning constraints
 - Project-first / fast pace.
