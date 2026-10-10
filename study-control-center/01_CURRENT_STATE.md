@@ -1,8 +1,8 @@
 # Current Study State
 
-**State version:** 3.8-PRACTICE-TARGET-CHECKPOINT
+**State version:** 3.9-VALIDATOR-FIX-CHECKPOINT
 **Last verified:** 2026-10-10
-**Checkpoint:** SAVED — passing async test/type-check re-verified; Toolshop selected as default practice SUT
+**Checkpoint:** SAVED — async test/type-check verified; safe-write validator issue repaired; user confirmed all fixed; Toolshop remains default practice SUT
 **Status:** ACTIVE — Day 1 / Hour 1 in progress
 **Execution mode:** PROJECT-FIRST / FAST-PACE
 

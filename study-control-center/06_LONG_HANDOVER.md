@@ -1,6 +1,6 @@
 # LONG HANDOVER — CURRENT RECORD
 
-Canonical state version: 3.8-PRACTICE-TARGET-CHECKPOINT
+Canonical state version: 3.9-VALIDATOR-FIX-CHECKPOINT
 
 **Derived record — not authoritative.** The live study state is `01_CURRENT_STATE.md`; operating rules are `04_CONTINUITY_RULES.md`; curriculum coverage is `03_MASTER_PLAN.md`.
 
@@ -32,6 +32,8 @@ The user's local project uses Node.js 22.22.1, local TypeScript 7.0.2, and tsx 4
 - `main()` was updated to throw an error when `result.passed` is false.
 - The user verified exit code `1` with `npx tsx src/index.ts; echo "Exit code: $?"` (with echo directly after the test command); a subsequent `npx tsc --noEmit` produced no errors.
 - The user later restored the expected password and confirmed the program passed; the TypeScript check also passed.
+
+- On 2026-10-10, the safe-write validator issue was repaired by restoring the exact required heading and sequence in `04_CONTINUITY_RULES.md`; GitHub read-back verified the repair, and the user confirmed all fixed.
 
 ## Current resume point
 The async test flow reports failures and throws an error so the process exits nonzero; the user verified exit code 1 for the deliberate wrong-password case, then restored the expected password and confirmed the test passed. TypeScript checking also passed. Toolshop was selected as the default UI + REST API practice target.

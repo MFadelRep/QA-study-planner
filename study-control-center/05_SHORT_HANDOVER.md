@@ -1,6 +1,6 @@
 # SHORT HANDOVER — CURRENT
 
-Canonical state version: 3.8-PRACTICE-TARGET-CHECKPOINT
+Canonical state version: 3.9-VALIDATOR-FIX-CHECKPOINT
 
 **Derived record — not authoritative.** The live study state is always `01_CURRENT_STATE.md`; operating rules are always `04_CONTINUITY_RULES.md`.
 
@@ -8,7 +8,7 @@ State: Day 1 / Hour 1 — in progress
 Topic: TypeScript asynchronous test flow — Promise, async/await
 Project: AI QA Platform
 Last verified: 2026-10-10
-Checkpoint: SAVED — passing async test/type-check re-verified; Toolshop selected as default practice SUT
+Checkpoint: SAVED — async test/type-check verified; validator issue fixed and user-confirmed; Toolshop remains default practice SUT
 
 Completed:
 - Git repository initialized; local Git identity configured.
