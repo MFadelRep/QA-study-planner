@@ -1,6 +1,6 @@
 # LONG HANDOVER — CURRENT RECORD
 
-Canonical state version: 4.2-TOOLSHOP-TITLE-ASSERTION-PASS
+Canonical state version: 4.3-TOOLSHOP-DYNAMIC-INVENTORY-CHECKPOINT
 
 **Derived record — not authoritative.** The live study state is `01_CURRENT_STATE.md`; operating rules are `04_CONTINUITY_RULES.md`; curriculum coverage is `03_MASTER_PLAN.md`.
 
@@ -48,8 +48,16 @@ The user's local project uses Node.js 22.22.1, local TypeScript 7.0.2, and tsx 4
 - After adding the exact title assertion, the user reran the named Chromium test and type-check; output showed `1 passed (3.0s)` and no TypeScript errors.
 - Preserve `playwright.config.ts`, `tests/toolshop.spec.ts`, `src/`, `tsconfig.json`, `package.json`, and `package-lock.json`.
 
+## Dynamic Toolshop page inventory checkpoint — 2026-10-10
+- The initial inventory captured only the top/early content because it was taken before the shop's dynamic interface finished rendering. The user correctly suspected that the browser/page needed time to load.
+- A temporary diagnostic wait was added: wait for `networkidle` for up to 15 seconds while tolerating timeout, then wait another 3 seconds. The headed Chromium inventory then passed (`1 passed (7.9s)`) and exposed the populated catalog.
+- Observed visible brand checkbox inputs named `brand_id`, a sustainability checkbox named `eco_friendly`, labels such as `MightyCraft Hardware` and `Show only eco-friendly products`, product-card links and image alt text including Combination Pliers, Pliers, Bolt Cutters, Long Nose Pliers, and multiple hammer products, accessible Compare buttons, and pagination buttons named `Previous`, `Page-1` through `Page-5`, and `Next`. Footer/external links included Learn Test Automation, API Spector, and GitHub.
+- The user also identified visible navigation (Documentation, Testing Guide, Bug Hunting, Home, Contact, Sign in), Sort and Categories dropdowns, language selector, search box, price-range slider, multiple checkboxes, product-image links, and pagination.
+- The user explicitly wants headed runs for visual inspection. `--headed` shows Chromium during execution but Playwright normally closes it after completion; `--debug` opens Playwright Inspector for paused interactive inspection.
+- This is enough inventory to begin behavior-focused tests; do not continue collecting broad diagnostics without a specific need.
+
 ## Exact resume action
-Inspect the Toolshop homepage for a real user-facing control or product element using a small Playwright diagnostic, then add one stable locator-based assertion based on observed page content. Preserve the HTTP 200 and exact page-title assertions; explain the edit and verify the Chromium test plus TypeScript check. Do not build our own SUT yet.
+Use the observed page controls to implement one meaningful pagination test: capture the product names on page 1, click the observed accessible `Page-2` button, and assert that the displayed product list changes. Preserve the HTTP 200, exact page-title, and visible-body assertions. Explain the locator and assertion before the edit; run the test headed, verify the actual result, and run `npx tsc --noEmit`. Do not build our own SUT yet.
 
 ## Learning constraints
 - Project-first / fast pace.

@@ -1,8 +1,8 @@
 # Current Study State
 
-**State version:** 4.2-TOOLSHOP-TITLE-ASSERTION-PASS
+**State version:** 4.3-TOOLSHOP-DYNAMIC-INVENTORY-CHECKPOINT
 **Last verified:** 2026-10-10
-**Checkpoint:** SAVED — named Chromium Playwright smoke test with an exact page-title assertion passed; TypeScript check produced no errors; validator fix remains verified
+**Checkpoint:** SAVED — headed Chromium inventory confirmed the full Toolshop catalog after waiting for dynamic rendering: brand and sustainability checkboxes, linked product cards/images, Compare buttons, pagination (Previous, Page 1–5, Next), and external/footer links were observed. A 15-second network-idle wait plus 3-second settling wait was used; the test passed.
 **Status:** ACTIVE — Day 1 / Hour 1 in progress
 **Execution mode:** PROJECT-FIRST / FAST-PACE
 
@@ -49,10 +49,15 @@
 - The user inspected `h1` text and observed an empty array (`Page headings: []`), so no heading assertion was guessed.
 - The user inspected the real browser title (`Practice Software Testing - Toolshop - v5.0`) and replaced the temporary title diagnostic with `await expect(page).toHaveTitle('Practice Software Testing - Toolshop - v5.0')`.
 - The user reran the named Chromium test and `npx tsc --noEmit`; the test reported `1 passed (3.0s)` and the type-check emitted no errors.
+- The first immediate inventory was incomplete because it ran before the full shop interface had rendered; do not treat that early inventory as the page's full control list.
+- Added a temporary diagnostic wait: wait for `networkidle` for up to 15 seconds, tolerate timeout, then wait another 3 seconds. The subsequent headed Chromium run completed successfully (`1 passed (7.9s)`) and exposed the populated catalog.
+- The later inventory confirmed visible checkbox inputs including `name="brand_id"` (brand filters) and `name="eco_friendly"` (sustainability), labels such as `MightyCraft Hardware` and `Show only eco-friendly products`, product-card links and image alt text (e.g. `Combination Pliers`, `Pliers`, `Bolt Cutters`, `Long Nose Pliers`), accessible `Compare` buttons, pagination buttons with accessible names `Previous`, `Page-1` through `Page-5`, and `Next`, plus footer/external links including Learn Test Automation, API Spector, and GitHub.
+- The user wants the test run headed for visual inspection. `--headed` shows Chromium while the test runs; Playwright normally closes it when the test finishes. `--debug` opens Playwright Inspector for paused interactive inspection.
+- User described additional visible controls to cover later: Documentation, Testing Guide, Bug Hunting, Home, Contact, Sign in, language dropdown, Sort, Categories, search box, price-range slider, more checkboxes, product-image links, and pagination. Inventory work is complete enough to begin behavior testing; avoid more broad diagnostics unless a specific gap appears.
 - Preserve `playwright.config.ts`, `tests/toolshop.spec.ts`, `src/`, `tsconfig.json`, `package.json`, and `package-lock.json`. Do not discard or overwrite these files.
 
 ## Exact next action
-Inspect the Toolshop homepage for a real user-facing control or product element using a small Playwright diagnostic, then add one stable locator-based assertion based on observed page content. Preserve the HTTP 200 and exact page-title assertions; explain the edit and verify the Chromium test plus TypeScript check. Do not build our own SUT yet.
+Use the observed page controls to implement one meaningful pagination test: capture the product names on page 1, click the observed accessible `Page-2` button, and assert that the displayed product list changes. Preserve the HTTP 200, exact page-title, and visible-body assertions. Explain the locator and assertion before the edit; run the test headed, verify the actual result, and run `npx tsc --noEmit`. Do not build our own SUT yet.
 
 ## Resume constraints
 - Do not restart Git initialization, Git identity setup, or the successful initial commit.
