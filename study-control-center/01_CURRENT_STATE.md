@@ -1,6 +1,6 @@
 # Current Study State
 
-**State version:** 3.7-PRACTICE-TARGET-CHECKPOINT
+**State version:** 3.8-PRACTICE-TARGET-CHECKPOINT
 **Last verified:** 2026-10-10
 **Checkpoint:** SAVED — passing async test/type-check re-verified; Toolshop selected as default practice SUT
 **Status:** ACTIVE — Day 1 / Hour 1 in progress
@@ -31,7 +31,7 @@
 - The user then ran `npx tsc --noEmit`; it produced no errors/output.
 - The user deliberately changed the password to `WrongPassword!` and confirmed the simulated login reports `Login test: FAILED`.
 - `main()` now throws an error when a result fails; the user observed the error stack and explicitly printed `Exit code: 1` immediately after the test command.
-- The user then ran `npx tsx src/index.ts; npx tsc --noEmit`; the login still failed because the wrong password remains in the file, while the TypeScript check produced no errors. The test failure and TypeScript check are separate outcomes.
+- After the deliberate failure/exit-code experiment, the user restored the expected password and confirmed the login test passed again. The TypeScript check also passed without reported errors.
 
 ## Latest verified result / blocker
 - The user restored the expected password and confirmed the program passed.

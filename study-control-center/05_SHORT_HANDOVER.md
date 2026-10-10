@@ -1,6 +1,6 @@
 # SHORT HANDOVER — CURRENT
 
-Canonical state version: 3.7-PRACTICE-TARGET-CHECKPOINT
+Canonical state version: 3.8-PRACTICE-TARGET-CHECKPOINT
 
 **Derived record — not authoritative.** The live study state is always `01_CURRENT_STATE.md`; operating rules are always `04_CONTINUITY_RULES.md`.
 
