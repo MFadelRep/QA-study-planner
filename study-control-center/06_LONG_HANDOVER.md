@@ -1,6 +1,6 @@
 # LONG HANDOVER — CURRENT RECORD
 
-Canonical state version: 4.1-CHROMIUM-PROJECT-PASS-TYPECHECK
+Canonical state version: 4.2-TOOLSHOP-TITLE-ASSERTION-PASS
 
 **Derived record — not authoritative.** The live study state is `01_CURRENT_STATE.md`; operating rules are `04_CONTINUITY_RULES.md`; curriculum coverage is `03_MASTER_PLAN.md`.
 
@@ -39,14 +39,17 @@ The user's local project uses Node.js 22.22.1, local TypeScript 7.0.2, and tsx 4
 - Installed local dev dependency `@playwright/test@1.63.0`; npm showed it alongside TypeScript `7.0.2`; local `npx playwright --version` reported `1.63.0`.
 - Playwright detected Chromium, Firefox, and WebKit browser binaries in `~/.cache/ms-playwright/`; no browser download was required.
 - Created `tests/toolshop.spec.ts` to navigate to Toolshop, assert the main response status is 200, and assert the body is visible.
+- The user logged the page's `h1` text and observed `Page headings: []`; no heading assertion was guessed.
+- The user logged the actual page title, `Practice Software Testing - Toolshop - v5.0`, then replaced the diagnostic with `await expect(page).toHaveTitle('Practice Software Testing - Toolshop - v5.0')`.
 - Initial run with `--project=chromium` exposed that no named project was configured; running without that option passed: `1 passed (3.7s)`.
 - Created `playwright.config.ts` with `testDir: './tests'`, Toolshop `baseURL`, and a named `chromium` project.
 - The user then ran `npx playwright test tests/toolshop.spec.ts --project=chromium`; the user confirmed it passed.
 - The user ran `npx tsc --noEmit`; it produced no output, with no TypeScript errors reported.
+- After adding the exact title assertion, the user reran the named Chromium test and type-check; output showed `1 passed (3.0s)` and no TypeScript errors.
 - Preserve `playwright.config.ts`, `tests/toolshop.spec.ts`, `src/`, `tsconfig.json`, `package.json`, and `package-lock.json`.
 
 ## Exact resume action
-Inspect the Toolshop page's actual `h1` text using a small Playwright diagnostic in the existing test, run the Chromium test, and use the observed text to replace or supplement the generic visible-body assertion with a meaningful, stable user-facing assertion. Explain the edit before asking the user to make it, keep the existing passing status check, and verify actual output. Do not build our own SUT yet.
+Inspect the Toolshop homepage for a real user-facing control or product element using a small Playwright diagnostic, then add one stable locator-based assertion based on observed page content. Preserve the HTTP 200 and exact page-title assertions; explain the edit and verify the Chromium test plus TypeScript check. Do not build our own SUT yet.
 
 ## Learning constraints
 - Project-first / fast pace.

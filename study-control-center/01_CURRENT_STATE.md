@@ -1,8 +1,8 @@
 # Current Study State
 
-**State version:** 4.1-CHROMIUM-PROJECT-PASS-TYPECHECK
+**State version:** 4.2-TOOLSHOP-TITLE-ASSERTION-PASS
 **Last verified:** 2026-10-10
-**Checkpoint:** SAVED — named Chromium Playwright smoke test passed; TypeScript check produced no errors; validator fix remains verified
+**Checkpoint:** SAVED — named Chromium Playwright smoke test with an exact page-title assertion passed; TypeScript check produced no errors; validator fix remains verified
 **Status:** ACTIVE — Day 1 / Hour 1 in progress
 **Execution mode:** PROJECT-FIRST / FAST-PACE
 
@@ -41,15 +41,18 @@
 - On 2026-10-10, the user confirmed Toolshop loads in Firefox.
 - Installed local dev dependency `@playwright/test@1.63.0`; `npm ls --depth=0` showed it alongside TypeScript `7.0.2`, and `npx playwright --version` reported `1.63.0`.
 - `npx playwright install --list` found Chromium, Firefox, and WebKit browser binaries in `~/.cache/ms-playwright/`; no browser download was needed.
-- Created `tests/toolshop.spec.ts` with a homepage navigation check for HTTP 200 and visible body.
+- Created `tests/toolshop.spec.ts` with homepage HTTP 200 and visible-body checks; strengthened it with `await expect(page).toHaveTitle('Practice Software Testing - Toolshop - v5.0')` based on the actual observed title.
 - Running `npx playwright test tests/toolshop.spec.ts` without a named project passed: `1 passed (3.7s)`.
 - Created `playwright.config.ts` with `testDir: './tests'`, Toolshop `baseURL`, and a named `chromium` project.
 - On 2026-10-10, the user ran `npx playwright test tests/toolshop.spec.ts --project=chromium`; the user confirmed it passed.
 - The user then ran `npx tsc --noEmit`; it produced no output, indicating no reported TypeScript errors.
+- The user inspected `h1` text and observed an empty array (`Page headings: []`), so no heading assertion was guessed.
+- The user inspected the real browser title (`Practice Software Testing - Toolshop - v5.0`) and replaced the temporary title diagnostic with `await expect(page).toHaveTitle('Practice Software Testing - Toolshop - v5.0')`.
+- The user reran the named Chromium test and `npx tsc --noEmit`; the test reported `1 passed (3.0s)` and the type-check emitted no errors.
 - Preserve `playwright.config.ts`, `tests/toolshop.spec.ts`, `src/`, `tsconfig.json`, `package.json`, and `package-lock.json`. Do not discard or overwrite these files.
 
 ## Exact next action
-Inspect the Toolshop page's actual headings using a small Playwright diagnostic in the existing test (log the page's `h1` text after navigation), run the Chromium test, and use the observed text to replace or supplement the generic visible-body assertion with a meaningful, stable user-facing assertion. Explain the edit before asking the user to make it, keep the existing passing status check, and verify the actual output. Do not build our own test application yet.
+Inspect the Toolshop homepage for a real user-facing control or product element using a small Playwright diagnostic, then add one stable locator-based assertion based on observed page content. Preserve the HTTP 200 and exact page-title assertions; explain the edit and verify the Chromium test plus TypeScript check. Do not build our own SUT yet.
 
 ## Resume constraints
 - Do not restart Git initialization, Git identity setup, or the successful initial commit.
