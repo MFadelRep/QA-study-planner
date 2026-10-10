@@ -1,6 +1,6 @@
 # SHORT HANDOVER — CURRENT
 
-Canonical state version: 3.9-VALIDATOR-FIX-CHECKPOINT
+Canonical state version: 4.0-PLAYWRIGHT-SMOKE-TEST-PASS
 
 **Derived record — not authoritative.** The live study state is always `01_CURRENT_STATE.md`; operating rules are always `04_CONTINUITY_RULES.md`.
 
@@ -8,7 +8,7 @@ State: Day 1 / Hour 1 — in progress
 Topic: TypeScript asynchronous test flow — Promise, async/await
 Project: AI QA Platform
 Last verified: 2026-10-10
-Checkpoint: SAVED — async test/type-check verified; validator issue fixed and user-confirmed; Toolshop remains default practice SUT
+Checkpoint: SAVED — first real Playwright UI smoke test against Toolshop passed; local Playwright Test installed
 
 Completed:
 - Git repository initialized; local Git identity configured.
@@ -24,10 +24,10 @@ Completed:
 - User verified `Exit code: 1` by printing `$?` immediately after the test command.
 
 Exact stopping point:
-The async test flow and failure signaling are implemented. The wrong-password experiment confirmed failure reporting and exit code 1; the user then restored the correct password and confirmed the test and type-check pass.
+The async test flow and failure signaling are implemented. The wrong-password experiment confirmed failure reporting and exit code 1; the user then restored the correct password and confirmed the test and type-check pass. Toolshop loads in Firefox. Local `@playwright/test@1.63.0` is installed, browsers are available, and `tests/toolshop.spec.ts` passed once (1 passed, 3.7s) when run without a named project.
 
 Immediate next action:
-Open https://practicesoftwaretesting.com/ in Firefox and confirm it loads. Then set up Playwright UI + API tests against Toolshop after checking current files/dependencies. Toolshop is the default practice target; see `04_CONTINUITY_RULES.md` for when to use Expand Testing or QA Practice API Playground. Do not build our own SUT yet. Keep explanations short and practical.
+Create a minimal `playwright.config.ts` with `testDir: './tests'`, Toolshop `baseURL`, and a named Chromium project. Then rerun `npx playwright test tests/toolshop.spec.ts --project=chromium`. Preserve current project files; do not build our own SUT yet. See `04_CONTINUITY_RULES.md` for secondary-site selection.
 
 Architecture note:
 `MFadelRep/QA-study-planner` is the study-control repository only. The local AI QA Platform project uses a separate GitHub repository.

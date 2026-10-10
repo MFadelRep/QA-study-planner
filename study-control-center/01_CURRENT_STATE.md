@@ -1,8 +1,8 @@
 # Current Study State
 
-**State version:** 3.9-VALIDATOR-FIX-CHECKPOINT
+**State version:** 4.0-PLAYWRIGHT-SMOKE-TEST-PASS
 **Last verified:** 2026-10-10
-**Checkpoint:** SAVED — async test/type-check verified; safe-write validator issue repaired; user confirmed all fixed; Toolshop remains default practice SUT
+**Checkpoint:** SAVED — first real Playwright UI smoke test against Toolshop passed; local Playwright Test installed; validator fix remains verified
 **Status:** ACTIVE — Day 1 / Hour 1 in progress
 **Execution mode:** PROJECT-FIRST / FAST-PACE
 
@@ -38,9 +38,15 @@
 - The user also ran the TypeScript check; it passed without reported errors/output.
 - The simulated test's failure path and exit code 1 had previously been verified.
 - Decision: use Practice Software Testing — Toolshop as the default external system under test for both UI and documented REST API automation. Secondary-site use cases are recorded in `04_CONTINUITY_RULES.md`.
+- On 2026-10-10, the user confirmed Toolshop loads in Firefox.
+- Installed local dev dependency `@playwright/test@1.63.0`; `npm ls --depth=0` showed it alongside TypeScript `7.0.2`, and `npx playwright --version` reported `1.63.0`.
+- `npx playwright install --list` found Chromium, Firefox, and WebKit browser binaries in `~/.cache/ms-playwright/`; no browser download was needed.
+- Created `tests/toolshop.spec.ts` with a homepage navigation check for HTTP 200 and visible body.
+- The first run with `--project=chromium` did not start because no named project is configured yet; rerunning without `--project` succeeded: `1 passed (3.7s)`.
+- Latest local inspection showed `package.json` and `package-lock.json` modified, and `src/`, `tsconfig.json`, and `tests/` untracked. Do not discard or overwrite these files.
 
 ## Exact next action
-Open https://practicesoftwaretesting.com/ in Firefox and confirm the site loads and its UI is suitable. Then begin setting up the project for Playwright UI + API tests against Toolshop, checking existing files/dependencies first and avoiding duplicate setup. Do not build our own test application yet. Keep explanations short, realistic, and project-first; explain commands before use and verify actual output.
+Create a minimal `playwright.config.ts` for this project with `testDir: './tests'`, a Toolshop `baseURL`, and an explicitly named Chromium project. First check for an existing config (none was shown in the inspected top-level files), then run the test with `--project=chromium` and verify the result. Keep the existing passing test and source files. Do not build our own test application yet. Keep explanations short, project-first, and explain every command before use.
 
 ## Resume constraints
 - Do not restart Git initialization, Git identity setup, or the successful initial commit.

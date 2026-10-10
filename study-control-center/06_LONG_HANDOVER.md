@@ -1,6 +1,6 @@
 # LONG HANDOVER — CURRENT RECORD
 
-Canonical state version: 3.9-VALIDATOR-FIX-CHECKPOINT
+Canonical state version: 4.0-PLAYWRIGHT-SMOKE-TEST-PASS
 
 **Derived record — not authoritative.** The live study state is `01_CURRENT_STATE.md`; operating rules are `04_CONTINUITY_RULES.md`; curriculum coverage is `03_MASTER_PLAN.md`.
 
@@ -36,7 +36,16 @@ The user's local project uses Node.js 22.22.1, local TypeScript 7.0.2, and tsx 4
 - On 2026-10-10, the safe-write validator issue was repaired by restoring the exact required heading and sequence in `04_CONTINUITY_RULES.md`; GitHub read-back verified the repair, and the user confirmed all fixed.
 
 ## Current resume point
-The async test flow reports failures and throws an error so the process exits nonzero; the user verified exit code 1 for the deliberate wrong-password case, then restored the expected password and confirmed the test passed. TypeScript checking also passed. Toolshop was selected as the default UI + REST API practice target.
+The async test flow reports failures and throws an error so the process exits nonzero; the user verified exit code 1 for the deliberate wrong-password case, then restored the expected password and confirmed the test passed. TypeScript checking also passed. Toolshop is the default UI + REST API practice target.
+
+## First Playwright smoke test — 2026-10-10
+- User confirmed Toolshop loads in Firefox.
+- Installed local dev dependency `@playwright/test@1.63.0`; npm showed it alongside TypeScript `7.0.2`; local `npx playwright --version` reported `1.63.0`.
+- Playwright already detected Chromium, Firefox, and WebKit binaries in `~/.cache/ms-playwright/`; no browser download was required.
+- Created `tests/toolshop.spec.ts` to navigate to Toolshop, assert the main response status is 200, and assert the body is visible.
+- Initial run with `--project=chromium` correctly exposed that no named project was configured; rerunning without that option passed: `1 passed (3.7s)`.
+- Current project inspection showed modified `package.json` and `package-lock.json`, plus untracked `src/`, `tsconfig.json`, and `tests/`. Preserve all of them.
+- Next: add a minimal Playwright config with Toolshop baseURL and a named Chromium project, then rerun the test using `--project=chromium`.
 
 ## Exact resume action
 Open https://practicesoftwaretesting.com/ in Firefox and confirm it loads. Then set up Playwright UI + API tests against Toolshop after checking the current files/dependencies. See `04_CONTINUITY_RULES.md` for secondary-site use cases. Do not build our own SUT yet. Keep pace fast, examples realistic, explanations short, and verify actual output.
