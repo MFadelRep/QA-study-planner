@@ -61,6 +61,21 @@ FAST-PACE is the default.
 - Use the user's real output as the source of truth.
 - When wrong, make the smallest useful correction, retry, and re-check.
 
+## Non-interactive terminal output and pager avoidance
+
+- Prefer commands that print directly to the terminal; do not send the user into an interactive pager just to inspect output.
+- When reading one or more project files, use direct-output commands such as `cat`. For multiple files, prefer this copy-pasteable pattern and substitute the required paths:
+  ```bash
+  for file in src/index.ts tests/toolshop.spec.ts tsconfig.json; do
+    printf '\n===== %s =====\n' "$file"
+    cat "$file"
+  done
+  ```
+- For Git commands that may open a pager, prefix the command with `git --no-pager` (for example, `git --no-pager diff` or `git --no-pager log -1 --oneline`).
+- Do **not** tell the user to press `q` to exit a pager when a direct-output alternative is available.
+- Do **not** disable Git's pager globally or change global Git configuration as a workaround. Use the per-command `git --no-pager` form instead.
+- Give the direct-output command in the first place; do not first provide the pager-triggering command and then correct it after the user encounters the issue.
+
 ## State maintenance
 After a meaningful verified slice, update `01_CURRENT_STATE.md` with:
 - day/hour
