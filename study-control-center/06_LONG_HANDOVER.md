@@ -1,6 +1,6 @@
 # LONG HANDOVER — CURRENT RECORD
 
-Canonical state version: 4.3-TOOLSHOP-DYNAMIC-INVENTORY-CHECKPOINT
+Canonical state version: 4.4-TOOLSHOP-PAGINATION-BEHAVIOR-TEST
 
 **Derived record — not authoritative.** The live study state is `01_CURRENT_STATE.md`; operating rules are `04_CONTINUITY_RULES.md`; curriculum coverage is `03_MASTER_PLAN.md`.
 
@@ -57,7 +57,7 @@ The user's local project uses Node.js 22.22.1, local TypeScript 7.0.2, and tsx 4
 - This is enough inventory to begin behavior-focused tests; do not continue collecting broad diagnostics without a specific need.
 
 ## Exact resume action
-Use the observed page controls to implement one meaningful pagination test: capture the product names on page 1, click the observed accessible `Page-2` button, and assert that the displayed product list changes. Preserve the HTTP 200, exact page-title, and visible-body assertions. Explain the locator and assertion before the edit; run the test headed, verify the actual result, and run `npx tsc --noEmit`. Do not build our own SUT yet.
+Inspect the local AI QA Platform repository's working-tree status and diff before deciding what to stage. Keep the study-control repository separate; do not connect it as the local project's remote. After reviewing the changed files, make a focused local project commit if the diff contains only the intended project work. Do not build our own SUT yet.
 
 ## Learning constraints
 - Project-first / fast pace.
