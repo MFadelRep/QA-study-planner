@@ -1,13 +1,13 @@
 # LONG HANDOVER — CURRENT RECORD
 
-Canonical state version: 3.5-GITHUB-CHECKPOINT
+Canonical state version: 3.6-GITHUB-CHECKPOINT
 
 **Derived record — not authoritative.** The live study state is `01_CURRENT_STATE.md`; operating rules are `04_CONTINUITY_RULES.md`; curriculum coverage is `03_MASTER_PLAN.md`.
 
 ## Session state
 Day 1 / Hour 1 of the 45-hour Senior QA Automation + MLOps program. The AI QA Platform is the primary learning vehicle. Execution mode is project-first / fast-pace.
 
-Topic: TypeScript asynchronous test flow — Promise, async/await; execution and type-check verified.
+Topic: TypeScript asynchronous test flow — Promise, async/await, failure reporting and process exit codes.
 
 ## Verified environment
 The user's local project uses Node.js 22.22.1, local TypeScript 7.0.2, and tsx 4.23.15.
@@ -28,13 +28,16 @@ The user's local project uses Node.js 22.22.1, local TypeScript 7.0.2, and tsx 4
 - Removed the old synchronous `loginTest` object and `reportResult(loginTest)` call to prevent duplicate output.
 - On 2026-10-10, the user ran `npx tsx src/index.ts`; actual output was `Starting AI QA Platform` and `Login test: PASSED` exactly once.
 - The user then ran `npx tsc --noEmit`; it produced no errors/output.
-- The async/await slice is both type-checked and executed successfully.
+- The user deliberately changed the test password to `WrongPassword!`; the simulated login returned `Login test: FAILED`.
+- `main()` was updated to throw an error when `result.passed` is false.
+- The user verified exit code `1` with `npx tsx src/index.ts; echo "Exit code: $?"` (with echo directly after the test command); a subsequent `npx tsc --noEmit` produced no errors.
+- The user then ran `npx tsx src/index.ts; npx tsc --noEmit`; the simulated login still failed because the wrong password remains, and TypeScript emitted no errors.
 
 ## Current resume point
-The typed async/await flow is implemented, type-checked, and executed successfully. A short Promise-based delay and generic result-name reporting are the next slice; these changes have not yet been verified.
+The async test flow reports failures and throws an error so the process exits nonzero; the user verified exit code 1 for the deliberate wrong-password case. TypeScript checking produced no errors. The current test is intentionally left failing because `testUser.password` is still `WrongPassword!`.
 
 ## Exact resume action
-At fast pace, add a short Promise-based delay so the simulated login operation is genuinely asynchronous, and update `reportResult()` to print `result.name` instead of hardcoding `Login test`. Explain only new syntax, request one focused edit/action, then verify with `npx tsx src/index.ts` and `npx tsc --noEmit` before advancing.
+Restore `password: "Test123!" as string` in `testUser` (currently `WrongPassword!`). Run `npx tsx src/index.ts` and `npx tsc --noEmit`; confirm the test passes and type-check is clean. Then move toward a real API login test instead of more hardcoded credential comparisons. Keep pace fast, examples realistic, explanations short, and verify actual output.
 
 ## Learning constraints
 - Project-first / fast pace.

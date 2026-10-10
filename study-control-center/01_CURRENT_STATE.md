@@ -1,8 +1,8 @@
 # Current Study State
 
-**State version:** 3.5-GITHUB-CHECKPOINT
+**State version:** 3.6-GITHUB-CHECKPOINT
 **Last verified:** 2026-10-10
-**Checkpoint:** SAVED — async/await slice verified
+**Checkpoint:** SAVED — deliberate failure/exit-code behavior verified; restore passing test next
 **Status:** ACTIVE — Day 1 / Hour 1 in progress
 **Execution mode:** PROJECT-FIRST / FAST-PACE
 
@@ -29,15 +29,18 @@
 - Removed the old synchronous `loginTest` object and `reportResult(loginTest)` call to prevent duplicate output.
 - On 2026-10-10, the user ran `npx tsx src/index.ts` after implementing async/await; actual output was `Starting AI QA Platform` and `Login test: PASSED` exactly once.
 - The user then ran `npx tsc --noEmit`; it produced no errors/output.
-- The async/await slice is both type-checked and executed successfully.
+- The user deliberately changed the password to `WrongPassword!` and confirmed the simulated login reports `Login test: FAILED`.
+- `main()` now throws an error when a result fails; the user observed the error stack and explicitly printed `Exit code: 1` immediately after the test command.
+- The user then ran `npx tsx src/index.ts; npx tsc --noEmit`; the login still failed because the wrong password remains in the file, while the TypeScript check produced no errors. The test failure and TypeScript check are separate outcomes.
 
 ## Latest verified result / blocker
-- Type-check passed.
-- Program execution passed with exactly one login result.
-- No active blocker for this slice.
+- The intentional wrong-password experiment correctly reports `Login test: FAILED` and throws an error.
+- The user confirmed the test command's exit code is `1` using `echo "Exit code: $?"` immediately after the command.
+- `npx tsc --noEmit` produced no errors after the failure run.
+- Current local code is intentionally left in a failing-test state (`WrongPassword!`); restore the expected test password before moving on.
 
 ## Exact next action
-Continue Hour 1 at fast pace with the next small project-first slice: add a short Promise-based delay so the simulated login operation is genuinely asynchronous, and update `reportResult()` to print `result.name` instead of hardcoding `Login test`. Explain only new syntax, request one focused edit/action, then verify with `npx tsx src/index.ts` and `npx tsc --noEmit` before advancing.
+Restore `password: "Test123!" as string` in the `testUser` object (currently `WrongPassword!`). Then run `npx tsx src/index.ts` and `npx tsc --noEmit` and verify the login passes with no TypeScript errors. After that, move quickly toward a real API login test instead of continuing hardcoded credential comparisons. Keep explanations short, realistic, and project-first; explain commands before use and verify actual output.
 
 ## Resume constraints
 - Do not restart Git initialization, Git identity setup, or the successful initial commit.
