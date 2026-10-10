@@ -1,8 +1,8 @@
 # Current Study State
 
-**State version:** 3.3-GITHUB-CHECKPOINT
-**Last verified:** 2026-10-08
-**Checkpoint:** SAVED — safe resume point
+**State version:** 3.4-GITHUB-CHECKPOINT
+**Last verified:** 2026-10-10
+**Checkpoint:** SAVED — execution slice verified
 **Status:** ACTIVE — Day 1 / Hour 1 in progress
 **Execution mode:** PROJECT-FIRST / FAST-PACE
 
@@ -22,28 +22,22 @@
 - `.gitignore` exists and correctly ignores `node_modules/`.
 - `src/` and `tests/` directories were created.
 - `tsconfig.json` was created.
-- `npx tsc --noEmit` was executed.
-- TS18003 was resolved by creating `src/index.ts`.
 - `npx tsc --noEmit` passed after adding the TypeScript input.
-- `src/index.ts` now contains the typed `TestResult` model, typed `reportResult`, typed `loginTest`, and `reportResult(loginTest)` call.
-- `npx tsc --noEmit` was run after adding the typed model and returned no output, confirming the type-check passed.
-- `npx tsx src/index.ts` execution for this slice is still pending.
+- TS18003 was resolved by creating `src/index.ts`.
+- `src/index.ts` contains the typed `TestResult` model, typed `reportResult`, typed `loginTest`, and `reportResult(loginTest)` call.
+- `npx tsc --noEmit` returned no output after the typed model was added, confirming the type-check passed.
+- On 2026-10-10, the user ran `npx tsx src/index.ts` and provided actual output:
+  `Starting AI QA Platform`
+  `Login test: PASSED`
+- The typed model slice is now both type-checked and executed successfully.
 
 ## Latest verified result / blocker
-- TypeScript type-check passed with no output.
-- No active blocker.
-- The typed QA test-result model is implemented and type-checked.
-- Program execution with `npx tsx src/index.ts` is still pending for this slice.
+- Type-check passed.
+- Program execution passed with the expected two output lines.
+- No active blocker for this slice.
 
 ## Exact next action
-Run:
-`npx tsx src/index.ts`
-
-Expected output:
-`Starting AI QA Platform`
-`Login test: PASSED`
-
-Do not advance until the actual result is verified.
+Continue Hour 1 with the next small project-first programming slice: inspect the current `src/index.ts` implementation, then introduce a realistic asynchronous test operation using `Promise` and `async/await` without discarding the working typed result model. Explain the code and syntax before asking for any edit; verify with execution and type-checking before advancing.
 
 ## Resume constraints
 - Do not restart Git initialization, Git identity setup, or the successful initial commit.
