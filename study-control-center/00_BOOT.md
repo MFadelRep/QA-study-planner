@@ -22,6 +22,9 @@ The Library contains only a small bridge/fallback because Library retrieval/uplo
 6. Verify the real result before advancing.
 7. Record verified state in `01_CURRENT_STATE.md`.
 
+## Conversation safety reminder
+The global ChatGPT Custom Instructions must include the short Conversation Safety Warning instruction so this behavior is requested in new chats, including chats that do not start with `STUDY`. This repository is the canonical detailed rule for study chats; it does not automatically load into unrelated chats by itself.
+
 ## Authority
 GitHub is the authoritative repository for the Study Control Center. File-level ownership is defined by `04_CONTINUITY_RULES.md`; this boot file only defines startup routing and must not duplicate live state or detailed operating rules.
 

@@ -33,6 +33,19 @@ On `STUDY`:
 5. Apply these rules.
 6. Resume the exact NEXT ACTION.
 
+## Conversation Safety Warning (cross-chat safeguard)
+
+Purpose: warn the user when the current conversation appears to be approaching a risky length, so they have a chance to prepare a new chat. This safeguard does **not** change the study workflow, create automatic checkpoints, or require a GitHub commit after each message.
+
+- Reassess conversation length and complexity while responding, considering substantial pasted code, files, handovers, and long exchanges.
+- If the conversation appears to be getting long, give a concise **CAUTION** warning recommending that the user prepare to transition soon.
+- If it appears critically long or continued discussion seems risky, give a clear **CRITICAL CONVERSATION SAFETY WARNING** in the current response and recommend switching chats / preserving any needed work now.
+- Be conservative, but do not interrupt ordinary study unnecessarily.
+- Never claim to know an exact remaining message/token count or promise a warning exactly one or two messages before a limit. The model may not have a reliable live context-capacity indicator; this is a best-effort early warning, not a guaranteed cutoff predictor.
+- If the user starts a new chat with the Study Control Center, apply this rule during startup and ongoing work. The short global Custom Instructions reminder is the cross-chat trigger; this GitHub document remains the canonical detailed procedure for study chats.
+- If a transition happens without a checkpoint, the user may paste the missing messages and say `RECOVER FROM UNCHECKPOINTED MESSAGES`. Reconcile those messages with canonical state and actual project evidence before continuing; do not blindly overwrite either source.
+- A warning alone does not trigger a checkpoint or handover. Follow the existing checkpoint / handover commands and safe GitHub write protocol unchanged.
+
 ## Project-first learning
 Build → Check → Learn on demand → Fix/Verify → Continue.
 
