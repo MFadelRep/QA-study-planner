@@ -1,8 +1,8 @@
 # Current Study State
 
-**State version:** 4.5-TOOLSHOP-INITIAL-INVENTORY-CHECKPOINT
+**State version:** 4.6-TOOLSHOP-PAGINATION-AND-SORTING-TESTS-CHECKPOINT
 **Last verified:** 2026-10-12
-**Checkpoint:** SAVED — headed Chromium pagination behavior test passed (`1 passed (3.9s)`) and initial Toolshop homepage DOM inventory was captured and recorded below. Sorting investigation is the exact next action; its result is not yet known.
+**Checkpoint:** SAVED — pagination and low-to-high price sorting tests both passed in the latest run (`2 passed (25.0s)`). Sorting test now verifies that product names change and displayed prices are in ascending order. Investigate its unusually long duration (19.3s) before adding more scenarios.
 **Status:** ACTIVE — Day 1 / Hour 1 in progress
 **Execution mode:** PROJECT-FIRST / FAST-PACE
 
@@ -72,8 +72,22 @@
 - Next investigation: use the already-provided headed Node/Playwright script to test the sort control with `Price (Low - High)`, comparing product names before and after. No result has been observed yet.
 
 ## Exact next action
-Run the already-provided temporary Node/Playwright headed investigation of the sort control in the local `automation-platform` project. It should print the available options from `select[aria-label="sort"]`, record the first-page product names, select `Price (Low - High)`, then print the resulting product names and selected option. The user has not run this investigation yet. Use the actual output to decide the next test; do not create or modify permanent test files for this investigation.
+Investigate why the sorting test takes 19.3 seconds despite passing. Review the current sorting test and its retrying assertions, then make one evidence-driven improvement at a time. Do not add a fixed sleep as a workaround; prefer a reliable assertion tied to the catalog update. Preserve the passing pagination test and current local changes.
 
+
+
+## 2026-10-12 checkpoint — pagination and price sorting tests
+
+- Latest verified command: `npx playwright test tests/toolshop.spec.ts --project=chromium`.
+- Actual result: `2 passed (25.0s)`; pagination test took 4.8s and sorting test took 19.3s. The user also previously ran the headed version successfully; the two tests opened/closed the browser separately because Playwright uses a fresh context per test by default, even with one worker.
+- Current `tests/toolshop.spec.ts` contains exactly two tests:
+  1. `Toolshop pagination displays different products on page 2`: loads `/`, checks HTTP status 200, verifies title `Practice Software Testing - Toolshop - v5.0`, waits for product names, clicks `Page-2`, and uses `expect.poll()` until product names differ.
+  2. `Toolshop sorts products by price from low to high`: loads `/`, locates `select[aria-label="sort"]` and `a.card[href^="/product/"]`, records initial product names, selects `Price (Low - High)`, uses `expect.poll(getProductNames).not.toEqual(initialProductNames)`, then uses `expect.poll()` to verify displayed prices are nonempty and nondecreasing.
+- Latest sorting output confirmed these products and prices in ascending order: Washers $3.55; Flat-Head Wood Screws $3.95; M4 Nuts $4.65; Phillips Screwdriver $4.92; Nuts and bolts $5.55; Screws $6.25; Tape Measure 7.5m $7.23; Cross-head screws $7.99; Slip Joint Pliers $9.17.
+- Learning demonstrated: locators for product cards/names, dropdown selection, text extraction, numeric parsing, `expect.poll()` retry assertions, pagination behavior verification, and testing both state change and final ordering rather than merely asserting the selected option.
+- Key concepts: one worker means sequential execution, not one shared page/context; Playwright normally isolates tests. Avoid fixed waits when a condition-based assertion can be used. A strong sorting test should verify both that the list changes and that the resulting values are ordered.
+- Caution: the sorting test took 19.3s, much longer than the previous version (2.5s). This is not yet explained. Investigate assertion timing/catalog update behavior before adding another scenario; do not assume the test is fast or fully optimized just because it passes.
+- Preserve the local project path `/run/media/mfadel/New Volume/Projects/QA/automation-platform` and all current files/changes. Do not restart prior completed work. Continue one terminal action at a time using DO → CHECK → DETAILED EXPLANATION → CORRECT/RETRY → NEXT.
 
 ## Resume constraints
 - Do not restart Git initialization, Git identity setup, or the successful initial commit.
