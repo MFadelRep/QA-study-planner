@@ -99,7 +99,7 @@ Full curriculum scope.
 Integrated weekly plan.
 
 ## ISTQB integration
-Use the portfolio.
+Use study-control-center/08_ISTQB_TESTING_PORTFOLIO.md.
 
 ## Evidence standard
 Observable project evidence.
@@ -133,7 +133,7 @@ Plan, trace, report, confirm and regress.
 ## Automated vs manual evidence
 Automation plus manual judgment.
 
-Confirmation testing and Regression testing are distinct.
+confirmation testing verifies a fix; regression testing checks related areas.
 """
     boot = """# Study Control Center — GitHub Boot
 
