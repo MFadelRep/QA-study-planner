@@ -1,8 +1,8 @@
 # Current Study State
 
-**State version:** 4.4-TOOLSHOP-PAGINATION-BEHAVIOR-TEST
-**Last verified:** 2026-10-10
-**Checkpoint:** SAVED — replaced temporary inventory diagnostics with a focused headed Chromium pagination behavior test. The test preserved HTTP 200, exact title, and visible-body checks; collected 9 product names on page 1, clicked the accessible `Page-2` button, and verified the displayed names changed to 9 different products on page 2. Actual result: `1 passed (20.2s)`. The user then ran `npx tsc --noEmit`; it returned no output/errors.
+**State version:** 4.5-TOOLSHOP-INITIAL-INVENTORY-CHECKPOINT
+**Last verified:** 2026-10-12
+**Checkpoint:** SAVED — headed Chromium pagination behavior test passed (`1 passed (3.9s)`) and initial Toolshop homepage DOM inventory was captured and recorded below. Sorting investigation is the exact next action; its result is not yet known.
 **Status:** ACTIVE — Day 1 / Hour 1 in progress
 **Execution mode:** PROJECT-FIRST / FAST-PACE
 
@@ -59,8 +59,21 @@
 - User described additional visible controls to cover later: Documentation, Testing Guide, Bug Hunting, Home, Contact, Sign in, language dropdown, Sort, Categories, search box, price-range slider, more checkboxes, product-image links, and pagination. Inventory work is complete enough to begin behavior testing; avoid more broad diagnostics unless a specific gap appears.
 - Preserve `playwright.config.ts`, `tests/toolshop.spec.ts`, `src/`, `tsconfig.json`, `package.json`, and `package-lock.json`. Do not discard or overwrite these files.
 
+## 2026-10-12 checkpoint — Toolshop initial homepage inventory
+- User ran `npx playwright test tests/toolshop.spec.ts --project=chromium --headed`; actual output passed: `1 passed (3.9s)`. The test logged 9 page-1 product names and 9 different page-2 product names. Page 1: Combination Pliers; Pliers; Bolt Cutters; Long Nose Pliers; Slip Joint Pliers; Claw Hammer with Shock Reduction Grip; Hammer; Claw Hammer; Thor Hammer. Page 2: Sledgehammer; Claw Hammer with Fiberglass Handle; Court Hammer; Wood Saw; Adjustable Wrench; Angled Spanner; Open-end Spanners (Set); Phillips Screwdriver; Mini Screwdriver.
+- User then ran a temporary Node/Playwright headed DOM inventory against `https://practicesoftwaretesting.com/`. Observed title: `Practice Software Testing - Toolshop - v5.0`; one visible H1: `Practice Software Testing - Toolshop`.
+- Initial homepage DOM inventory counts: 21 visible links; 24 visible buttons; 25 visible inputs; one native select; two elements with slider role; 9 product-card links; pagination includes Previous, Page-1 through Page-5, and Next. These counts are from the initial page state and selector groups can overlap.
+- Search input: `#search-query`, placeholder `Search`; Search submit button. Filter inputs: 20 `category_id` checkboxes, 4 `brand_id` checkboxes, and 1 `eco_friendly` checkbox (25 total inputs = 1 search + 24 checkboxes). Two slider-role spans have accessible names `ngx-slider` and `ngx-slider-max`.
+- Sort control: `select[aria-label="sort"]`; options observed in the page text: `Name (A - Z)`, `Name (Z - A)`, `Price (High - Low)`, `Price (Low - High)`, `CO₂ Rating (A - E)`, `CO₂ Rating (E - A)`.
+- Other observed buttons include Categories, language selector EN (`aria-label="Select language"`), 9 Compare buttons, pagination controls, Open chat, and Show live shop activity. Navigation/content links include Documentation, Home, Contact, Sign in, Explore courses, Learn Test Automation, API Spector, GitHub, Privacy Policy, Barn Images, and Unsplash. The initial page includes the out-of-stock product Long Nose Pliers.
+- This is the initial homepage DOM inventory only, not a complete inventory of interaction states or all pages. Dropdown contents and dynamic states still need targeted inspection.
+- No project files were changed by the temporary inventory script. Local working-tree status observed earlier in this chat: modified `package.json` and `package-lock.json`; untracked `playwright.config.ts`, `src/`, `tests/`, and `tsconfig.json`; do not discard these.
+- User explicitly asked to checkpoint and retain these inventory results for future study sessions.
+- Next investigation: use the already-provided headed Node/Playwright script to test the sort control with `Price (Low - High)`, comparing product names before and after. No result has been observed yet.
+
 ## Exact next action
-Inspect the local AI QA Platform repository's working-tree status and diff before deciding what to stage. Keep the study-control repository separate; do not connect it as the local project's remote. After reviewing the changed files, make a focused local project commit if the diff contains only the intended project work. Do not build our own SUT yet.
+Run the already-provided temporary Node/Playwright headed investigation of the sort control in the local `automation-platform` project. It should print the available options from `select[aria-label="sort"]`, record the first-page product names, select `Price (Low - High)`, then print the resulting product names and selected option. The user has not run this investigation yet. Use the actual output to decide the next test; do not create or modify permanent test files for this investigation.
+
 
 ## Resume constraints
 - Do not restart Git initialization, Git identity setup, or the successful initial commit.
