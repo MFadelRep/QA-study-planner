@@ -1,6 +1,6 @@
 # LONG HANDOVER — CURRENT RECORD
 
-Canonical state version: 5.0-BATCH-FIRST-ISTQB-PORTFOLIO-2026-10-12
+Canonical state version: 5.1-BATCH-FIRST-ISTQB-CI-PASS-2026-10-12
 
 **Derived record — not authoritative.** Live progress and next action: `01_CURRENT_STATE.md`. Operating rules: `04_CONTINUITY_RULES.md`. Full capability plan: `03_MASTER_PLAN.md`. ISTQB map: `08_ISTQB_TESTING_PORTFOLIO.md`.
 
@@ -27,6 +27,8 @@ Batch-first implementation across all subjects. The user wants complete code and
 The user created `tests/toolshop-ui-batch.spec.ts` from a supplied full-file block and ran it. Actual result: 13 tests, 11 passed and 2 failed (about 50 seconds). Passed areas: positive search, unknown search result, brand and eco-friendly filters, A–Z/Z–A sorting, price descending, product details, add-to-cart, invalid login, and short-message contact validation. Failures: first category checkbox did not change the products, and sort-menu option extraction yielded an empty list because the test inspected before catalog readiness. A possible correction block was supplied but its execution/result is unconfirmed; treat the actual local file and current error context as the source of truth. Do not report the batch green or rewrite the eleven passing tests unnecessarily.
 
 ## Curriculum changes
+- GitHub control documents, validator, and fixtures are committed and read-back verified. GitHub Actions passed on commit `6fbe8bf7ac50d846024902d8258a157d63b4b860`: 9 unit tests passed and the read-only validator passed. The local UI batch still has two unverified corrections outstanding.
+
 - The one-week sprint is now organized around seven integrated days: (1) foundations, UI automation, ISTQB; (2) advanced Playwright/API; (3) SQL and CI/CD; (4) performance and Docker; (5) Kubernetes and MLOps; (6) AI QA/RAG/security; (7) integration, senior QA, and interviews.
 - ISTQB CTFL v4.0.1 techniques and coverage are mapped in `08_ISTQB_TESTING_PORTFOLIO.md`, including black-box/experience-based design, levels, types, static testing/reviews, non-functional assessment, risk, defects, reporting, confirmation, and regression. Manual judgment is distinguished from checks that can be meaningfully automated.
 - Official baseline syllabus: https://istqb.org/wp-content/uploads/2024/11/ISTQB_CTFL_Syllabus_v4.0.1.pdf

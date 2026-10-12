@@ -1,6 +1,6 @@
 # Current Study State
 
-**State version:** 5.0-BATCH-FIRST-ISTQB-PORTFOLIO-2026-10-12
+**State version:** 5.1-BATCH-FIRST-ISTQB-CI-PASS-2026-10-12
 **Last verified:** 2026-10-12
 **Status:** ACTIVE — accelerated seven-day study sprint
 **Execution mode:** BATCH-FIRST / CODE-FIRST / COVERAGE-FIRST / LEARN-ON-DEMAND
@@ -15,7 +15,7 @@
 The hour number is the nearest curriculum locator for the current work, not a claim that elapsed time alone proves mastery of earlier material. The accelerated schedule combines related topics and revisits foundational gaps only when they block implementation.
 
 ## Current checkpoint
-The user approved the batch-first workflow and the plan to add an ISTQB-aligned testing portfolio to the working project. The intended learning cadence is the one defined in `04_CONTINUITY_RULES.md`; the full coverage map is in `03_MASTER_PLAN.md` and `08_ISTQB_TESTING_PORTFOLIO.md`.
+The batch-first study workflow, accelerated seven-day map, and ISTQB CTFL v4.0.1 portfolio have been committed to GitHub and read back with matching blob SHAs. GitHub Actions validation passed on commit `6fbe8bf7ac50d846024902d8258a157d63b4b860` (9 unit tests passed; read-only control-center validator passed). The intended learning cadence is defined in `04_CONTINUITY_RULES.md`; the full capability map is in `03_MASTER_PLAN.md` and `08_ISTQB_TESTING_PORTFOLIO.md`.
 
 ## Verified local project state
 - Project uses Node.js 22.22.1, TypeScript 7.0.2, `tsx` 4.23.15, and `@playwright/test` 1.63.0.
