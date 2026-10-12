@@ -110,7 +110,7 @@ Required outcomes must not be silently removed.
     portfolio = """# ISTQB Foundation Testing Portfolio
 
 ## Purpose and source
-ISTQB CTFL v4.0.1.
+ISTQB Certified Tester Foundation Level (CTFL) v4.0.1.
 
 ## Test levels
 Component, integration, system, acceptance.

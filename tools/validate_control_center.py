@@ -176,15 +176,17 @@ def validate(root: Path) -> list[str]:
         "## Static testing and review",
         "## Test management, risk, and defects",
         "## Automated vs manual evidence",
-        "CTFL v4.0.1",
-        "equivalence partitioning",
-        "boundary value analysis",
-        "decision table testing",
-        "state transition testing",
+        "Certified Tester Foundation Level",
+        "v4.0.1",
+        "Equivalence partitioning",
+        "Boundary value analysis",
+        "Decision table testing",
+        "State transition testing",
         "confirmation testing",
         "regression testing",
     ]:
-        must_contain("08_ISTQB_TESTING_PORTFOLIO.md", portfolio, required)
+        if required.casefold() not in portfolio.casefold():
+            error(f"08_ISTQB_TESTING_PORTFOLIO.md: missing required text: {required!r}")
 
     boot = docs["00_BOOT.md"]
     recovery = docs["07_NEW_CHAT_RECOVERY.md"]
