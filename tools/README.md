@@ -1,37 +1,36 @@
 # Study Control Center Validation
 
-The Study Control Center is governed by one-authority-per-information-type.
+The Study Control Center uses one canonical source per information type. Read `study-control-center/04_CONTINUITY_RULES.md` for the authoritative batch-first workflow and safe GitHub write protocol.
 
 ## Validator
 
-Run locally from the repository root:
+Run from the repository root:
 
     python3 tools/validate_control_center.py
 
-The validator is read-only. It checks structural consistency and exits with a non-zero status when the repository violates the control-center rules.
+The validator is read-only and exits non-zero when required study-control files, consistency rules, or anti-drift checks fail.
 
 It verifies:
-
-- required control-center files exist;
-- canonical ownership is not duplicated;
-- the safe GitHub write protocol exists only in 04_CONTINUITY_RULES.md;
-- the 45-hour curriculum index remains complete;
-- Boot and New Chat Recovery do not contain copied live checkpoints;
-- Short and Long Handovers are explicitly derived and match the canonical state version, day/hour, and current topic;
-- required routing and repository-separation references remain intact.
+- the required control-center and ISTQB portfolio files exist;
+- canonical source ownership is not duplicated;
+- the safe GitHub write protocol and batch-first workflow are defined only in the continuity rules;
+- all 45 curriculum hours remain present;
+- the accelerated seven-day plan and ISTQB coverage map remain present;
+- boot/recovery files do not contain copied live checkpoints;
+- short/long handovers match canonical state version, Day/Hour, topic, and resume direction;
+- legacy micro-step teaching instructions do not reappear;
+- repository separation and current next-action requirements remain intact.
 
 ## Self-tests
 
-Run the validator test suite locally:
+Run:
 
     python3 -m unittest discover -s tests -v
 
-The tests use isolated temporary fixtures and intentionally inject failures for stale state, duplicated authority, missing curriculum hours, stale handover versions, and missing current-state next actions. They also verify that the validator does not modify files.
+Tests use temporary fixtures, confirm that the validator is read-only, and inject errors for duplicated authority, legacy workflow drift, missing curriculum hours/ISTQB scope, stale handover versions, and missing next actions.
 
 ## GitHub Actions
 
-.github/workflows/control-center-validation.yml runs the self-tests first and then the real validator on pushes to main and pull requests.
+`.github/workflows/control-center-validation.yml` runs the self-tests and real validator on pushes to `main` and pull requests.
 
-The validator and tests never edit control-center files. A failure blocks the workflow; canonical documents remain the only authority.
-
-For semantic decisions, follow study-control-center/04_CONTINUITY_RULES.md.
+The validator and tests never edit canonical documents. A failure blocks the workflow; only explicit, verified changes to the control-center files may resolve it.

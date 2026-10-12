@@ -1,74 +1,38 @@
 # LONG HANDOVER — CURRENT RECORD
 
-Canonical state version: 4.4-TOOLSHOP-PAGINATION-BEHAVIOR-TEST
+Canonical state version: 5.0-BATCH-FIRST-ISTQB-PORTFOLIO-2026-10-12
 
-**Derived record — not authoritative.** The live study state is `01_CURRENT_STATE.md`; operating rules are `04_CONTINUITY_RULES.md`; curriculum coverage is `03_MASTER_PLAN.md`.
+**Derived record — not authoritative.** Live progress and next action: `01_CURRENT_STATE.md`. Operating rules: `04_CONTINUITY_RULES.md`. Full capability plan: `03_MASTER_PLAN.md`. ISTQB map: `08_ISTQB_TESTING_PORTFOLIO.md`.
 
 ## Session state
-Day 1 / Hour 1 of the 45-hour Senior QA Automation + MLOps program. The AI QA Platform is the primary learning vehicle. Execution mode is project-first / fast-pace.
+Day 1 / Hour 5 of the accelerated seven-day Senior QA Automation + MLOps sprint. The 45-hour capability catalogue remains the scope, with overlapping activities combined into practical batches. Current topic: Toolshop UI automation batch — fix two failures, then expand UI + ISTQB portfolio coverage
 
-Topic: TypeScript asynchronous test flow — Promise, async/await, failure reporting and process exit codes; first real Playwright UI smoke test.
+## Learning approach now in force
+Batch-first implementation across all subjects. The user wants complete code and supporting files supplied in grouped batches, followed by real execution, verification, a brief explanation, and the next capability. Broad coverage and a functioning integrated project come before deep mastery; the user asks for deeper explanations when something blocks understanding. The workflow is defined only in `04_CONTINUITY_RULES.md`.
 
-## Verified environment
-The user's local project uses Node.js 22.22.1, local TypeScript 7.0.2, and tsx 4.23.15.
+## Project and environment facts
+- Local project path: `/run/media/mfadel/New Volume/Projects/QA/automation-platform`.
+- Runtime/tools previously verified: Node.js 22.22.1, TypeScript 7.0.2, `tsx` 4.23.15, and `@playwright/test` 1.63.0.
+- `playwright.config.ts` uses `testDir: './tests'`, Toolshop `baseURL`, and a named Chromium project.
+- The existing `tests/toolshop.spec.ts` contains homepage/smoke validation plus pagination and low-to-high price sorting. The two behavioral tests were previously verified passing in a one-worker run.
+- Preserve the local working tree and keep this project separate from the old `/run/media/mfadel/New Volume/playwright-course` directory and separate from this study-control repository.
 
-## Verified Git milestones
-- Repository initialized on main.
-- Local Git identity configured.
-- Initial root commit: `f2e8917`.
-- Repository was verified clean after the root commit.
+## Verified Toolshop observations
+- Site title observed: `Practice Software Testing - Toolshop - v5.0`.
+- Pagination exposes Previous, Page-1 through Page-5, and Next; page 1 and page 2 were observed to contain different product sets.
+- The homepage includes search, category/brand/eco-friendly filters, a sort select, price sliders, product cards, Compare controls, language selection, account navigation, contact navigation, and footer/external links.
+- Sort choices previously observed: Name A–Z, Name Z–A, Price High–Low, Price Low–High, and CO₂ Rating in both directions. These observations are a useful starting point; verify live labels/selectors before depending on them.
 
-## Project foundation
-- `.gitignore` created and verified to ignore `node_modules/`.
-- `src/` and `tests/` created.
-- `tsconfig.json` created.
-- TS18003 was resolved by creating `src/index.ts`.
-- Added the typed `TestResult` model and typed `reportResult(result: TestResult): void` reporter.
-- Added `runLoginTest(): Promise<TestResult>` and `main(): Promise<void>`; `main()` awaits the login operation and reports the resolved result.
-- Removed the old synchronous `loginTest` object and `reportResult(loginTest)` call to prevent duplicate output.
-- On 2026-10-10, the user ran `npx tsx src/index.ts`; actual output was `Starting AI QA Platform` and `Login test: PASSED` exactly once.
-- The user then ran `npx tsc --noEmit`; it produced no errors/output.
-- The user deliberately changed the test password to `WrongPassword!`; the simulated login returned `Login test: FAILED`.
-- `main()` was updated to throw an error when `result.passed` is false.
-- The user verified exit code `1` with `npx tsx src/index.ts; echo "Exit code: $?"` (with echo directly after the test command); a subsequent `npx tsc --noEmit` produced no errors.
-- The user later restored the expected password and confirmed the program passed; the TypeScript check also passed.
-- On 2026-10-10, the safe-write validator issue was repaired by restoring the exact required heading and sequence in `04_CONTINUITY_RULES.md`; GitHub read-back verified the repair, and the user confirmed all fixed.
+## Current UI batch result (2026-10-12)
+The user created `tests/toolshop-ui-batch.spec.ts` from a supplied full-file block and ran it. Actual result: 13 tests, 11 passed and 2 failed (about 50 seconds). Passed areas: positive search, unknown search result, brand and eco-friendly filters, A–Z/Z–A sorting, price descending, product details, add-to-cart, invalid login, and short-message contact validation. Failures: first category checkbox did not change the products, and sort-menu option extraction yielded an empty list because the test inspected before catalog readiness. A possible correction block was supplied but its execution/result is unconfirmed; treat the actual local file and current error context as the source of truth. Do not report the batch green or rewrite the eleven passing tests unnecessarily.
 
-## First Playwright smoke test — 2026-10-10
-- User confirmed Toolshop loads in Firefox.
-- Installed local dev dependency `@playwright/test@1.63.0`; npm showed it alongside TypeScript `7.0.2`; local `npx playwright --version` reported `1.63.0`.
-- Playwright detected Chromium, Firefox, and WebKit browser binaries in `~/.cache/ms-playwright/`; no browser download was required.
-- Created `tests/toolshop.spec.ts` to navigate to Toolshop, assert the main response status is 200, and assert the body is visible.
-- The user logged the page's `h1` text and observed `Page headings: []`; no heading assertion was guessed.
-- The user logged the actual page title, `Practice Software Testing - Toolshop - v5.0`, then replaced the diagnostic with `await expect(page).toHaveTitle('Practice Software Testing - Toolshop - v5.0')`.
-- Initial run with `--project=chromium` exposed that no named project was configured; running without that option passed: `1 passed (3.7s)`.
-- Created `playwright.config.ts` with `testDir: './tests'`, Toolshop `baseURL`, and a named `chromium` project.
-- The user then ran `npx playwright test tests/toolshop.spec.ts --project=chromium`; the user confirmed it passed.
-- The user ran `npx tsc --noEmit`; it produced no output, with no TypeScript errors reported.
-- After adding the exact title assertion, the user reran the named Chromium test and type-check; output showed `1 passed (3.0s)` and no TypeScript errors.
-- Preserve `playwright.config.ts`, `tests/toolshop.spec.ts`, `src/`, `tsconfig.json`, `package.json`, and `package-lock.json`.
-
-## Dynamic Toolshop page inventory checkpoint — 2026-10-10
-- The initial inventory captured only the top/early content because it was taken before the shop's dynamic interface finished rendering. The user correctly suspected that the browser/page needed time to load.
-- A temporary diagnostic wait was added: wait for `networkidle` for up to 15 seconds while tolerating timeout, then wait another 3 seconds. The headed Chromium inventory then passed (`1 passed (7.9s)`) and exposed the populated catalog.
-- Observed visible brand checkbox inputs named `brand_id`, a sustainability checkbox named `eco_friendly`, labels such as `MightyCraft Hardware` and `Show only eco-friendly products`, product-card links and image alt text including Combination Pliers, Pliers, Bolt Cutters, Long Nose Pliers, and multiple hammer products, accessible Compare buttons, and pagination buttons named `Previous`, `Page-1` through `Page-5`, and `Next`. Footer/external links included Learn Test Automation, API Spector, and GitHub.
-- The user also identified visible navigation (Documentation, Testing Guide, Bug Hunting, Home, Contact, Sign in), Sort and Categories dropdowns, language selector, search box, price-range slider, multiple checkboxes, product-image links, and pagination.
-- The user explicitly wants headed runs for visual inspection. `--headed` shows Chromium during execution but Playwright normally closes it after completion; `--debug` opens Playwright Inspector for paused interactive inspection.
-- This is enough inventory to begin behavior-focused tests; do not continue collecting broad diagnostics without a specific need.
+## Curriculum changes
+- The one-week sprint is now organized around seven integrated days: (1) foundations, UI automation, ISTQB; (2) advanced Playwright/API; (3) SQL and CI/CD; (4) performance and Docker; (5) Kubernetes and MLOps; (6) AI QA/RAG/security; (7) integration, senior QA, and interviews.
+- ISTQB CTFL v4.0.1 techniques and coverage are mapped in `08_ISTQB_TESTING_PORTFOLIO.md`, including black-box/experience-based design, levels, types, static testing/reviews, non-functional assessment, risk, defects, reporting, confirmation, and regression. Manual judgment is distinguished from checks that can be meaningfully automated.
+- Official baseline syllabus: https://istqb.org/wp-content/uploads/2024/11/ISTQB_CTFL_Syllabus_v4.0.1.pdf
 
 ## Exact resume action
-Inspect the local AI QA Platform repository's working-tree status and diff before deciding what to stage. Keep the study-control repository separate; do not connect it as the local project's remote. After reviewing the changed files, make a focused local project commit if the diff contains only the intended project work. Do not build our own SUT yet.
+Create and run a focused correction for the two observed UI failures. First inspect the current file and the relevant Playwright error context; fix category selection/assertions and sort-menu timing/label normalization as a pair. Run only those two tests initially. After both pass, execute the combined Toolshop suite once with one worker. Continue with the next UI coverage batch and the ISTQB manual/automated artifacts. Do not return to one-test-per-turn pacing.
 
-## Learning constraints
-- Project-first / fast pace.
-- Explain every terminal command line and important syntax before execution.
-- Verify actual results.
-- Correct minimally and retry.
-- Preserve the exact next action at checkpoints.
-- Use `04_CONTINUITY_RULES.md` for operating rules rather than duplicating them here.
-
-## Repository architecture
-- `QA-study-planner` is the study-control repository only.
-- The local AI QA Platform project will use a different GitHub repository.
-- The local project repository must not be connected as the remote for this study-control repository.
-- This handover is a historical/continuity aid derived from the canonical control-center state; it does not override canonical files.
+## Project boundaries
+`MFadelRep/QA-study-planner` is for study management, curriculum, state, and continuity rules only. The local AI QA Platform application/test code belongs in a separate project repository. The handover is a continuity aid, not an authority, and must always match the canonical state version when refreshed.

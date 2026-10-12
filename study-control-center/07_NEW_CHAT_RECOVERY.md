@@ -1,26 +1,21 @@
 # NEW CHAT RECOVERY
 
 ## Trigger
-When the user starts a new chat and types:
+When starting a new study chat, the user types `STUDY`.
 
-`STUDY`
+## Recovery procedure
+1. Read the live `study-control-center/01_CURRENT_STATE.md` from `MFadelRep/QA-study-planner`.
+2. Apply `04_CONTINUITY_RULES.md` before taking action.
+3. Read only the relevant curriculum sections from `02_CURRICULUM_INDEX.md`, `03_MASTER_PLAN.md`, and `08_ISTQB_TESTING_PORTFOLIO.md`.
+4. Identify what is verified, what failed, and which proposed changes have not yet been run.
+5. Resume the exact next action with a batch-first solution; inspect current local files and actual output where available.
+6. Preserve passing work and avoid repeating completed setup.
 
-## Required behavior
-1. Use the GitHub Study Control Center in `MFadelRep/QA-study-planner`.
-2. Treat GitHub as the authoritative study source.
-3. Read `study-control-center/01_CURRENT_STATE.md` first.
-4. Read only the relevant curriculum/rules sections needed to resume.
-5. Continue from the exact recorded NEXT ACTION.
-6. Do not restart completed setup or ask the user to reconstruct prior progress.
-
-## Repository separation
-`QA-study-planner` is for study management only.
-The user's local `automation-platform` project will use a different GitHub repository.
+## Authority
+The live checkpoint is always read from `01_CURRENT_STATE.md` at recovery time. Do not store a copied checkpoint in this recovery file. Operating rules come from `04_CONTINUITY_RULES.md`; handovers are derived aids only.
 
 ## Library status
-The Library is only a fallback/bridge location. Do not treat the legacy Library Control Center copies as live authority.
+Library Control Center copies are bridge/fallback records only, not live authority.
 
-## State handling
-Do not store a copied checkpoint in this recovery file.
-The live checkpoint is always read from `01_CURRENT_STATE.md` at recovery time.
-Apply all operating rules, including the safe GitHub write protocol and single-authority principle, from `04_CONTINUITY_RULES.md`.
+## Repository separation
+`QA-study-planner` is the study-control repository. The user's local `automation-platform` project must use a different GitHub repository.

@@ -1,157 +1,124 @@
 # Continuity & Execution Rules
 
 ## Authority
-- Master Plan = what capability coverage is required.
-- Continuity Rules = how learning and state preservation work.
-- Current State = where the study actually is and the exact next action.
-- Handovers are derived records.
-- Once this GitHub system is promoted, GitHub is authoritative and Library copies are fallback only.
+- Master Plan = required capabilities, accelerated schedule, and evidence outcomes.
+- Curriculum Index = curriculum locator and weekly map.
+- Current State = live position, verified results, blockers, and exact next action.
+- Continuity Rules = the single authority for study workflow, learning depth, continuity, safe writes, and execution behavior.
+- ISTQB Testing Portfolio = the canonical mapping of CTFL topics to practical/manual/automated exercises.
+- Short/Long Handovers = derived records; never authoritative.
+- GitHub is the authoritative study-control source. Library copies are fallback only.
 
 ## Single-authority principle
-Each authoritative piece of study information has exactly one canonical source in this control center.
+Each authoritative information type has one canonical source.
 
 | Information | Canonical source |
 |---|---|
-| Required capability coverage and 45-hour curriculum | `03_MASTER_PLAN.md` |
-| Curriculum navigation/locator | `02_CURRICULUM_INDEX.md` |
-| Live study position and exact next action | `01_CURRENT_STATE.md` |
-| Study operating/continuity rules, including safe GitHub write protocol | `04_CONTINUITY_RULES.md` |
+| Required capability outcomes and compressed seven-day schedule | `03_MASTER_PLAN.md` |
+| Curriculum navigation | `02_CURRICULUM_INDEX.md` |
+| ISTQB manual/automated testing coverage map | `08_ISTQB_TESTING_PORTFOLIO.md` |
+| Live checkpoint and exact next action | `01_CURRENT_STATE.md` |
+| Learning workflow, batching, learning depth, safe GitHub writes, state/handover rules | `04_CONTINUITY_RULES.md` |
 | New-chat startup routing | `00_BOOT.md` |
 | New-chat recovery procedure | `07_NEW_CHAT_RECOVERY.md` |
-| Short/long handovers | `05_SHORT_HANDOVER.md` / `06_LONG_HANDOVER.md` — derived records only |
+| Short/long handovers | `05_SHORT_HANDOVER.md` / `06_LONG_HANDOVER.md`, derived only |
 
-Other control-center files may reference canonical information, but must not create competing copies of authoritative rules, live state, or curriculum requirements. Handovers may summarize current state because they are derived records; they never override `01_CURRENT_STATE.md` or `04_CONTINUITY_RULES.md`.
-
-Do not store a second copy of the GitHub write protocol, current resume state, or master-plan requirements in another control-center file.
+Do not create competing copies of current progress, the detailed learning workflow, the write protocol, or curriculum requirements. Other documents may link to the canonical source and state their role. A derived handover may summarize state but cannot override `01_CURRENT_STATE.md`.
 
 ## Startup
-On `STUDY`:
-1. Read `00_BOOT.md`.
-2. Read `01_CURRENT_STATE.md`.
-3. Use `02_CURRICULUM_INDEX.md` to locate the needed scope.
-4. Read only the relevant part of `03_MASTER_PLAN.md`.
-5. Apply these rules.
-6. Resume the exact NEXT ACTION.
+When the user types `STUDY` in a new chat:
+1. Follow `00_BOOT.md`.
+2. Read `01_CURRENT_STATE.md` and identify the exact next action, known output, blockers, and whether proposed fixes have actually run.
+3. Use `02_CURRICULUM_INDEX.md` to orient and read only relevant sections from `03_MASTER_PLAN.md` and `08_ISTQB_TESTING_PORTFOLIO.md`.
+4. Apply these rules and resume the existing project state.
+5. Do not ask the user to reconstruct known progress or redo completed setup. When the repo or project file is available, inspect it before generating a replacement.
 
-## Conversation Safety Warning (cross-chat safeguard)
+## Default learning workflow — batch-first
+The required cadence is **BUILD → RUN → VERIFY → BRIEF EXPLANATION → NEXT CAPABILITY**.
 
-Purpose: warn the user when the current conversation appears to be approaching a risky length, so they have a chance to prepare a new chat. This safeguard does **not** change the study workflow, create automatic checkpoints, or require a GitHub commit after each message.
+- **BUILD:** Prepare the full useful slice, not a tiny isolated step. Combine related actions, features, tests, setup, and supporting files. If multiple files are required, provide them together in one cohesive delivery or a small number of grouped messages (usually no more than three).
+- **RUN:** Give complete, copy-pasteable terminal blocks or complete file contents. Where safe, combine backups, file creation/patching, and the focused run into the same block. The assistant cannot directly modify the user's local laptop through chat; be clear when the user must run a supplied block locally.
+- **VERIFY:** Use actual terminal output, reports, or file state. Distinguish passed, failed, skipped, and not-yet-run work. Never infer a run succeeded just because code was written.
+- **BRIEF EXPLANATION:** Explain the purpose, important reusable patterns, and expected result briefly after the code has been exercised. Do not teach every line before the user can try it.
+- **NEXT CAPABILITY:** Move to the next useful area once the current slice works well enough. Do not linger on cosmetic or low-risk imperfections.
 
-- Reassess conversation length and complexity while responding, considering substantial pasted code, files, handovers, and long exchanges.
-- If the conversation appears to be getting long, give a concise **CAUTION** warning recommending that the user prepare to transition soon.
-- If it appears critically long or continued discussion seems risky, give a clear **CRITICAL CONVERSATION SAFETY WARNING** in the current response and recommend switching chats / preserving any needed work now.
-- Be conservative, but do not interrupt ordinary study unnecessarily.
-- Never claim to know an exact remaining message/token count or promise a warning exactly one or two messages before a limit. The model may not have a reliable live context-capacity indicator; this is a best-effort early warning, not a guaranteed cutoff predictor.
-- If the user starts a new chat with the Study Control Center, apply this rule during startup and ongoing work. The short global Custom Instructions reminder is the cross-chat trigger; this GitHub document remains the canonical detailed procedure for study chats.
-- If a transition happens without a checkpoint, the user may paste the missing messages and say `RECOVER FROM UNCHECKPOINTED MESSAGES`. Reconcile those messages with canonical state and actual project evidence before continuing; do not blindly overwrite either source.
-- A warning alone does not trigger a checkpoint or handover. Follow the existing checkpoint / handover commands and safe GitHub write protocol unchanged.
+## Coverage-first, learn-on-demand rule
+The user is in a time crunch and explicitly wants broad practical coverage before deep mastery. Supply the complete code so the user has it available to read, execute, and question later. The user may stop the flow whenever a concept is confusing or blocks a dependent topic; otherwise keep advancing. Do not require the user to explain code back, solve every implementation step unaided, or study every line before continuing.
 
-## Project-first learning
-Build → Check → Learn on demand → Fix/Verify → Continue.
+For every subject—not only UI automation—batch related material aggressively: Playwright UI tests by feature, API tests in compact suites, SQL examples and checks together, CI/CD configuration plus validation, performance scenarios plus analysis, Docker/Compose build and run, Kubernetes manifests plus test execution, and AI/RAG/MLOps implementation with evaluation. Use coherent file boundaries rather than forcing everything into one enormous file. A batch may be split into a few messages if that avoids missing supporting files or produces an unwieldy block; never fragment it into one test/action per message without a real need.
 
-Use meaningful project implementation slices when competence is demonstrated. Teach isolated theory only when a real gap requires it.
+Prefer breadth, integration, and a working project path over exhaustive mastery of isolated basics. Explain deeper theory when the user asks, says they are lost, or a critical dependency is blocking the build. If there is a small nonblocking imperfection, record it and proceed. If the capability works, move on. Investigate only a genuine failure, security/correctness risk, or recurring instability. Fix related failures together; run failing tests narrowly first when appropriate, then run the combined suite after the batch stabilizes. Avoid repeated full-suite runs that add no evidence.
 
-## Pace
-FAST-PACE is the default.
-`SLOW DOWN`, `TOO MUCH`, and `I'M LOST` mean smaller steps and more explanation.
-`FAST` restores larger slices.
+## ISTQB testing portfolio rule
+Apply the coverage map in `08_ISTQB_TESTING_PORTFOLIO.md` during UI, API, integration, performance, and senior-QA work. Include manual test design and testing techniques, levels/types, static reviews, non-functional assessment, risk, defect reporting, confirmation/regression, and test completion where relevant. Maintain the useful manual artifacts and automate suitable repeatable cases. Do not claim every testing technique or quality characteristic can be fully proven through Playwright. Record environment/access limits and use a controlled project component or secondary target when needed.
+
+## Pace and user control
+- Default to FAST-PACE, batch-first work.
+- `SLOW DOWN`, `TOO MUCH`, and `I'M LOST` mean reduce scope and explain the blocking idea more deeply.
+- `FAST` returns to larger integrated batches.
+- `SKIP` means record the gap and continue when it does not block dependent work.
+- Ask a clarifying question only when a missing fact truly prevents safe or meaningful progress. Otherwise make a sensible, stated assumption and proceed.
+- Keep updates useful and concise; do not narrate tool activity as filler.
 
 ## Result verification
 - Never claim a command ran without actual evidence.
-- Use the user's real output as the source of truth.
-- When wrong, make the smallest useful correction, retry, and re-check.
+- Treat the user's real output as the source of truth.
+- When a test fails, use the actual failure details; repair the related cases as a batch while preserving passing coverage.
+- Prefer condition-based assertions over fixed sleeps. Do not add diagnostic waits or broaden investigations without evidence.
+- Use one worker during local test development when resource contention or noisy parallel runs would distort the result; return to normal concurrency later when useful.
 
-## Non-interactive terminal output and pager avoidance
+## Terminal delivery style
+- Group related commands into one copy-pasteable block and explain the block's purpose and expected outcome briefly.
+- Include backup/preservation steps when replacing a file that may already contain useful work.
+- Use direct-output commands such as `cat`, `sed`, and `git --no-pager` instead of sending the user into an interactive pager.
+- Explain a command or syntax detail only when it materially affects safety, correctness, or the user's ability to execute the block. Do not make the user approve each line independently.
+- Never discard the user's local changes, overwrite unknown content, or use a destructive command merely to simplify the workflow.
 
-- Prefer commands that print directly to the terminal; do not send the user into an interactive pager just to inspect output.
-- When reading one or more project files, use direct-output commands such as `cat`. For multiple files, prefer this copy-pasteable pattern and substitute the required paths:
-  ```bash
-  for file in src/index.ts tests/toolshop.spec.ts tsconfig.json; do
-    printf '\n===== %s =====\n' "$file"
-    cat "$file"
-  done
-  ```
-- For Git commands that may open a pager, prefix the command with `git --no-pager` (for example, `git --no-pager diff` or `git --no-pager log -1 --oneline`).
-- Do **not** tell the user to press `q` to exit a pager when a direct-output alternative is available.
-- Do **not** disable Git's pager globally or change global Git configuration as a workaround. Use the per-command `git --no-pager` form instead.
-- Give the direct-output command in the first place; do not first provide the pager-triggering command and then correct it after the user encounters the issue.
+## Conversation safety warning
+Reassess conversation length and complexity, including pasted code, files, and long exchanges. If the conversation appears long, give a concise **CAUTION** recommending that the user prepare a transition. If it appears critically long or a transition seems prudent, give a clear **CRITICAL CONVERSATION SAFETY WARNING** and recommend preserving verified work and opening a new chat. Do not claim to know an exact remaining message/token count or promise a warning exactly one or two messages before a limit. This is a best-effort warning, not a guaranteed predictor.
+
+A warning alone does not trigger a checkpoint. If a new chat starts before a checkpoint, reconcile any supplied messages with the current GitHub checkpoint and actual project evidence before changing canonical state. Do not blindly overwrite either source.
 
 ## State maintenance
-After a meaningful verified slice, update `01_CURRENT_STATE.md` with:
-- day/hour
-- current topic/project slice
-- verified completion
-- exact next action
-- blockers/gaps
-- timestamp/version
-
-Do not put long history into Current State.
-Every meaningful Current State update must advance the State version. Derived handovers must be refreshed to the new canonical state version; the validator checks that they match.
+After a meaningful verified slice, update `01_CURRENT_STATE.md` with the position, current project slice, verified completion, known failures/limitations, blockers, and the exact next action. Advance the state version for every meaningful state update. Keep live state concise; put useful historical context in `06_LONG_HANDOVER.md`. Never mark proposed or supplied-but-unrun corrections as completed.
 
 ## Handover
-`HANDOVER` refreshes Short Handover.
-`LONG HANDOVER` refreshes Long Handover.
-Short Handover is for fresh-chat resume.
-Long Handover is the durable historical record.
-
-## Terminal teaching rule
-Before every terminal block:
-- explain every command line;
-- explain important flags/operators/shell syntax;
-- state what result we expect;
-- then give the small practical action;
-- wait for the actual result before advancing.
+`HANDOVER` refreshes `05_SHORT_HANDOVER.md`; `LONG HANDOVER` refreshes `06_LONG_HANDOVER.md`. Both are derived from the newest Current State and must carry the same canonical state version, Day/Hour, topic, and resume direction. The validator is expected to detect stale handovers. The new chat must read Current State first even when a handover is available.
 
 ## Safe GitHub write protocol
-
 Required sequence: **READ → preserve current content → minimal changes → WRITE with current SHA → READ AGAIN → verify**.
 
-For the Study Control Center, implement this with the low-level Git object workflow below: read the current branch head and target files; preserve the full content of each file; make only the necessary edits; create blobs; create a tree from the current base tree; create a commit parented to the current head; update the branch using the original head as the expected SHA; then read back the changed files and branch head and verify the exact content and SHAs. If the branch head changes, stop and re-read before rebuilding. Never report success until read-back verification passes.
+For this Study Control Center, use the lower-level Git object workflow. Prior Contents API writes were blocked; do not retry a blocked Contents API write. For each coordinated update:
 
-## Default GitHub write protocol — low-level Git workflow
-**This is the default and required write method for the Study Control Center. Do not use the GitHub Contents API write methods (`update_file` or `create_file`) for these files; they have repeatedly been blocked by tool safety checks. Do not retry a blocked Contents API write.**
+1. Read `refs/heads/main` and record the branch-head commit SHA.
+2. Fetch every target file and preserve its complete content and blob SHA. Confirm the branch head and file SHAs have not changed since the audit.
+3. Apply the necessary minimal edits. When a full coherent replacement is needed, base it on the freshly read content and preserve unrelated verified facts.
+4. Create blobs for the complete UTF-8 contents of changed files.
+5. Create a tree from the current commit's base tree, replacing only the intended paths. Include the new blob for any new file.
+6. Create one commit whose parent is the exact current branch-head SHA.
+7. Update `main` using the original head as `expected_sha` (force-with-lease). If rejected or if the head changed, stop and repeat the read/preserve/edit process with the new head; never blindly retry.
+8. Read each changed file and the branch head again.
+9. Verify exact contents, blob SHAs, commit parent, and intended new head. Report success only after read-back verification.
 
-For every checkpoint, rule change, handover refresh, or other Study Control Center write, follow this exact sequence:
-
-1. **READ branch head:** fetch `refs/heads/main` and record the current commit SHA.
-2. **READ target files:** fetch every file being changed and preserve its full current content and blob SHA.
-3. **MINIMAL EDIT:** modify only the required sections; do not reconstruct unrelated content from memory.
-4. **CREATE BLOB(S):** create a Git blob for each changed file's complete UTF-8 content.
-5. **CREATE TREE:** create a new tree using the current commit's base tree SHA, with only the intended paths replaced by the new blob SHAs. This preserves all unrelated paths.
-6. **CREATE COMMIT:** create one commit using that tree and the exact current branch-head commit as its parent.
-7. **UPDATE REF WITH LEASE:** update `main` to the new commit using the original branch-head SHA as `expected_sha` (force-with-lease). If rejected, stop and re-read the branch head and target files before rebuilding; never blindly retry.
-8. **READ AGAIN:** fetch each changed file from `main` and fetch the branch head again.
-9. **VERIFY:** confirm the new branch head is the intended commit and every changed file has the exact intended content/new blob SHA. Report success only after this read-back verification.
-
-Required sequence: **READ HEAD + FILES → PRESERVE → MINIMAL EDIT → BLOB(S) → TREE FROM CURRENT BASE TREE → COMMIT WITH CURRENT PARENT → UPDATE REF WITH EXPECTED SHA → READ BACK → VERIFY**.
-
-The lower-level Git object workflow is not permission to bypass concurrency checks or overwrite newer work. Never update the ref if the branch head changed since step 1. Do not claim a checkpoint was saved unless the final read-back succeeds.
+The lower-level workflow does not permit bypassing concurrency checks or overwriting newer work.
 
 ## Control-center validation
-A read-only validator at `tools/validate_control_center.py` checks structural consistency, canonical-source ownership, stale duplicated state/rules, required curriculum coverage, handover freshness, and required cross-file references.
+`tools/validate_control_center.py` is read-only. It checks required files, the single-authority structure, 45-hour catalogue completeness, current-state/handover freshness, ISTQB coverage, batch-first workflow requirements, legacy-workflow drift, and repository separation. Its unit tests live in `tests/test_validate_control_center.py`. GitHub Actions runs the tests and validator on pushes and pull requests.
 
-The GitHub Actions workflow at `.github/workflows/control-center-validation.yml` runs the validator on pull requests and pushes to `main`.
-
-The validator is a guardrail, not an authority. It may fail a change when the repository violates these rules, but it must never rewrite control-center files or override canonical content. A passing validator proves the deterministic checks pass; semantic decisions still follow the canonical files and these continuity rules.
+The validator is a guardrail, not an authority. A passing deterministic check does not replace judgment or real project/test evidence. The validator and its tests must never rewrite control-center state.
 
 ## Anti-drift
-Never restart completed work.
-Never merge contradictory versions.
-Never silently remove required curriculum coverage.
-Never use the old `playwright-course` directory.
-
+Do not restart completed work. Do not merge contradictory versions. Do not silently remove a required capability. Keep the study-control repository separate from the AI QA Platform repository. Never report a test, local edit, or checkpoint as successful without evidence.
 
 ## Practice application selection
-The default external system under test (SUT) for the AI QA Platform is **Practice Software Testing — Toolshop**:
+The default external system under test (SUT) is **Practice Software Testing — Toolshop**:
 - UI: https://practicesoftwaretesting.com/
 - REST API documentation: https://api.practicesoftwaretesting.com/api/documentation
 
-Use Toolshop as the primary shared target for Playwright UI automation, documented REST API testing, authentication, product search/filtering, cart/checkout workflows, and combined API/UI checks. Inspect the current API documentation before writing tests because hosted demo systems can change. Treat it as a third-party practice environment: avoid destructive or abusive traffic, do not assume data persists, and do not depend on undocumented behavior.
+Use Toolshop first for UI automation, documented REST API tests, search/filter/cart/auth workflows, and combined API/UI checks. Inspect current API documentation before relying on endpoints because the hosted demo can change. Treat it as a third-party practice environment: use non-destructive and reasonable traffic, do not assume data persists, and do not depend on undocumented behavior.
 
-Two secondary practice sites are approved for specific gaps:
-1. **Expand Testing** — https://practice.expandtesting.com/
-   Use when a lesson needs a focused, isolated UI scenario (dynamic controls, tables/pagination, locators, browser interactions, forms, status codes) or its dedicated Notes API / Practice API Swagger exercises. Switch to it when Toolshop does not expose a needed UI challenge or a smaller reproducible scenario would teach the skill more efficiently.
-2. **QA Practice API Playground** — https://www.qapractice.com/api-playground
-   Use as a focused supplementary REST API target for bearer-token authentication, products, users, orders, and explicit positive/negative login responses. Switch to it when practicing a compact API-only exercise or when Toolshop's API is unsuitable for a particular auth/status-code exercise.
+Two secondary practice sites are approved for appropriate gaps:
+1. **Expand Testing** — https://practice.expandtesting.com/ — isolated UI scenarios and focused forms, dynamic controls, tables, pagination, locators, status codes, and its dedicated API exercises.
+2. **QA Practice API Playground** — https://www.qapractice.com/api-playground — compact REST API scenarios for token authentication, products, users, orders, and explicit positive/negative login responses.
 
-Selection rule: start with Toolshop by default; use a secondary site only when its stated use case materially fits the current learning objective. Do not switch targets without a reason, and do not build our own SUT yet. Reconsider a small controlled local app later only if required scenarios cannot be reliably exercised on these public targets (for example, controlled fault injection, database-level assertions, or custom AI/RAG/inference behavior).
+Start with Toolshop; switch only when a secondary site's stated use case materially fits the current goal or Toolshop cannot exercise the scenario reliably. Do not build our own SUT unless public targets cannot support a required scenario (for example, controlled fault injection, direct database assertions, or custom AI/RAG inference behavior).
