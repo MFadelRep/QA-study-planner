@@ -146,6 +146,7 @@ Use GitHub as the authoritative source.
 1. Read 01_CURRENT_STATE.md.
 2. Read 02_CURRICULUM_INDEX.md.
 3. Retrieve the relevant Master Plan section.
+3. Retrieve the relevant section of 03_MASTER_PLAN.md.
 4. Apply 04_CONTINUITY_RULES.md and consult 08_ISTQB_TESTING_PORTFOLIO.md.
 
 Do not use Library Control Center copies as the live study authority.
