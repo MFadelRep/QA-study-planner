@@ -119,7 +119,7 @@ Component, integration, system, acceptance.
 Functional, non-functional, black-box, white-box.
 
 ## Test design techniques
-Equivalence partitioning, boundary value analysis, decision table testing, state transition testing.
+equivalence partitioning, boundary value analysis, decision table testing, state transition testing.
 
 ## Non-functional quality characteristics
 Performance, compatibility, usability, reliability, security, maintainability, portability, safety.
