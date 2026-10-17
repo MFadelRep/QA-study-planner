@@ -1,12 +1,18 @@
 # SHORT HANDOVER — CURRENT
 
-Canonical state version: 5.1-BATCH-FIRST-ISTQB-CI-PASS-2026-10-12
+Canonical state version: 5.2-GHAIA-INTERVIEW-OVERLAY-PENDING-2026-10-17
 
 **Derived record — not authoritative.** The live checkpoint is `01_CURRENT_STATE.md`; workflow is `04_CONTINUITY_RULES.md`; required curriculum scope is `03_MASTER_PLAN.md`; the ISTQB coverage map is `08_ISTQB_TESTING_PORTFOLIO.md`.
 
 State: Day 1 / Hour 5 — accelerated sprint in progress
 Topic: Toolshop UI automation batch — fix two failures, then expand UI + ISTQB portfolio coverage
 Last verified: 2026-10-12
+
+## Conditional Ghaia.ai interview overlay
+- Technical interview completed 2026-10-13; outcome not recorded in the study checkpoint as of 2026-10-17.
+- PM round preparation is pending, not active, until the user confirms the technical pass or scheduled PM round.
+- If activated: estimate 4–6 focused hours over 2–3 days. Temporarily prioritize the interview while preserving the normal study checkpoint and resume action.
+
 
 ## Verified now
 - The user approved batch-first, code-first learning and the coverage-first / learn-on-demand approach.

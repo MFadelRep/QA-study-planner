@@ -33,6 +33,16 @@ When the user types `STUDY` in a new chat:
 4. Apply these rules and resume the existing project state.
 5. Do not ask the user to reconstruct known progress or redo completed setup. When the repo or project file is available, inspect it before generating a replacement.
 
+## Conditional interview-priority overlay
+
+At each `STUDY` startup, inspect the conditional interview status recorded in `01_CURRENT_STATE.md`.
+
+- If the Ghaia technical-interview outcome or next-round status is still unknown, ask one brief status question before choosing the day's priority. If there is no confirmed next round, resume the saved study action.
+- If the user confirms passing the technical round or confirms a final Project Manager interview is scheduled, temporarily activate the interview track defined in `03_MASTER_PLAN.md` (estimated 4–6 focused hours over 2–3 days, adapted to the date and observed gaps).
+- While the interview track is active, preserve the existing Day/Hour, project files, blockers, and exact next action. Do not mark curriculum work complete, reset the plan, or discard pending local work.
+- After the interview or when the user asks to resume normal study, return to the canonical next action in `01_CURRENT_STATE.md`.
+- The interview overlay is conditional and must not divert study time solely because an interview might happen.
+
 ## Default learning workflow — batch-first
 The required cadence is **BUILD → RUN → VERIFY → BRIEF EXPLANATION → NEXT CAPABILITY**.
 

@@ -3,6 +3,26 @@
 ## Outcome
 Build and be able to explain a coherent, portfolio-grade AI QA Platform while gaining broad, practical exposure to Senior QA Automation and MLOps capabilities. The priority is demonstrable working evidence and interview-ready explanations under a one-week deadline. The plan is not a guarantee of complete mastery or a job offer.
 
+## Conditional Ghaia.ai Project Manager interview track
+
+This is a **temporary interview overlay**, not a replacement or reset of the 45-hour curriculum. Activate it only after the user confirms that the technical interview was passed or that a final Project Manager interview is scheduled.
+
+**Estimated effort:** 4–6 focused hours over 2–3 days, adjusted to the confirmed interview date and actual gaps. This is a targeted preparation estimate, not a guarantee of interview success.
+
+### Focus areas
+1. **Project delivery and risk:** competing deadlines, risk-based priorities, scope changes, resource trade-offs, release readiness, quality gates, go/no-go recommendations, and documenting residual risk.
+2. **Communication and coordination:** concise status reporting, meeting notes and action owners, escalation, expectation management, coordinating with development and project management, and balancing concurrent client projects.
+3. **AI platform quality at PM level:** explain the business impact and mitigation of weak RAG grounding, incorrect agent tool calls, tenant-isolation failures, and model/prompt regressions. Go deeper technically only when asked.
+4. **Evidence from actual experience:** prepare the user's real pipeline incident involving duplicated factory-generated data, review of a teammate's merge request, and correction of AI-coding-assistant rules. Add a second genuine example if available; do not invent personal experience.
+5. **Mock interview:** practise concise answers, skeptical follow-ups, release decisions, reporting bad news, and balancing quality with delivery.
+
+### Integration with the existing curriculum
+This overlay reuses and applies Hour 19 (reporting and defect communication), Hour 30–35 (AI QA/RAG), Hour 39 (senior QA and risk-based strategy), Hour 42 (scalability and governance), and Hour 44–45 (interview engineering and final simulation). It does not delete or mark these curriculum outcomes complete.
+
+The core study checkpoint—including Day/Hour, local project state, blockers, and exact next action—must remain unchanged while the overlay is active. After the interview or when the user asks to resume normal study, return to that saved next action.
+
+Use short applied scenarios and concise feedback. Ask one interview question at a time, distinguish real professional experience from theoretical knowledge, and avoid long reading assignments.
+
 ## Learning method
 Follow the single authoritative batch-first workflow and learning-depth rules in `04_CONTINUITY_RULES.md`. Use this plan for required outcomes, the weekly sequence, and evidence—not as a second copy of the operating rules.
 

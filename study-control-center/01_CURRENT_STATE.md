@@ -1,6 +1,6 @@
 # Current Study State
 
-**State version:** 5.1-BATCH-FIRST-ISTQB-CI-PASS-2026-10-12
+**State version:** 5.2-GHAIA-INTERVIEW-OVERLAY-PENDING-2026-10-17
 **Last verified:** 2026-10-12
 **Status:** ACTIVE — accelerated seven-day study sprint
 **Execution mode:** BATCH-FIRST / CODE-FIRST / COVERAGE-FIRST / LEARN-ON-DEMAND
@@ -31,6 +31,12 @@ The batch-first study workflow, accelerated seven-day map, and ISTQB CTFL v4.0.1
 - Preserve working project files and changes; do not reset or overwrite the working tree.
 - The study-control repository `MFadelRep/QA-study-planner` stores study state and rules only. Do not store application test code or connect the local project as this repository's remote.
 - Toolshop is the default SUT. Secondary sites remain available only when a focused scenario is missing or unreliable on Toolshop.
+
+## Conditional Ghaia.ai interview overlay
+- Technical interview: completed on 2026-10-13; the outcome has not been recorded in this study checkpoint as of 2026-10-17.
+- Final Project Manager round: **PENDING / NOT ACTIVE** until the user confirms passing the technical interview or confirms that the PM interview is scheduled.
+- Estimated preparation: 4–6 focused hours over 2–3 days, adjusted to the actual interview date and gaps; see `03_MASTER_PLAN.md`.
+- When a new `STUDY` chat starts, check whether the outcome or next-round status has changed. If activated, temporarily prioritize PM preparation without changing Day/Hour or discarding the exact next action below. Resume it after the interview.
 
 ## Exact next action
 Build one focused correction batch for the two failed cases in `tests/toolshop-ui-batch.spec.ts`: inspect the current test and failure context; select a real, appropriate Pliers category and assert its actual filtering behavior; wait for the catalogue before asserting the sort-menu options and compare normalized option labels. Run only those two tests first. If they pass, run the complete UI batch plus the existing `tests/toolshop.spec.ts` once, with `--workers=1`, to establish the combined baseline. Then expand the UI batch in coherent feature groups and create ISTQB-mapped manual/automated testing artefacts. Keep the next response code-first and combined; do not revert to command-by-command teaching.
