@@ -33,16 +33,6 @@ When the user types `STUDY` in a new chat:
 4. Apply these rules and resume the existing project state.
 5. Do not ask the user to reconstruct known progress or redo completed setup. When the repo or project file is available, inspect it before generating a replacement.
 
-## Conditional interview-priority overlay
-
-At each `STUDY` startup, inspect the conditional interview status recorded in `01_CURRENT_STATE.md`.
-
-- If the Ghaia technical-interview outcome or next-round status is still unknown, ask one brief status question before choosing the day's priority. If there is no confirmed next round, resume the saved study action.
-- If the user confirms passing the technical round or confirms a final Project Manager interview is scheduled, temporarily activate the interview track defined in `03_MASTER_PLAN.md` (estimated 4–6 focused hours over 2–3 days, adapted to the date and observed gaps).
-- While the interview track is active, preserve the existing Day/Hour, project files, blockers, and exact next action. Do not mark curriculum work complete, reset the plan, or discard pending local work.
-- After the interview or when the user asks to resume normal study, return to the canonical next action in `01_CURRENT_STATE.md`.
-- The interview overlay is conditional and must not divert study time solely because an interview might happen.
-
 ## Default learning workflow — batch-first
 The required cadence is **BUILD → RUN → VERIFY → BRIEF EXPLANATION → NEXT CAPABILITY**.
 
@@ -53,7 +43,7 @@ The required cadence is **BUILD → RUN → VERIFY → BRIEF EXPLANATION → NEX
 - **NEXT CAPABILITY:** Move to the next useful area once the current slice works well enough. Do not linger on cosmetic or low-risk imperfections.
 
 ## Coverage-first, learn-on-demand rule
-The user is in a time crunch and explicitly wants broad practical coverage before deep mastery. Supply the complete code so the user has it available to read, execute, and question later. The user may stop the flow whenever a concept is confusing or blocks a dependent topic; otherwise keep advancing. Do not require the user to explain code back, solve every implementation step unaided, or study every line before continuing.
+The user is in a time crunch and explicitly wants broad practical coverage before deep mastery. Supply the complete code so the user has it available to read, execute, and question later. The user may stop the flow whenever a concept is confusing or blocks a dependent topic; otherwise keep advancing. Do not require the user to explain code back, solve every implementation step unaided, or study every line before continuing. Use Ghaia.ai platform scenarios only as optional real-world examples when they naturally fit the topic already being studied; they are not a separate interview track, do not add hours or reorder the plan, and must not alter the current checkpoint or exact next action.
 
 For every subject—not only UI automation—batch related material aggressively: Playwright UI tests by feature, API tests in compact suites, SQL examples and checks together, CI/CD configuration plus validation, performance scenarios plus analysis, Docker/Compose build and run, Kubernetes manifests plus test execution, and AI/RAG/MLOps implementation with evaluation. Use coherent file boundaries rather than forcing everything into one enormous file. A batch may be split into a few messages if that avoids missing supporting files or produces an unwieldy block; never fragment it into one test/action per message without a real need.
 

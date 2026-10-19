@@ -1,16 +1,11 @@
 # LONG HANDOVER — CURRENT RECORD
 
-Canonical state version: 5.2-GHAIA-INTERVIEW-OVERLAY-PENDING-2026-10-17
+Canonical state version: 5.3-GHAIA-SCENARIO-MAPPING-2026-10-19
 
 **Derived record — not authoritative.** Live progress and next action: `01_CURRENT_STATE.md`. Operating rules: `04_CONTINUITY_RULES.md`. Full capability plan: `03_MASTER_PLAN.md`. ISTQB map: `08_ISTQB_TESTING_PORTFOLIO.md`.
 
 ## Session state
 Day 1 / Hour 5 of the accelerated seven-day Senior QA Automation + MLOps sprint. The 45-hour capability catalogue remains the scope, with overlapping activities combined into practical batches. Current topic: Toolshop UI automation batch — fix two failures, then expand UI + ISTQB portfolio coverage
-
-## Conditional Ghaia.ai interview overlay
-- Technical interview completed 2026-10-13; the outcome is not recorded as of 2026-10-17.
-- The PM preparation track is pending until the user confirms the technical pass or a scheduled PM round.
-- If activated, allocate about 4–6 focused hours over 2–3 days. Preserve the existing Day/Hour and exact local-project next action; resume it after the interview.
 
 ## Learning approach now in force
 Batch-first implementation across all subjects. The user wants complete code and supporting files supplied in grouped batches, followed by real execution, verification, a brief explanation, and the next capability. Broad coverage and a functioning integrated project come before deep mastery; the user asks for deeper explanations when something blocks understanding. The workflow is defined only in `04_CONTINUITY_RULES.md`.

@@ -3,26 +3,6 @@
 ## Outcome
 Build and be able to explain a coherent, portfolio-grade AI QA Platform while gaining broad, practical exposure to Senior QA Automation and MLOps capabilities. The priority is demonstrable working evidence and interview-ready explanations under a one-week deadline. The plan is not a guarantee of complete mastery or a job offer.
 
-## Conditional Ghaia.ai Project Manager interview track
-
-This is a **temporary interview overlay**, not a replacement or reset of the 45-hour curriculum. Activate it only after the user confirms that the technical interview was passed or that a final Project Manager interview is scheduled.
-
-**Estimated effort:** 4–6 focused hours over 2–3 days, adjusted to the confirmed interview date and actual gaps. This is a targeted preparation estimate, not a guarantee of interview success.
-
-### Focus areas
-1. **Project delivery and risk:** competing deadlines, risk-based priorities, scope changes, resource trade-offs, release readiness, quality gates, go/no-go recommendations, and documenting residual risk.
-2. **Communication and coordination:** concise status reporting, meeting notes and action owners, escalation, expectation management, coordinating with development and project management, and balancing concurrent client projects.
-3. **AI platform quality at PM level:** explain the business impact and mitigation of weak RAG grounding, incorrect agent tool calls, tenant-isolation failures, and model/prompt regressions. Go deeper technically only when asked.
-4. **Evidence from actual experience:** prepare the user's real pipeline incident involving duplicated factory-generated data, review of a teammate's merge request, and correction of AI-coding-assistant rules. Add a second genuine example if available; do not invent personal experience.
-5. **Mock interview:** practise concise answers, skeptical follow-ups, release decisions, reporting bad news, and balancing quality with delivery.
-
-### Integration with the existing curriculum
-This overlay reuses and applies Hour 19 (reporting and defect communication), Hour 30–35 (AI QA/RAG), Hour 39 (senior QA and risk-based strategy), Hour 42 (scalability and governance), and Hour 44–45 (interview engineering and final simulation). It does not delete or mark these curriculum outcomes complete.
-
-The core study checkpoint—including Day/Hour, local project state, blockers, and exact next action—must remain unchanged while the overlay is active. After the interview or when the user asks to resume normal study, return to that saved next action.
-
-Use short applied scenarios and concise feedback. Ask one interview question at a time, distinguish real professional experience from theoretical knowledge, and avoid long reading assignments.
-
 ## Learning method
 Follow the single authoritative batch-first workflow and learning-depth rules in `04_CONTINUITY_RULES.md`. Use this plan for required outcomes, the weekly sequence, and evidence—not as a second copy of the operating rules.
 
@@ -31,14 +11,14 @@ One coherent AI QA Platform is the primary learning vehicle. Practice Software T
 
 ## Required capability coverage
 - **Playwright:** locators/assertions, user journeys, reusable fixtures, POM where appropriate, configuration/projects, auth/state reuse, API/UI hybrid flows, network interception/diagnostics, isolation, traces/artifacts, and flake diagnosis.
-- **API:** request construction, authentication, status/header/body assertions, schemas/contracts, positive/negative/boundary cases, chaining, safe setup/cleanup, and API-to-database checks where a controlled database exists.
+- **API:** request construction, authentication, status/header/body assertions, schemas/contracts, positive/negative/boundary cases, chaining, safe setup/cleanup, and API-to-database checks where a controlled database exists. Use agent-tool examples such as wrong arguments, invalid customer IDs, authorization failures, and verifying that HTTP success matches actual state.
 - **Data:** SQL/PostgreSQL querying, joins/aggregations, test-data setup, and consistency verification.
-- **CI/CD:** GitHub Actions early, then GitLab CI, environment variables/secrets, reports/artifacts, quality gates, and failure diagnosis.
-- **Performance:** JMeter/Locust scenarios, workload models, latency/throughput/error-rate interpretation, and evidence-based conclusions.
+- **CI/CD:** GitHub Actions early, then GitLab CI, environment variables/secrets, reports/artifacts, quality gates, and failure diagnosis. Where relevant, use the real-world pattern of factory-generated test-data duplication, merge-request review, and validation of AI-assisted code as a debugging case study.
+- **Performance:** JMeter/Locust scenarios, workload models, latency/throughput/error-rate interpretation, and evidence-based conclusions, including AI-agent latency, concurrency, timeouts, and downstream-service failures where appropriate.
 - **Containers/platform:** Docker, Compose, Kubernetes workloads/services/configuration, test execution, health/readiness, and reliability failure modes.
-- **AI QA/RAG:** nondeterministic test oracles, retrieval/answer signals, grounding and citation/support checks, hallucination/misinformation controls, robustness, safety boundaries, latency/cost awareness, adversarial/regression datasets, and inference testing.
-- **MLOps:** reproducibility, data/model lifecycle, experiment tracking, metrics, artifacts, quality gates, registry/promotion concepts, and rollback reasoning.
-- **Senior QA:** risk-based planning, test strategy, architecture trade-offs, maintainability, defect communication, test reporting, and interview reasoning.
+- **AI QA/RAG:** nondeterministic test oracles, retrieval/answer signals, grounding and citation/support checks, hallucination/misinformation controls, robustness, safety boundaries, latency/cost awareness, adversarial/regression datasets, and inference testing. Practice diagnosing retrieval-versus-grounding failures; prompt/model regressions; wrong agent-tool selection or arguments; and strict tenant isolation.
+- **MLOps:** reproducibility, data/model lifecycle, experiment tracking, metrics, artifacts, quality gates, registry/promotion concepts, and rollback reasoning. Compare model or prompt versions with the same evaluation set rather than expecting identical wording.
+- **Senior QA:** risk-based planning, test strategy, architecture trade-offs, maintainability, defect communication, test reporting, and interview reasoning. Apply these to competing client deadlines, scope changes, quality gates, release recommendations, escalation, and concise progress/action reporting.
 - **ISTQB CTFL manual-testing knowledge:** practical test design, test levels/types, static testing/reviews, non-functional testing, test management, risk, defects, and regression/confirmation testing. The canonical detailed map is `08_ISTQB_TESTING_PORTFOLIO.md`.
 
 ## 45-hour capability catalogue
@@ -73,11 +53,11 @@ Target approximately six focused hours per day. The 45-hour catalogue is treated
 
 1. **Day 1 — Foundations + Toolshop UI + ISTQB:** close only blocking TypeScript/async gaps; create a substantial UI test suite in feature batches; add manual test cases and an ISTQB coverage matrix.
 2. **Day 2 — Advanced Playwright + API:** fixtures/POM as needed, authentication/state, network handling, complete compact API batch, positive/negative/boundary cases, contracts and UI/API integration.
-3. **Day 3 — SQL + CI/CD:** SQL/PostgreSQL, controlled test data, GitHub Actions, GitLab CI, reporting, traceability, review, and defect examples.
+3. **Day 3 — SQL + CI/CD:** SQL/PostgreSQL, controlled test data, GitHub Actions, GitLab CI, reporting, traceability, review, and defect examples—including realistic test-data collision and merge-request investigation scenarios.
 4. **Day 4 — Performance + Docker:** practical JMeter/Locust tests, interpret real results, package app/tests using Docker and Compose.
 5. **Day 5 — Kubernetes + MLOps:** execute in container/Kubernetes environments and create a minimal MLflow-based lifecycle with reproducible runs and artifacts.
-6. **Day 6 — AI QA + RAG + security:** implement/evaluate representative RAG and inference checks, grounding, robustness, safety boundaries, basic web/API security reasoning.
-7. **Day 7 — Integration + senior QA + interviews:** integrate, harden, produce a demonstrable report, practise risk/architecture/interview questions, and identify follow-up depth work.
+6. **Day 6 — AI QA + RAG + security:** implement/evaluate representative RAG and inference checks, grounding, robustness, safety boundaries, basic web/API security reasoning, agent tool-call validation, and cross-tenant isolation.
+7. **Day 7 — Integration + senior QA + interviews:** integrate, harden, produce a demonstrable report, practise risk/architecture/interview questions, and identify follow-up depth work using scenarios involving competing deadlines, scope trade-offs, stakeholder reporting, residual risk, and go/no-go recommendations.
 
 ## ISTQB integration
 ISTQB is practised through the same project, not as a disconnected theory course. Apply the relevant test levels/types and design techniques to Toolshop UI/API cases; preserve manual cases, exploratory charters, review notes, requirements traceability, defect examples, and a test summary alongside automated tests. Automate suitable repeatable checks, but do not pretend that human-centered usability assessment, review, exploratory judgment, or unavailable implementation-level checks are proven by a browser assertion. Use a controlled project component for white-box/component testing where Toolshop does not expose the implementation. Use the detailed mapping in `08_ISTQB_TESTING_PORTFOLIO.md`.
