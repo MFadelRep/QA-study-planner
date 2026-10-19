@@ -1,36 +1,42 @@
 # Current Study State
 
-**State version:** 5.3-GHAIA-SCENARIO-MAPPING-2026-10-19
-**Last verified:** 2026-10-12
+**State version:** 5.4-PLAYWRIGHT-POM-FIXTURES-PARALLEL-RELIABILITY-2026-10-19
+**Last verified:** 2026-10-19
 **Status:** ACTIVE — accelerated seven-day study sprint
 **Execution mode:** BATCH-FIRST / CODE-FIRST / COVERAGE-FIRST / LEARN-ON-DEMAND
 
 ## Position
 - Day: 1
-- Hour: 5
-- Current topic: Toolshop UI automation batch — fix two failures, then expand UI + ISTQB portfolio coverage
+- Hour: 6
+- Current topic: Playwright architecture — POM, fixtures, and parallel reliability verified; next: API testing
 - Project: AI QA Platform
-- Local project path: `/run/media/mfadel/New Volume/Projects/QA/automation-platform`
+- Local project path: /run/media/mfadel/New Volume/Projects/QA/automation-platform
 
-The hour number is the nearest curriculum locator for the current work, not a claim that elapsed time alone proves mastery of earlier material. The accelerated schedule combines related topics and revisits foundational gaps only when they block implementation.
+The hour number is a curriculum locator, not proof of mastery from elapsed time. The 45-hour catalogue remains required scope; related capabilities are combined into integrated project batches.
 
 ## Current checkpoint
-The batch-first study workflow, accelerated seven-day map, and ISTQB CTFL v4.0.1 portfolio have been committed to GitHub and read back with matching blob SHAs. GitHub Actions validation passed on commit `6fbe8bf7ac50d846024902d8258a157d63b4b860` (9 unit tests passed; read-only control-center validator passed). The intended learning cadence is defined in `04_CONTINUITY_RULES.md`; the full capability map is in `03_MASTER_PLAN.md` and `08_ISTQB_TESTING_PORTFOLIO.md`.
+The Playwright suite was refactored into four page objects and custom fixtures while retaining the same 15 UI scenarios. TypeScript validation passed. The normal parallel command, npm test, then ran three consecutive times with two workers: all 15 tests passed in each run (45/45 total; runtimes 2.0, 3.2, and 2.6 minutes).
+
+The current project uses page-specific readiness checks, a 60-second test timeout and 10-second default expectation timeout. An automatic fixture blocks Cloudflare's optional analytics beacon during these functional tests, and homepage setup is scoped to catalogue/product suites rather than every test. Trace retention and screenshots on failure remain enabled.
+
+Earlier traces showed slow JavaScript/CSS loads (about 4–23 seconds in the observed traces), a navigation timeout, and cases where the application shell was present but product cards did not render within the wait budget. These observations support the reliability changes but do not isolate one cause. Unauthenticated /users/me 401 responses were not established as the cause of failures. Three green runs show improvement but cannot guarantee future external-site or network stability.
+
+Cumulative technical lessons and evidence labels are maintained in [09_LESSONS_LEARNED.md](09_LESSONS_LEARNED.md). Workflow and update rules remain canonical in [04_CONTINUITY_RULES.md](04_CONTINUITY_RULES.md); this file remains the only source for the live position and exact next action.
 
 ## Verified local project state
-- Project uses Node.js 22.22.1, TypeScript 7.0.2, `tsx` 4.23.15, and `@playwright/test` 1.63.0.
-- `playwright.config.ts` uses `testDir: './tests'`, Toolshop as `baseURL`, and the named `chromium` project.
-- `tests/toolshop.spec.ts` already contains the homepage/smoke, pagination, and low-to-high price-sorting checks; the two behavior tests were previously verified passing in a one-worker run.
-- A separate `tests/toolshop-ui-batch.spec.ts` was created and run on 2026-10-12. The initial run executed 13 tests: **11 passed, 2 failed**.
-- Passing coverage in that first batch: positive search, no-results search, brand filter, eco-friendly filter, name sorting A–Z and Z–A, price sorting high-to-low, product-page details, add-to-cart, invalid-login handling, and short-message contact-form validation.
-- The two known failing cases are (1) the first category checkbox did not change the displayed product names, and (2) the sort-menu option check received an empty list because it inspected the menu before the catalogue was ready. The test run completed; do not report the batch as fully green.
-- A proposed combined correction was provided in chat but **has not been confirmed as executed**. Use the current local test file and error context as the source of truth before patching. Preserve the eleven passing tests.
+- Existing UI coverage: 15 Playwright tests across tests/toolshop.spec.ts and tests/toolshop-ui-batch.spec.ts.
+- Page objects: CataloguePage, ProductPage, LoginPage, and ContactPage under src/pages/.
+- Shared fixtures: tests/fixtures/test.ts supplies the four page objects.
+- TypeScript command npm run typecheck passed after the current reliability changes.
+- Parallel evidence: three consecutive full runs with two workers passed 15/15 each on 2026-10-19.
+- Diagnostics: Playwright retains traces on failure and captures failure screenshots.
+- The API client/spec batch was drafted in chat but has not been confirmed as executed. Inspect the local tree before assuming those files exist.
 
 ## Project and environment constraints
-- Keep this project separate from `/run/media/mfadel/New Volume/playwright-course`.
-- Preserve working project files and changes; do not reset or overwrite the working tree.
-- The study-control repository `MFadelRep/QA-study-planner` stores study state and rules only. Do not store application test code or connect the local project as this repository's remote.
-- Toolshop is the default SUT. Secondary sites remain available only when a focused scenario is missing or unreliable on Toolshop.
+- Keep this project separate from /run/media/mfadel/New Volume/playwright-course.
+- Preserve the local working tree; inspect before replacing files and do not discard existing work.
+- MFadelRep/QA-study-planner stores study state, curriculum, continuity, validation, and lessons learned only. Application source and test code stay in the separate AI QA Platform project.
+- Toolshop remains the default external SUT. Use reasonable, non-destructive traffic and verify its live API documentation before relying on endpoints.
 
 ## Exact next action
-Build one focused correction batch for the two failed cases in `tests/toolshop-ui-batch.spec.ts`: inspect the current test and failure context; select a real, appropriate Pliers category and assert its actual filtering behavior; wait for the catalogue before asserting the sort-menu options and compare normalized option labels. Run only those two tests first. If they pass, run the complete UI batch plus the existing `tests/toolshop.spec.ts` once, with `--workers=1`, to establish the combined baseline. Then expand the UI batch in coherent feature groups and create ISTQB-mapped manual/automated testing artefacts. Keep the next response code-first and combined; do not revert to command-by-command teaching.
+Continue in the local AI QA Platform project. First inspect the actual package.json, src/api/, tests/api/, tests/fixtures/test.ts, and playwright.config.ts; the API batch supplied in chat has not been confirmed as run. If the client/spec files are absent, implement the API batch in a coherent group using Playwright's API request fixture, verify current Toolshop API documentation and response contracts, then run TypeScript validation, API tests, and the combined UI+API suite. Keep UI parallel execution enabled and preserve the 15-test UI regression baseline. Consult relevant API and reliability entries in 09_LESSONS_LEARNED.md; update state only from actual results.

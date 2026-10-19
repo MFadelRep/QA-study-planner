@@ -27,10 +27,42 @@ def make_fixture(root: Path) -> None:
     control.mkdir(parents=True)
     tools.mkdir(parents=True)
 
+    lessons = """# Lessons Learned — Senior QA Automation + MLOps
+
+## Purpose and authority
+Reusable project knowledge only; live state remains in 01_CURRENT_STATE.md.
+
+## How to use this record
+Consult relevant entries from 09_LESSONS_LEARNED.md.
+
+## Lesson entry format
+Context, evidence status, result, reusable rule, and limitation.
+
+## Playwright fundamentals and assertions
+VERIFIED: assert outcomes rather than actions.
+
+## Page Object Model and fixtures
+VERIFIED: page objects contain interactions; tests own scenario assertions.
+
+## Navigation readiness and synchronization
+VERIFIED: wait for the UI state required by the next operation.
+
+## Parallel reliability and evidence-based diagnosis
+OBSERVED — NOT CAUSAL PROOF: traces show slow requests without proving root cause.
+HYPOTHESIS: untested causes must remain labeled as hypotheses.
+
+## Safe editing and regression verification
+VERIFIED: back up, typecheck, run focused tests, then regression tests.
+
+## Updating this record
+Follow 04_CONTINUITY_RULES.md.
+"""
+
     rules = """# Continuity & Execution Rules
 
 ## Single-authority principle
 One canonical source for each information type.
+| Reusable technical lessons and evidence-backed project takeaways | `09_LESSONS_LEARNED.md` |
 
 ## Default learning workflow — batch-first
 BUILD → RUN → VERIFY → BRIEF EXPLANATION → NEXT CAPABILITY
@@ -43,6 +75,9 @@ READ → preserve current content → minimal changes → WRITE with current SHA
 
 ## Control-center validation
 Read-only guardrail.
+
+## Lessons learned maintenance
+Record reusable evidence-backed lessons in 09_LESSONS_LEARNED.md.
 """
     state = f"""# Current Study State
 
@@ -148,6 +183,7 @@ Use GitHub as the authoritative source.
 3. Retrieve the relevant Master Plan section.
 3. Retrieve the relevant section of 03_MASTER_PLAN.md.
 4. Apply 04_CONTINUITY_RULES.md and consult 08_ISTQB_TESTING_PORTFOLIO.md.
+5. Consult relevant entries in 09_LESSONS_LEARNED.md.
 
 Do not use Library Control Center copies as the live study authority.
 This file defines routing only.
@@ -157,7 +193,7 @@ The project uses a separate repository.
 
 Read {BT}01_CURRENT_STATE.md{BT}.
 Apply {BT}04_CONTINUITY_RULES.md{BT}.
-Consult {BT}08_ISTQB_TESTING_PORTFOLIO.md{BT}.
+Consult {BT}08_ISTQB_TESTING_PORTFOLIO.md{BT} and relevant entries in {BT}09_LESSONS_LEARNED.md{BT}.
 
 The live checkpoint is always read from {BT}01_CURRENT_STATE.md{BT} at recovery time.
 Do not store a copied checkpoint in this recovery file.
@@ -197,13 +233,14 @@ Correct the two known UI test failures.
     (control / "06_LONG_HANDOVER.md").write_text(long, encoding="utf-8")
     (control / "07_NEW_CHAT_RECOVERY.md").write_text(recovery, encoding="utf-8")
     (control / "08_ISTQB_TESTING_PORTFOLIO.md").write_text(portfolio, encoding="utf-8")
+    (control / "09_LESSONS_LEARNED.md").write_text(lessons, encoding="utf-8")
     (root / "README.md").write_text(
-        "Study control system: study-control-center/08_ISTQB_TESTING_PORTFOLIO.md; "
+        "Study control system: study-control-center/08_ISTQB_TESTING_PORTFOLIO.md; study-control-center/09_LESSONS_LEARNED.md; "
         "workflow in 04_CONTINUITY_RULES.md; CTFL v4.0.1; accelerated seven-day plan.\n",
         encoding="utf-8",
     )
     (tools / "README.md").write_text(
-        "batch-first workflow; 08_ISTQB_TESTING_PORTFOLIO.md; "
+        "batch-first workflow; 08_ISTQB_TESTING_PORTFOLIO.md; study-control-center/09_LESSONS_LEARNED.md; "
         "python3 tools/validate_control_center.py; "
         "python3 -m unittest discover -s tests -v\n",
         encoding="utf-8",
@@ -216,6 +253,26 @@ class ValidatorTests(unittest.TestCase):
             root = Path(tmp)
             make_fixture(root)
             self.assertEqual(validator.validate(root), [])
+
+    def test_missing_lessons_learned_page_fails(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            make_fixture(root)
+            (root / "study-control-center" / "09_LESSONS_LEARNED.md").unlink()
+            errors = validator.validate(root)
+            self.assertTrue(any("09_LESSONS_LEARNED.md" in error for error in errors))
+
+    def test_lessons_page_cannot_become_a_second_checkpoint(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            make_fixture(root)
+            path = root / "study-control-center" / "09_LESSONS_LEARNED.md"
+            path.write_text(
+                path.read_text(encoding="utf-8") + "\n## Exact next action\nRun another test.\n",
+                encoding="utf-8",
+            )
+            errors = validator.validate(root)
+            self.assertTrue(any("Exact next action" in error for error in errors))
 
     def test_validator_is_read_only(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

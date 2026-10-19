@@ -11,11 +11,12 @@ Run from the repository root:
 The validator is read-only and exits non-zero when required study-control files, consistency rules, or anti-drift checks fail.
 
 It verifies:
-- the required control-center and ISTQB portfolio files exist, including `study-control-center/08_ISTQB_TESTING_PORTFOLIO.md`;
+- the required control-center files, ISTQB portfolio, and reusable lessons record exist, including `study-control-center/08_ISTQB_TESTING_PORTFOLIO.md` and `study-control-center/09_LESSONS_LEARNED.md`;
 - canonical source ownership is not duplicated;
 - the safe GitHub write protocol and batch-first workflow are defined only in the continuity rules;
 - all 45 curriculum hours remain present;
 - the accelerated seven-day plan and ISTQB coverage map remain present;
+- the lessons record is linked from startup, recovery, curriculum, handovers, and validation docs without duplicating canonical state or workflow;
 - boot/recovery files do not contain copied live checkpoints;
 - short/long handovers match canonical state version, Day/Hour, topic, and resume direction;
 - legacy micro-step teaching instructions do not reappear;

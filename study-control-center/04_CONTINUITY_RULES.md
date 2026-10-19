@@ -6,6 +6,7 @@
 - Current State = live position, verified results, blockers, and exact next action.
 - Continuity Rules = the single authority for study workflow, learning depth, continuity, safe writes, and execution behavior.
 - ISTQB Testing Portfolio = the canonical mapping of CTFL topics to practical/manual/automated exercises.
+- Lessons Learned = reusable technical lessons supported by project evidence; it never owns live state, curriculum requirements, or operating rules.
 - Short/Long Handovers = derived records; never authoritative.
 - GitHub is the authoritative study-control source. Library copies are fallback only.
 
@@ -17,6 +18,7 @@ Each authoritative information type has one canonical source.
 | Required capability outcomes and compressed seven-day schedule | `03_MASTER_PLAN.md` |
 | Curriculum navigation | `02_CURRICULUM_INDEX.md` |
 | ISTQB manual/automated testing coverage map | `08_ISTQB_TESTING_PORTFOLIO.md` |
+| Reusable technical lessons and evidence-backed project takeaways | `09_LESSONS_LEARNED.md` |
 | Live checkpoint and exact next action | `01_CURRENT_STATE.md` |
 | Learning workflow, batching, learning depth, safe GitHub writes, state/handover rules | `04_CONTINUITY_RULES.md` |
 | New-chat startup routing | `00_BOOT.md` |
@@ -31,7 +33,8 @@ When the user types `STUDY` in a new chat:
 2. Read `01_CURRENT_STATE.md` and identify the exact next action, known output, blockers, and whether proposed fixes have actually run.
 3. Use `02_CURRICULUM_INDEX.md` to orient and read only relevant sections from `03_MASTER_PLAN.md` and `08_ISTQB_TESTING_PORTFOLIO.md`.
 4. Apply these rules and resume the existing project state.
-5. Do not ask the user to reconstruct known progress or redo completed setup. When the repo or project file is available, inspect it before generating a replacement.
+5. Consult relevant entries in `09_LESSONS_LEARNED.md` for the capability being resumed. Treat it as reusable technical knowledge, never as live state or a replacement for the curriculum.
+6. Do not ask the user to reconstruct known progress or redo completed setup. When the repo or project file is available, inspect it before generating a replacement.
 
 ## Default learning workflow — batch-first
 The required cadence is **BUILD → RUN → VERIFY → BRIEF EXPLANATION → NEXT CAPABILITY**.
@@ -78,6 +81,14 @@ Apply the coverage map in `08_ISTQB_TESTING_PORTFOLIO.md` during UI, API, integr
 Reassess conversation length and complexity, including pasted code, files, and long exchanges. If the conversation appears long, give a concise **CAUTION** recommending that the user prepare a transition. If it appears critically long or a transition seems prudent, give a clear **CRITICAL CONVERSATION SAFETY WARNING** and recommend preserving verified work and opening a new chat. Do not claim to know an exact remaining message/token count or promise a warning exactly one or two messages before a limit. This is a best-effort warning, not a guaranteed predictor.
 
 A warning alone does not trigger a checkpoint. If a new chat starts before a checkpoint, reconcile any supplied messages with the current GitHub checkpoint and actual project evidence before changing canonical state. Do not blindly overwrite either source.
+
+## Lessons learned maintenance
+
+- `09_LESSONS_LEARNED.md` is the single canonical record for reusable technical lessons and project-backed takeaways.
+- After a meaningful verified batch, update `01_CURRENT_STATE.md` as required below. Also add or refine a lesson when the work produces a reusable principle, confirmed pitfall, or evidence that should guide future batches; do not record every command or minor action.
+- Each entry separates context, observed evidence, the change/decision, the reusable rule, and limitations. Label directly verified results separately from observations that do not prove causation and hypotheses that still need testing.
+- Record only lessons supported by actual code, command output, traces, screenshots, or an explicitly documented experiment. Never mark proposed or supplied-but-unrun code as verified.
+- Consult only relevant lessons for the next capability. Keep current position and exact next action in `01_CURRENT_STATE.md`; keep requirements in `03_MASTER_PLAN.md`; keep operating rules in this file. The lessons record must not become a competing state, plan, handover, or procedure document.
 
 ## State maintenance
 After a meaningful verified slice, update `01_CURRENT_STATE.md` with the position, current project slice, verified completion, known failures/limitations, blockers, and the exact next action. Advance the state version for every meaningful state update. Keep live state concise; put useful historical context in `06_LONG_HANDOVER.md`. Never mark proposed or supplied-but-unrun corrections as completed.

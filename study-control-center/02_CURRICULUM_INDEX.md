@@ -1,6 +1,6 @@
 # Curriculum Index — 45-Hour Capability Catalogue
 
-This index is a locator. The complete outcomes and accelerated schedule are in `03_MASTER_PLAN.md`; the detailed manual/automated testing coverage map is in `08_ISTQB_TESTING_PORTFOLIO.md`.
+This index is a locator. The complete outcomes and accelerated schedule are in `03_MASTER_PLAN.md`; the detailed manual/automated testing coverage map is in `08_ISTQB_TESTING_PORTFOLIO.md`; reusable technical lessons are recorded in `09_LESSONS_LEARNED.md`.
 
 | Hour | Focus |
 |---:|---|

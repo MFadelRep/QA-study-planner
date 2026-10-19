@@ -1,7 +1,7 @@
 # ISTQB Foundation Testing Portfolio — Practical Coverage Map
 
 ## Purpose and source
-This document maps the relevant **ISTQB Certified Tester Foundation Level (CTFL) v4.0.1** concepts into exercises for the AI QA Platform and Practice Software Testing — Toolshop. It is the canonical detailed testing-portfolio map; the Master Plan defines when it is integrated into the week, and the Current State records progress.
+This document maps the relevant **ISTQB Certified Tester Foundation Level (CTFL) v4.0.1** concepts into exercises for the AI QA Platform and Practice Software Testing — Toolshop. It is the canonical detailed testing-portfolio map; the Master Plan defines when it is integrated into the week, the Current State records progress, and [09_LESSONS_LEARNED.md](09_LESSONS_LEARNED.md) captures reusable lessons established while applying the coverage.
 
 Official syllabus: https://istqb.org/wp-content/uploads/2024/11/ISTQB_CTFL_Syllabus_v4.0.1.pdf
 Official CTFL page and sample exams: https://www.istqb.org/certifications/certified-tester-foundation-level-ctfl-v4-0/

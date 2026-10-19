@@ -1,40 +1,30 @@
 # LONG HANDOVER — CURRENT RECORD
 
-Canonical state version: 5.3-GHAIA-SCENARIO-MAPPING-2026-10-19
+Canonical state version: 5.4-PLAYWRIGHT-POM-FIXTURES-PARALLEL-RELIABILITY-2026-10-19
 
-**Derived record — not authoritative.** Live progress and next action: `01_CURRENT_STATE.md`. Operating rules: `04_CONTINUITY_RULES.md`. Full capability plan: `03_MASTER_PLAN.md`. ISTQB map: `08_ISTQB_TESTING_PORTFOLIO.md`.
+**Derived record — not authoritative.** Live progress and exact next action: [01_CURRENT_STATE.md](01_CURRENT_STATE.md). Operating rules: [04_CONTINUITY_RULES.md](04_CONTINUITY_RULES.md). Required scope: [03_MASTER_PLAN.md](03_MASTER_PLAN.md). CTFL portfolio: [08_ISTQB_TESTING_PORTFOLIO.md](08_ISTQB_TESTING_PORTFOLIO.md). Technical lessons: [09_LESSONS_LEARNED.md](09_LESSONS_LEARNED.md).
 
 ## Session state
-Day 1 / Hour 5 of the accelerated seven-day Senior QA Automation + MLOps sprint. The 45-hour capability catalogue remains the scope, with overlapping activities combined into practical batches. Current topic: Toolshop UI automation batch — fix two failures, then expand UI + ISTQB portfolio coverage
+Day 1 / Hour 6 of the accelerated seven-day Senior QA Automation + MLOps sprint. The 45-hour capability catalogue remains the required scope, combined into project batches. Current topic: Playwright architecture — POM, fixtures, and parallel reliability verified; next: API testing
 
-## Learning approach now in force
-Batch-first implementation across all subjects. The user wants complete code and supporting files supplied in grouped batches, followed by real execution, verification, a brief explanation, and the next capability. Broad coverage and a functioning integrated project come before deep mastery; the user asks for deeper explanations when something blocks understanding. The workflow is defined only in `04_CONTINUITY_RULES.md`.
+## Learning approach
+The user prefers batch-first, code-first implementation: BUILD → RUN → VERIFY → brief explanation → next capability. Supply coherent groups of code/supporting files; verify actual command output; avoid one-test-per-turn pacing. Explain deeper concepts when requested or when a dependency blocks progress.
 
-## Project and environment facts
-- Local project path: `/run/media/mfadel/New Volume/Projects/QA/automation-platform`.
-- Runtime/tools previously verified: Node.js 22.22.1, TypeScript 7.0.2, `tsx` 4.23.15, and `@playwright/test` 1.63.0.
-- `playwright.config.ts` uses `testDir: './tests'`, Toolshop `baseURL`, and a named Chromium project.
-- The existing `tests/toolshop.spec.ts` contains homepage/smoke validation plus pagination and low-to-high price sorting. The two behavioral tests were previously verified passing in a one-worker run.
-- Preserve the local working tree and keep this project separate from the old `/run/media/mfadel/New Volume/playwright-course` directory and separate from this study-control repository.
+## Verified local project facts
+- Project root: /run/media/mfadel/New Volume/Projects/QA/automation-platform.
+- Local project and QA-study-planner are separate repositories; application code belongs in the separate AI QA Platform repository.
+- Four page objects exist under src/pages: CataloguePage, ProductPage, LoginPage, and ContactPage.
+- tests/fixtures/test.ts supplies page objects through custom Playwright fixtures. The existing 15 UI tests remain in tests/toolshop.spec.ts and tests/toolshop-ui-batch.spec.ts.
+- npm run typecheck passed after current reliability changes.
+- On 2026-10-19, npm test ran three consecutive times with normal parallel execution (2 workers); each run passed all 15 tests. Durations were 2.0, 3.2, and 2.6 minutes.
+- Reliability changes include page-specific readiness waits after navigation commit, timeout budgets adjusted to observed public-site latency, homepage setup scoped to catalogue/product suites, and an automatic fixture that stubs the optional Cloudflare analytics beacon during functional tests. Trace retention and screenshots on failure are enabled.
+- Earlier traces showed JS/CSS resources taking approximately 4–23 seconds and a navigation timeout. They also showed 401 responses from /users/me, but no evidence established these as the cause. Since changes were applied together, their individual causal effects remain unisolated.
 
-## Verified Toolshop observations
-- Site title observed: `Practice Software Testing - Toolshop - v5.0`.
-- Pagination exposes Previous, Page-1 through Page-5, and Next; page 1 and page 2 were observed to contain different product sets.
-- The homepage includes search, category/brand/eco-friendly filters, a sort select, price sliders, product cards, Compare controls, language selection, account navigation, contact navigation, and footer/external links.
-- Sort choices previously observed: Name A–Z, Name Z–A, Price High–Low, Price Low–High, and CO₂ Rating in both directions. These observations are a useful starting point; verify live labels/selectors before depending on them.
-
-## Current UI batch result (2026-10-12)
-The user created `tests/toolshop-ui-batch.spec.ts` from a supplied full-file block and ran it. Actual result: 13 tests, 11 passed and 2 failed (about 50 seconds). Passed areas: positive search, unknown search result, brand and eco-friendly filters, A–Z/Z–A sorting, price descending, product details, add-to-cart, invalid login, and short-message contact validation. Failures: first category checkbox did not change the products, and sort-menu option extraction yielded an empty list because the test inspected before catalog readiness. A possible correction block was supplied but its execution/result is unconfirmed; treat the actual local file and current error context as the source of truth. Do not report the batch green or rewrite the eleven passing tests unnecessarily.
-
-## Curriculum changes
-- GitHub control documents, validator, and fixtures are committed and read-back verified. GitHub Actions passed on commit `6fbe8bf7ac50d846024902d8258a157d63b4b860`: 9 unit tests passed and the read-only validator passed. The local UI batch still has two unverified corrections outstanding.
-
-- The one-week sprint is now organized around seven integrated days: (1) foundations, UI automation, ISTQB; (2) advanced Playwright/API; (3) SQL and CI/CD; (4) performance and Docker; (5) Kubernetes and MLOps; (6) AI QA/RAG/security; (7) integration, senior QA, and interviews.
-- ISTQB CTFL v4.0.1 techniques and coverage are mapped in `08_ISTQB_TESTING_PORTFOLIO.md`, including black-box/experience-based design, levels, types, static testing/reviews, non-functional assessment, risk, defects, reporting, confirmation, and regression. Manual judgment is distinguished from checks that can be meaningfully automated.
-- Official baseline syllabus: https://istqb.org/wp-content/uploads/2024/11/ISTQB_CTFL_Syllabus_v4.0.1.pdf
+## Knowledge capture
+The canonical lessons record is 09_LESSONS_LEARNED.md. It documents assertion oracles, locators, POM/fixture boundaries, application readiness, evidence-based flake diagnosis, the three-run parallel result, and limits of that evidence. Consult relevant entries; do not treat it as live checkpoint or duplicate its full contents here.
 
 ## Exact resume action
-Create and run a focused correction for the two observed UI failures. First inspect the current file and the relevant Playwright error context; fix category selection/assertions and sort-menu timing/label normalization as a pair. Run only those two tests initially. After both pass, execute the combined Toolshop suite once with one worker. Continue with the next UI coverage batch and the ISTQB manual/automated artifacts. Do not return to one-test-per-turn pacing.
+Before API work, inspect actual local package.json, src/api/, tests/api/, tests/fixtures/test.ts, and playwright.config.ts. An API client/spec batch was supplied in chat but has not been confirmed as executed. If those files are absent, implement a coherent API-test batch using Playwright's API request fixture (avoid browser/page-object setup in pure API tests), verify the current Toolshop API docs and actual response shape, and cover positive, empty/negative, sorting/pagination, and unauthenticated access only where supported by the current API contract. Run typecheck, the API suite, then the combined UI+API suite. Keep parallel execution and the UI regression baseline. Update live state only after real results.
 
-## Project boundaries
-`MFadelRep/QA-study-planner` is for study management, curriculum, state, and continuity rules only. The local AI QA Platform application/test code belongs in a separate project repository. The handover is a continuity aid, not an authority, and must always match the canonical state version when refreshed.
+## Repository boundaries
+MFadelRep/QA-study-planner is the curriculum/state/rules/validation/lessons repository. The local AI QA Platform repository holds the application automation code and tests. Do not connect one repository as the other's remote or store secrets.

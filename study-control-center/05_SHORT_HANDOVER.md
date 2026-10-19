@@ -1,19 +1,19 @@
 # SHORT HANDOVER — CURRENT
 
-Canonical state version: 5.3-GHAIA-SCENARIO-MAPPING-2026-10-19
+Canonical state version: 5.4-PLAYWRIGHT-POM-FIXTURES-PARALLEL-RELIABILITY-2026-10-19
 
-**Derived record — not authoritative.** The live checkpoint is `01_CURRENT_STATE.md`; workflow is `04_CONTINUITY_RULES.md`; required curriculum scope is `03_MASTER_PLAN.md`; the ISTQB coverage map is `08_ISTQB_TESTING_PORTFOLIO.md`.
+**Derived record — not authoritative.** Live position and next action are in [01_CURRENT_STATE.md](01_CURRENT_STATE.md); workflow is [04_CONTINUITY_RULES.md](04_CONTINUITY_RULES.md); required scope is [03_MASTER_PLAN.md](03_MASTER_PLAN.md); ISTQB mapping is [08_ISTQB_TESTING_PORTFOLIO.md](08_ISTQB_TESTING_PORTFOLIO.md); reusable technical lessons are in [09_LESSONS_LEARNED.md](09_LESSONS_LEARNED.md).
 
-State: Day 1 / Hour 5 — accelerated sprint in progress
-Topic: Toolshop UI automation batch — fix two failures, then expand UI + ISTQB portfolio coverage
-Last verified: 2026-10-12
+State: Day 1 / Hour 6 — accelerated sprint in progress
+Topic: Playwright architecture — POM, fixtures, and parallel reliability verified; next: API testing
+Last verified: 2026-10-19
 
 ## Verified now
-- The user approved batch-first, code-first learning and the coverage-first / learn-on-demand approach.
-- The 45-hour capability catalogue is retained and compressed into a seven-day integrated schedule, targeting about six focused hours daily.
-- The ISTQB CTFL v4.0.1 coverage portfolio is now part of the study system, including both manual testing artifacts and automatable checks.
-- In the local project, the initial 13-test Toolshop UI batch run returned 11 passed and 2 failed. The category-filter and sort-option checks need correction; eleven passing tests must be preserved.
-- GitHub control documents, validator, and fixtures are committed and read-back verified. GitHub Actions passed on commit `6fbe8bf7ac50d846024902d8258a157d63b4b860`: 9 unit tests passed and the read-only validator passed. The local UI batch still has two unverified corrections outstanding. This handover is a derived snapshot only.
+- The 15 UI scenarios use CataloguePage, ProductPage, LoginPage, ContactPage, and custom Playwright fixtures.
+- TypeScript validation passed.
+- Three consecutive complete runs passed with two workers: 15/15 per run, 45/45 executions total.
+- Readiness waits are page-specific; homepage setup is scoped; an optional analytics beacon is stubbed for functional tests; traces and screenshots are retained on failure.
+- The cause of earlier intermittent failures was not isolated to one change. Evidence and limitations are documented in 09_LESSONS_LEARNED.md.
 
 Immediate next action:
-Continue in the local AI QA Platform project. Build one focused corrective batch for the two known UI failures, using the current local test file and error context; run only those two cases first. If green, run the full UI batch plus the existing Toolshop smoke/pagination/sorting tests once. Then expand UI scenarios by feature and create the ISTQB-mapped manual/automated test portfolio, followed by the API batch. See `01_CURRENT_STATE.md` for the canonical direction and verify whether each proposed fix has actually run.
+Inspect the current local project before assuming the proposed API batch was applied. If API client/spec files are absent, implement and run the next coherent API-testing batch, then verify the combined UI+API suite. Preserve parallel execution and the green 15-test UI baseline.

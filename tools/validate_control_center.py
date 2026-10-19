@@ -17,6 +17,7 @@ REQUIRED = [
     "06_LONG_HANDOVER.md",
     "07_NEW_CHAT_RECOVERY.md",
     "08_ISTQB_TESTING_PORTFOLIO.md",
+    "09_LESSONS_LEARNED.md",
 ]
 SUPPORT_FILES = ["README.md", "tools/README.md"]
 BT = chr(96)
@@ -77,6 +78,7 @@ def validate(root: Path) -> list[str]:
         "## Coverage-first, learn-on-demand rule",
         "## Safe GitHub write protocol",
         "## Control-center validation",
+        "## Lessons learned maintenance",
         "READ → preserve current content → minimal changes → WRITE with current SHA → READ AGAIN → verify",
     ]:
         must_contain("04_CONTINUITY_RULES.md", rules, required)
@@ -130,6 +132,38 @@ def validate(root: Path) -> list[str]:
     index = docs["02_CURRICULUM_INDEX.md"]
     master = docs["03_MASTER_PLAN.md"]
     portfolio = docs["08_ISTQB_TESTING_PORTFOLIO.md"]
+    lessons = docs["09_LESSONS_LEARNED.md"]
+
+    for required in [
+        "# Lessons Learned — Senior QA Automation + MLOps",
+        "## Purpose and authority",
+        "## How to use this record",
+        "## Lesson entry format",
+        "## Playwright fundamentals and assertions",
+        "## Page Object Model and fixtures",
+        "## Navigation readiness and synchronization",
+        "## Parallel reliability and evidence-based diagnosis",
+        "## Safe editing and regression verification",
+        "## Updating this record",
+        "VERIFIED",
+        "OBSERVED — NOT CAUSAL PROOF",
+        "HYPOTHESIS",
+    ]:
+        must_contain("09_LESSONS_LEARNED.md", lessons, required)
+
+    for stale in [
+        "## Single-authority principle",
+        "## Default learning workflow — batch-first",
+        "## Safe GitHub write protocol",
+        "## Exact next action",
+        "**State version:**",
+    ]:
+        must_not_contain("09_LESSONS_LEARNED.md", lessons, stale)
+
+    must_contain(
+        "04_CONTINUITY_RULES.md", rules,
+        "| Reusable technical lessons and evidence-backed project takeaways | `09_LESSONS_LEARNED.md` |",
+    )
 
     hour_numbers = {
         int(number)
@@ -196,6 +230,7 @@ def validate(root: Path) -> list[str]:
         "03_MASTER_PLAN.md",
         "04_CONTINUITY_RULES.md",
         "08_ISTQB_TESTING_PORTFOLIO.md",
+        "09_LESSONS_LEARNED.md",
     ]:
         must_contain("00_BOOT.md", boot, required)
 
@@ -222,6 +257,7 @@ def validate(root: Path) -> list[str]:
         "The live checkpoint is always read from",
         "Do not store a copied checkpoint in this recovery file.",
         "different GitHub repository",
+        "09_LESSONS_LEARNED.md",
     ]:
         must_contain("07_NEW_CHAT_RECOVERY.md", recovery, required)
 
@@ -293,6 +329,7 @@ def validate(root: Path) -> list[str]:
     readme = support["README.md"]
     for required in [
         "study-control-center/08_ISTQB_TESTING_PORTFOLIO.md",
+        "study-control-center/09_LESSONS_LEARNED.md",
         "04_CONTINUITY_RULES.md",
         "CTFL v4.0.1",
         "accelerated seven-day plan",
@@ -305,6 +342,7 @@ def validate(root: Path) -> list[str]:
         "batch-first",
         "08_ISTQB_TESTING_PORTFOLIO.md",
         "python3 -m unittest discover -s tests -v",
+        "study-control-center/09_LESSONS_LEARNED.md",
     ]:
         must_contain("tools/README.md", tools_readme, required)
 
@@ -330,6 +368,7 @@ def main() -> int:
     print("  - Legacy micro-step teaching instructions are rejected")
     print("  - Curriculum index covers hours 1-45 and the accelerated week")
     print("  - ISTQB CTFL portfolio coverage and manual/automated distinctions verified")
+    print("  - lessons record structure, links, and single-authority boundaries verified")
     print("  - Boot/recovery avoid copied live state")
     print("  - Short/long handovers match canonical state")
     print("  - Repository separation checks passed")

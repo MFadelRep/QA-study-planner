@@ -4,7 +4,7 @@
 Build and be able to explain a coherent, portfolio-grade AI QA Platform while gaining broad, practical exposure to Senior QA Automation and MLOps capabilities. The priority is demonstrable working evidence and interview-ready explanations under a one-week deadline. The plan is not a guarantee of complete mastery or a job offer.
 
 ## Learning method
-Follow the single authoritative batch-first workflow and learning-depth rules in `04_CONTINUITY_RULES.md`. Use this plan for required outcomes, the weekly sequence, and evidence—not as a second copy of the operating rules.
+Follow the single authoritative batch-first workflow and learning-depth rules in `04_CONTINUITY_RULES.md`. Use this plan for required outcomes, the weekly sequence, and evidence—not as a second copy of the operating rules. Consult relevant entries in `09_LESSONS_LEARNED.md` to reuse verified project knowledge without changing this plan's required scope.
 
 ## Project
 One coherent AI QA Platform is the primary learning vehicle. Practice Software Testing — Toolshop is the default external system under test for browser UI and its documented REST API. Keep test code in the separate local project repository, not in this study-control repository. Prefer integrated, realistic tasks over disconnected toy exercises when they demonstrate the same capability.
