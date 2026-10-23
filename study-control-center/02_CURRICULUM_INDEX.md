@@ -53,8 +53,8 @@ This index is a locator. The complete outcomes and accelerated schedule are in `
 ## Accelerated weekly map
 The catalogue retains all 45 capability areas. The one-week plan aims for roughly six focused hours per day by combining overlapping material into project batches; it does not promise full mastery or delete any required area.
 
-- **Day 1 — Foundations, UI automation + ISTQB:** close essential TypeScript/async gaps on demand; complete broad Toolshop UI coverage; design and record manual cases using CTFL techniques.
-- **Day 2 — Advanced Playwright + API:** fixtures/POM, auth/state, network handling, API positive/negative/boundary tests, response/contracts, and UI/API hybrid workflows.
+- **Day 1 — Foundations, UI automation + ISTQB:** close essential TypeScript/async gaps on demand; complete broad Workbench UI coverage, with Toolshop only as a fallback external target; design and record manual cases using CTFL techniques.
+- **Day 2 — Advanced Playwright + API:** fixtures/POM, auth/state, network handling, Workbench API positive/negative/boundary tests, response/contracts, authentication, and UI/API hybrid workflows.
 - **Day 3 — SQL + CI/CD:** PostgreSQL test data and verification, GitHub Actions, GitLab CI, reports, traceability, review, and defect evidence.
 - **Day 4 — Performance + Docker:** performance concepts, JMeter/Locust practical runs, result interpretation, Dockerfile and Compose.
 - **Day 5 — Kubernetes + MLOps:** deploy/run tests in containers and Kubernetes; introduce MLflow, reproducibility, artifacts, metrics, and quality gates.
