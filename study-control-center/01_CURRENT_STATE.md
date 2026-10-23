@@ -1,7 +1,7 @@
 # Current Study State
 
-**State version:** 6.0-WORKBENCH-LEARNER-API-2026-10-23
-**Last verified:** 2026-10-23 (GitHub project/docs inspected; laptop runtime is unverified)
+**State version:** 6.1-WORKBENCH-LEARNER-CI-2026-10-23
+**Last verified:** 2026-10-23 (latest learner-branch CI passed; laptop runtime is unverified)
 **Status:** ACTIVE — accelerated seven-day study sprint on the Workbench learner branch
 **Execution mode:** BATCH-FIRST / CODE-FIRST / LEARNER-WRITES-TESTS / EVIDENCE-BASED
 
@@ -24,9 +24,11 @@ The learning vehicle has now changed to Workbench QA Lab because the user explic
 The learner branch is separate from `main`. `main` retains the completed assistant-authored tests as reference. On `learn/rag-unit-tests`, completed automated test implementations were replaced with TODO exercises or skipped Playwright placeholders, and ready-made RAG evaluation, mutation-testing configuration, and k6 workload scripts were removed for later learner-authored exercises. TODO/skipped output is not functional coverage.
 
 ## Verified versus unverified
-- **Verified before this learning-branch conversion:** the remote `main` branch had a passing CI run for its completed generated test suite.
-- **Verified by repository inspection on 2026-10-23:** the learner branch exists; application source is retained; test files contain learner TODOs or Playwright skips; study/setup guides are present.
-- **Not verified:** the learner branch's post-conversion CI, local Docker/browser startup, database migration/seed, local tests, and exact laptop checkout/path.
+- **Verified before conversion:** remote `main` had a passing CI run for its completed reference suite.
+- **Verified by repository inspection on 2026-10-23:** the learner branch exists; application source is retained; completed assistant-authored test implementations were replaced with learner TODOs or skipped Playwright placeholders; setup and exercise guides are present.
+- **Verified by learner-branch CI:** [run 39952194483 passed](https://github.com/MFadelRep/QA-practice-platform-app/actions/runs/39952194483) on commit `5afe645612b93b3af0840144265ede8f936e2d9e`. Typecheck, build, test runners, API/database runner, contract runner, browser runner, patch-format check and secret scan passed.
+- **Evidence limitation:** CI's TODO/skipped test cases are not feature coverage; the passing run verifies that the learner scaffold builds and runs, not that the TODO scenarios are implemented.
+- **Not verified:** local Docker/browser startup, database migration/seed, local tests, and the exact laptop checkout/path.
 - Do not describe TODO/skipped tests as passing feature coverage. Re-check current GitHub Actions and the user's local output before reporting a result as verified.
 
 ## Project and environment constraints

@@ -1,7 +1,7 @@
 # LONG HANDOVER — CURRENT RECORD
 
 **Derived record — not authoritative.**
-Canonical state version: 6.0-WORKBENCH-LEARNER-API-2026-10-23
+Canonical state version: 6.1-WORKBENCH-LEARNER-CI-2026-10-23
 **Position:** Day 2 / Hour 10
 **Topic:** API testing strategy and test-case design — next: implement the first Workbench API test batch
 
@@ -16,14 +16,15 @@ The user is supposed to write their own automation tests. The assistant should d
 In the separate local project at /run/media/mfadel/New Volume/Projects/QA/automation-platform, Day 1 / Hour 6 was recorded as complete on 2026-10-19: 15 Playwright UI tests passed three consecutive parallel runs (45/45 combined) and TypeScript validation passed. Avoid restarting that work by default. This is not the Workbench repo.
 
 ## Workbench local setup status
-The learner branch and documentation were inspected/updated on GitHub on 2026-10-23. The laptop checkout path, current branch, Docker/browser startup, database migration/seed and post-conversion test results are unknown until the user sets up and runs the project locally.
+The learner branch and documentation were inspected/updated on GitHub on 2026-10-23. The laptop checkout path, current branch, Docker/browser startup and database migration/seed remain unknown until the user sets up and runs the project locally. Latest learner-branch CI run 39952194483 passed typecheck, build, the configured test runners, API/database suite, contract/browser runner commands, formatting and secret scan; however, the tests are TODO/skipped exercises, so this is scaffold/build validation rather than feature coverage.
 
 The repository's STUDY_GUIDE.md documents fresh-clone commands, app URLs, safety boundaries and the branch rule. Swagger is at http://127.0.0.1:3000/api/docs when the app is running. The app is for loopback/local use with fictional seeded data; do not expose it to a public network and verify .env before any database reset.
 
 ## Verified versus unverified
 - Verified before conversion: remote main had a passing CI run for the completed generated test suite.
 - Verified by GitHub inspection: the learner branch contains the application source, TODO test scaffolds and study documentation.
-- Not verified: CI after test-to-exercise conversion, local npm commands, Docker startup, schema/seed application and app runtime.
+- Verified: learner-branch CI run 39952194483 passed with the learner scaffolds.
+- Not verified: local npm commands, Docker startup, schema/seed application and app runtime.
 - Keep those distinctions explicit in all future checkpoints.
 
 ## Exact resume action
