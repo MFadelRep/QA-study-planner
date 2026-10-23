@@ -51,7 +51,7 @@ Risk-based senior QA strategy, reliability/flakiness, security, scalability/gove
 ## Accelerated seven-day schedule
 Target approximately six focused hours per day. The 45-hour catalogue is treated as required scope, but related lessons, code, setup, and verification are combined into fewer larger batches. Prefer integrated coverage across the seven days over perfect mastery of one narrow area. If time slips, prioritize a working end-to-end slice and the strengthened gaps listed above; record anything deferred instead of silently deleting its requirement.
 
-1. **Day 1 — Foundations + Toolshop UI + ISTQB:** close only blocking TypeScript/async gaps; create a substantial Workbench UI test suite in feature batches; add manual test cases and an ISTQB coverage matrix.
+1. **Day 1 — Foundations + Workbench UI + ISTQB:** close only blocking TypeScript/async gaps; create a substantial Workbench UI test suite in feature batches; add manual test cases and an ISTQB coverage matrix.
 2. **Day 2 — Advanced Playwright + API:** fixtures/POM as needed, authentication/state, network handling, complete a compact Workbench API batch, positive/negative/boundary cases, contracts and UI/API integration.
 3. **Day 3 — SQL + CI/CD:** SQL/PostgreSQL, controlled test data, GitHub Actions, GitLab CI, reporting, traceability, review, and defect examples—including realistic test-data collision and merge-request investigation scenarios.
 4. **Day 4 — Performance + Docker:** practical JMeter/Locust tests, interpret real results, package app/tests using Docker and Compose.

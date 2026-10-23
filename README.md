@@ -22,7 +22,7 @@ The 45-hour curriculum is the capability catalogue. The accelerated seven-day pl
 The authoritative batch-first workflow and all execution rules live in `study-control-center/04_CONTINUITY_RULES.md`. Read that file rather than relying on a summary in this README. Use `study-control-center/09_LESSONS_LEARNED.md` for relevant reusable lessons; it never replaces the live checkpoint or curriculum.
 
 ## Project separation
-The local **AI QA Platform** lives in a separate project repository. Do not connect it as this repository's remote or store application code here. This repository manages study progress only.
+**Workbench QA Lab** lives in the separate application repository [MFadelRep/QA-practice-platform-app](https://github.com/MFadelRep/QA-practice-platform-app), on learner branch `learn/rag-unit-tests`. Use it as the primary SUT and write the automation tests yourself according to the curriculum; `main` retains the completed reference tests. Do not connect the application repository as this repository's remote or store application/test code here. This repository manages study progress only.
 
 ## Official testing reference
 The ISTQB CTFL v4.0.1 syllabus is the baseline for Foundation Level testing knowledge: https://istqb.org/wp-content/uploads/2024/11/ISTQB_CTFL_Syllabus_v4.0.1.pdf

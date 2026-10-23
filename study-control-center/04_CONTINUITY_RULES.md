@@ -132,14 +132,19 @@ The validator is a guardrail, not an authority. A passing deterministic check do
 Do not restart completed work. Do not merge contradictory versions. Do not silently remove a required capability. Keep the study-control repository separate from the AI QA Platform repository. Never report a test, local edit, or checkpoint as successful without evidence.
 
 ## Practice application selection
-The default external system under test (SUT) is **Practice Software Testing — Toolshop**:
+
+The **primary system under test (SUT)** is Workbench QA Lab in `MFadelRep/QA-practice-platform-app`, learner branch `learn/rag-unit-tests`. Its application is already implemented as a controlled local React UI, REST API, PostgreSQL database, RBAC/tenant-isolation model, collaboration system, fault lab, observability layer and deterministic RAG service.
+
+Use Workbench first for API testing, browser workflows, authentication/authorization, SQL/database verification, contracts, CI/CD, performance, controlled failures, observability, RAG/security and integrated capstone exercises. Read its `STUDY_GUIDE.md` and the active exercise brief. Keep services loopback-only and use the fictional local seed data. The learner branch intentionally contains TODO or skipped testing exercises; do not treat those as real coverage. The `main` branch preserves completed tests as reference, and must not be used as the working branch for learner exercises.
+
+Practice Software Testing — Toolshop remains an approved **secondary external SUT**:
 - UI: https://practicesoftwaretesting.com/
 - REST API documentation: https://api.practicesoftwaretesting.com/api/documentation
 
-Use Toolshop first for UI automation, documented REST API tests, search/filter/cart/auth workflows, and combined API/UI checks. Inspect current API documentation before relying on endpoints because the hosted demo can change. Treat it as a third-party practice environment: use non-destructive and reasonable traffic, do not assume data persists, and do not depend on undocumented behavior.
+Use Toolshop only when a specific storefront/API scenario is not represented by Workbench or when a public black-box target materially improves the exercise. Inspect its current API documentation before relying on endpoints, use reasonable non-destructive traffic, do not assume data persists, and do not depend on undocumented behavior.
 
-Two secondary practice sites are approved for appropriate gaps:
+Two additional external practice sites are approved for appropriate gaps:
 1. **Expand Testing** — https://practice.expandtesting.com/ — isolated UI scenarios and focused forms, dynamic controls, tables, pagination, locators, status codes, and its dedicated API exercises.
 2. **QA Practice API Playground** — https://www.qapractice.com/api-playground — compact REST API scenarios for token authentication, products, users, orders, and explicit positive/negative login responses.
 
-Start with Toolshop; switch only when a secondary site's stated use case materially fits the current goal or Toolshop cannot exercise the scenario reliably. Do not build our own SUT unless public targets cannot support a required scenario (for example, controlled fault injection, direct database assertions, or custom AI/RAG inference behavior).
+Do not switch to an external practice site merely out of habit. Prefer the owned Workbench SUT whenever it can demonstrate the required behavior; do not build extra SUT infrastructure when existing Workbench functionality is enough.
