@@ -7,7 +7,7 @@ Build and be able to explain a coherent, portfolio-grade AI QA Platform while ga
 Follow the single authoritative batch-first workflow and learning-depth rules in `04_CONTINUITY_RULES.md`. Use this plan for required outcomes, the weekly sequence, and evidence—not as a second copy of the operating rules. Consult relevant entries in `09_LESSONS_LEARNED.md` to reuse verified project knowledge without changing this plan's required scope.
 
 ## Project
-One coherent AI QA Platform is the primary learning vehicle. Practice Software Testing — Toolshop is the default external system under test for browser UI and its documented REST API. Keep test code in the separate local project repository, not in this study-control repository. Prefer integrated, realistic tasks over disconnected toy exercises when they demonstrate the same capability.
+Workbench QA Lab in MFadelRep/QA-practice-platform-app is the primary learning vehicle and controlled system under test for the seven-day curriculum. Study on its learner branch learn/rag-unit-tests; main preserves the completed reference implementation and assistant-authored tests. The learner authors test implementations in curriculum order, with coaching/review rather than completed test files supplied in advance. Practice Software Testing — Toolshop remains a secondary external target for storefront/API scenarios Workbench cannot exercise. Keep all application code and learning tests in the application repository, never in this study-control repository.
 
 ## Required capability coverage
 - **Playwright:** locators/assertions, user journeys, reusable fixtures, POM where appropriate, configuration/projects, auth/state reuse, API/UI hybrid flows, network interception/diagnostics, isolation, traces/artifacts, and flake diagnosis.
@@ -51,8 +51,8 @@ Risk-based senior QA strategy, reliability/flakiness, security, scalability/gove
 ## Accelerated seven-day schedule
 Target approximately six focused hours per day. The 45-hour catalogue is treated as required scope, but related lessons, code, setup, and verification are combined into fewer larger batches. Prefer integrated coverage across the seven days over perfect mastery of one narrow area. If time slips, prioritize a working end-to-end slice and the strengthened gaps listed above; record anything deferred instead of silently deleting its requirement.
 
-1. **Day 1 — Foundations + Toolshop UI + ISTQB:** close only blocking TypeScript/async gaps; create a substantial UI test suite in feature batches; add manual test cases and an ISTQB coverage matrix.
-2. **Day 2 — Advanced Playwright + API:** fixtures/POM as needed, authentication/state, network handling, complete compact API batch, positive/negative/boundary cases, contracts and UI/API integration.
+1. **Day 1 — Foundations + Toolshop UI + ISTQB:** close only blocking TypeScript/async gaps; create a substantial Workbench UI test suite in feature batches; add manual test cases and an ISTQB coverage matrix.
+2. **Day 2 — Advanced Playwright + API:** fixtures/POM as needed, authentication/state, network handling, complete a compact Workbench API batch, positive/negative/boundary cases, contracts and UI/API integration.
 3. **Day 3 — SQL + CI/CD:** SQL/PostgreSQL, controlled test data, GitHub Actions, GitLab CI, reporting, traceability, review, and defect examples—including realistic test-data collision and merge-request investigation scenarios.
 4. **Day 4 — Performance + Docker:** practical JMeter/Locust tests, interpret real results, package app/tests using Docker and Compose.
 5. **Day 5 — Kubernetes + MLOps:** execute in container/Kubernetes environments and create a minimal MLflow-based lifecycle with reproducible runs and artifacts.

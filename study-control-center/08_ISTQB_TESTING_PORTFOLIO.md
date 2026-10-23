@@ -1,7 +1,7 @@
 # ISTQB Foundation Testing Portfolio — Practical Coverage Map
 
 ## Purpose and source
-This document maps the relevant **ISTQB Certified Tester Foundation Level (CTFL) v4.0.1** concepts into exercises for the AI QA Platform and Practice Software Testing — Toolshop. It is the canonical detailed testing-portfolio map; the Master Plan defines when it is integrated into the week, the Current State records progress, and [09_LESSONS_LEARNED.md](09_LESSONS_LEARNED.md) captures reusable lessons established while applying the coverage.
+This document maps the relevant **ISTQB Certified Tester Foundation Level (CTFL) v4.0.1** concepts into exercises using Workbench QA Lab as the primary controlled SUT. Practice Software Testing — Toolshop is a secondary target for scenarios Workbench does not represent. It is the canonical detailed testing-portfolio map; the Master Plan defines when it is integrated into the week, the Current State records progress, and [09_LESSONS_LEARNED.md](09_LESSONS_LEARNED.md) captures reusable lessons established while applying the coverage.
 
 Official syllabus: https://istqb.org/wp-content/uploads/2024/11/ISTQB_CTFL_Syllabus_v4.0.1.pdf
 Official CTFL page and sample exams: https://www.istqb.org/certifications/certified-tester-foundation-level-ctfl-v4-0/
@@ -14,14 +14,14 @@ Practise the purpose of testing, testing versus debugging, error/defect/failure 
 ## Test levels
 - **Component testing:** test small TypeScript helpers or controlled project components in isolation, including price parsing/ordering or validation logic.
 - **Component integration testing:** verify interaction between helpers, fixtures, API clients, database setup, and reporters where those boundaries exist.
-- **System testing:** exercise complete Toolshop user journeys in Playwright, and complete API journeys through the documented API.
+- **System testing:** exercise complete Workbench user journeys in Playwright and complete API journeys through its documented REST API. Use Toolshop only for external storefront scenarios Workbench does not represent.
 - **System integration testing:** verify meaningful interaction between UI, REST API, database, container, CI job, or AI/RAG components when the integration is available.
 - **Acceptance testing:** derive scenario examples from user/business acceptance criteria and verify user-visible outcomes; distinguish business acceptance from technical system checks.
 
 A public black-box SUT does not expose its internals for component/white-box claims. Use the project's own controlled components for those exercises. Do not label an end-to-end browser test as proof of every test level.
 
 ## Test types
-- **Functional:** UI/API behavior, search, filters, sorting, pagination, product detail, compare, cart, checkout validation, authentication, contact form, and account behavior where safely available.
+- **Functional:** Workbench authentication, role permissions, projects/work items, knowledge documents, comments, notifications, audit, and API CRUD/validation. Use Toolshop-specific search/filter/cart/checkout examples only when a secondary storefront target is useful.
 - **Non-functional:** quality characteristics listed below, selected according to relevance and evidence available.
 - **Black-box:** derive expected behavior from observable requirements/acceptance criteria without inspecting implementation.
 - **White-box:** inspect project implementation and design tests around statements/branches or control flow where source access and meaningful coverage instrumentation exist.
@@ -37,7 +37,7 @@ Apply these to real requirements and keep the resulting cases or calculations in
 - **Statement/branch coverage (white-box):** exercise controlled TypeScript helpers and later service code with appropriate instrumentation. Do not claim coverage without an actual tool report.
 - **Error guessing:** deliberately try plausible mistakes—empty inputs, malformed values, repeated clicks, stale state, unexpected order, and interrupted workflows—without destructive activity.
 - **Exploratory testing:** write time-boxed charters, record observations and risks, and report defects rather than treating unstructured clicking as complete coverage.
-- **Checklist-based testing:** reusable checks for catalogue, product/cart, authentication, contact form, regression, and browser compatibility.
+- **Checklist-based testing:** reusable checks for workspace setup, project/work-item flows, permissions, documents/collaboration, notifications, regression, and browser compatibility; retain storefront checklists only for Toolshop exercises.
 
 ## Non-functional quality characteristics
 Choose relevant checks and state their evidence limits:
@@ -69,8 +69,8 @@ For each meaningful feature batch, aim to produce:
 5. A concise execution summary with the actual run command, environment, results, and known gaps.
 
 ## Integration with the one-week sprint
-- **Day 1:** functional UI coverage and black-box design (equivalence partitions, boundaries, error guessing, checklist, exploratory charter).
-- **Day 2:** API positives/negatives/boundaries, state transitions, decision tables, UI/API integration, and authentication.
+- **Day 1:** Workbench functional UI coverage and black-box design (equivalence partitions, boundaries, error guessing, checklist, exploratory charter).
+- **Day 2:** Workbench API positives/negatives/boundaries, state transitions, decision tables, UI/API integration, and authentication.
 - **Day 3:** static review, traceability, defect reports, test planning/reporting, and white-box examples in controlled code.
 - **Day 4:** performance/non-functional types and analysis.
 - **Day 5:** reliability, component/service integration, environment compatibility, and execution evidence.
