@@ -1,19 +1,20 @@
 # SHORT HANDOVER — CURRENT
 
-Canonical state version: 5.4-PLAYWRIGHT-POM-FIXTURES-PARALLEL-RELIABILITY-2026-10-19
+**Derived record — not authoritative.**
+**Canonical state version:** 6.0-WORKBENCH-LEARNER-API-2026-10-23
+**Position:** Day 2 / Hour 10
+**Topic:** API testing strategy and test-case design — next: implement the first Workbench API test batch
 
-**Derived record — not authoritative.** Live position and next action are in [01_CURRENT_STATE.md](01_CURRENT_STATE.md); workflow is [04_CONTINUITY_RULES.md](04_CONTINUITY_RULES.md); required scope is [03_MASTER_PLAN.md](03_MASTER_PLAN.md); ISTQB mapping is [08_ISTQB_TESTING_PORTFOLIO.md](08_ISTQB_TESTING_PORTFOLIO.md); reusable technical lessons are in [09_LESSONS_LEARNED.md](09_LESSONS_LEARNED.md).
+## Context
+- The live checkpoint is study-control-center/01_CURRENT_STATE.md in MFadelRep/QA-study-planner.
+- Primary SUT is Workbench QA Lab in MFadelRep/QA-practice-platform-app, learner branch learn/rag-unit-tests.
+- main retains the completed reference tests; the learner branch has TODO/skip exercises. A TODO/skip run is not feature coverage.
+- The local laptop checkout, runtime, Docker startup, migrations, seed and post-conversion CI are not yet verified.
 
-State: Day 1 / Hour 6 — accelerated sprint in progress
-Topic: Playwright architecture — POM, fixtures, and parallel reliability verified; next: API testing
-Last verified: 2026-10-19
+## Immediate next action:
+When the user types STUDY, read 01_CURRENT_STATE.md and this project's STUDY_GUIDE.md. Check local branch/worktree/runtime first without overwriting local work. If setup is not done, use STUDY_GUIDE.md. Then study Day 2 API testing through docs/practice/api-testing-exercise.md and apps/api/test/projects-work-items.e2e-spec.ts. The user writes the tests; provide scenario design, progressive hints, review and debugging—not completed test files.
 
-## Verified now
-- The 15 UI scenarios use CataloguePage, ProductPage, LoginPage, ContactPage, and custom Playwright fixtures.
-- TypeScript validation passed.
-- Three consecutive complete runs passed with two workers: 15/15 per run, 45/45 executions total.
-- Readiness waits are page-specific; homepage setup is scoped; an optional analytics beacon is stubbed for functional tests; traces and screenshots are retained on failure.
-- The cause of earlier intermittent failures was not isolated to one change. Evidence and limitations are documented in 09_LESSONS_LEARNED.md.
-
-Immediate next action:
-Inspect the current local project before assuming the proposed API batch was applied. If API client/spec files are absent, implement and run the next coherent API-testing batch, then verify the combined UI+API suite. Preserve parallel execution and the green 15-test UI baseline.
+## Preserve
+- Do not switch to main for study work or merge the learner branch wholesale.
+- Keep the older automation-platform project separate; do not restart its verified 15-test Playwright baseline by default.
+- Verify real local execution before updating study completion.

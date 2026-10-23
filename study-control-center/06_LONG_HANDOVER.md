@@ -1,30 +1,39 @@
 # LONG HANDOVER — CURRENT RECORD
 
-Canonical state version: 5.4-PLAYWRIGHT-POM-FIXTURES-PARALLEL-RELIABILITY-2026-10-19
+**Derived record — not authoritative.**
+**Canonical state version:** 6.0-WORKBENCH-LEARNER-API-2026-10-23
+**Position:** Day 2 / Hour 10
+**Topic:** API testing strategy and test-case design — next: implement the first Workbench API test batch
 
-**Derived record — not authoritative.** Live progress and exact next action: [01_CURRENT_STATE.md](01_CURRENT_STATE.md). Operating rules: [04_CONTINUITY_RULES.md](04_CONTINUITY_RULES.md). Required scope: [03_MASTER_PLAN.md](03_MASTER_PLAN.md). CTFL portfolio: [08_ISTQB_TESTING_PORTFOLIO.md](08_ISTQB_TESTING_PORTFOLIO.md). Technical lessons: [09_LESSONS_LEARNED.md](09_LESSONS_LEARNED.md).
+## Goal and learning rules
+The goal is broad, practical Senior QA Automation + MLOps coverage across the accelerated seven-day plan. Workbench QA Lab is now the primary controlled SUT because the user specifically wants to practise against a website/API/database they own rather than be limited by a public practice site.
 
-## Session state
-Day 1 / Hour 6 of the accelerated seven-day Senior QA Automation + MLOps sprint. The 45-hour capability catalogue remains the required scope, combined into project batches. Current topic: Playwright architecture — POM, fixtures, and parallel reliability verified; next: API testing
+The application is in MFadelRep/QA-practice-platform-app, learner branch learn/rag-unit-tests. main preserves the completed assistant-authored tests and finished evaluation/load-test tooling as a reference. The learner branch retains application code but deliberately replaces completed automated test implementations with TODO/skipped placeholders; ready-made RAG evaluation and mutation-testing runner/config plus k6 workload scripts were removed so the user can implement them during their curriculum topics. Never merge this learner branch wholesale into main.
 
-## Learning approach
-The user prefers batch-first, code-first implementation: BUILD → RUN → VERIFY → brief explanation → next capability. Supply coherent groups of code/supporting files; verify actual command output; avoid one-test-per-turn pacing. Explain deeper concepts when requested or when a dependency blocks progress.
+The user is supposed to write their own automation tests. The assistant should define the SUT contract, clarify scenario objectives and expected behavior, challenge gaps, give progressive hints, review user-written tests, and diagnose actual output. Do not paste complete test implementations before the user attempts the exercise. A passing command with TODO/skipped tests does not demonstrate feature coverage.
 
-## Verified local project facts
-- Project root: /run/media/mfadel/New Volume/Projects/QA/automation-platform.
-- Local project and QA-study-planner are separate repositories; application code belongs in the separate AI QA Platform repository.
-- Four page objects exist under src/pages: CataloguePage, ProductPage, LoginPage, and ContactPage.
-- tests/fixtures/test.ts supplies page objects through custom Playwright fixtures. The existing 15 UI tests remain in tests/toolshop.spec.ts and tests/toolshop-ui-batch.spec.ts.
-- npm run typecheck passed after current reliability changes.
-- On 2026-10-19, npm test ran three consecutive times with normal parallel execution (2 workers); each run passed all 15 tests. Durations were 2.0, 3.2, and 2.6 minutes.
-- Reliability changes include page-specific readiness waits after navigation commit, timeout budgets adjusted to observed public-site latency, homepage setup scoped to catalogue/product suites, and an automatic fixture that stubs the optional Cloudflare analytics beacon during functional tests. Trace retention and screenshots on failure are enabled.
-- Earlier traces showed JS/CSS resources taking approximately 4–23 seconds and a navigation timeout. They also showed 401 responses from /users/me, but no evidence established these as the cause. Since changes were applied together, their individual causal effects remain unisolated.
+## What was previously completed
+In the separate local project at /run/media/mfadel/New Volume/Projects/QA/automation-platform, Day 1 / Hour 6 was recorded as complete on 2026-10-19: 15 Playwright UI tests passed three consecutive parallel runs (45/45 combined) and TypeScript validation passed. Avoid restarting that work by default. This is not the Workbench repo.
 
-## Knowledge capture
-The canonical lessons record is 09_LESSONS_LEARNED.md. It documents assertion oracles, locators, POM/fixture boundaries, application readiness, evidence-based flake diagnosis, the three-run parallel result, and limits of that evidence. Consult relevant entries; do not treat it as live checkpoint or duplicate its full contents here.
+## Workbench local setup status
+The learner branch and documentation were inspected/updated on GitHub on 2026-10-23. The laptop checkout path, current branch, Docker/browser startup, database migration/seed and post-conversion test results are unknown until the user sets up and runs the project locally.
+
+The repository's STUDY_GUIDE.md documents fresh-clone commands, app URLs, safety boundaries and the branch rule. Swagger is at http://127.0.0.1:3000/api/docs when the app is running. The app is for loopback/local use with fictional seeded data; do not expose it to a public network and verify .env before any database reset.
+
+## Verified versus unverified
+- Verified before conversion: remote main had a passing CI run for the completed generated test suite.
+- Verified by GitHub inspection: the learner branch contains the application source, TODO test scaffolds and study documentation.
+- Not verified: CI after test-to-exercise conversion, local npm commands, Docker startup, schema/seed application and app runtime.
+- Keep those distinctions explicit in all future checkpoints.
 
 ## Exact resume action
-Before API work, inspect actual local package.json, src/api/, tests/api/, tests/fixtures/test.ts, and playwright.config.ts. An API client/spec batch was supplied in chat but has not been confirmed as executed. If those files are absent, implement a coherent API-test batch using Playwright's API request fixture (avoid browser/page-object setup in pure API tests), verify the current Toolshop API docs and actual response shape, and cover positive, empty/negative, sorting/pagination, and unauthenticated access only where supported by the current API contract. Run typecheck, the API suite, then the combined UI+API suite. Keep parallel execution and the UI regression baseline. Update live state only after real results.
+When the user types STUDY in a new chat:
+1. Read study-control-center/01_CURRENT_STATE.md and apply study-control-center/04_CONTINUITY_RULES.md.
+2. Read STUDY_GUIDE.md and docs/practice/api-testing-exercise.md on learner branch learn/rag-unit-tests.
+3. Verify the local checkout using a grouped read-only diagnostic: git status --short, git branch --show-current, git log -1 --oneline, node --version, npm --version and docker compose version. Preserve local changes and don't assume a path.
+4. If the user hasn't set up Workbench, guide them through STUDY_GUIDE.md without replacing an existing directory. Once local app is running, inspect Swagger and begin Day 2 API testing.
+5. User's first coding batch is apps/api/test/projects-work-items.e2e-spec.ts: write an authenticated successful project-creation test and an invalid/missing-required-field test, assert the response contract and verify persisted state with a follow-up GET/database check. The current file contains TODO descriptions only. Give hints and code review after their attempt; do not paste a complete finished suite.
+6. Run the relevant API end-to-end command and typecheck based on actual user output. Then continue with authentication/RBAC, boundary/contract cases, UI/API hybrid flows, SQL/PostgreSQL, GitHub Actions/GitLab CI, performance, Docker/Compose, Kubernetes, RAG/security, MLOps and Day 7 integration/senior-QA practice in the master-plan sequence.
 
-## Repository boundaries
-MFadelRep/QA-study-planner is the curriculum/state/rules/validation/lessons repository. The local AI QA Platform repository holds the application automation code and tests. Do not connect one repository as the other's remote or store secrets.
+## Source of truth
+The live checkpoint is study-control-center/01_CURRENT_STATE.md. This handover is derived and cannot override it.
