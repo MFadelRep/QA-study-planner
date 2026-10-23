@@ -1,7 +1,7 @@
 # LONG HANDOVER — CURRENT RECORD
 
 **Derived record — not authoritative.**
-**Canonical state version:** 6.0-WORKBENCH-LEARNER-API-2026-10-23
+Canonical state version: 6.0-WORKBENCH-LEARNER-API-2026-10-23
 **Position:** Day 2 / Hour 10
 **Topic:** API testing strategy and test-case design — next: implement the first Workbench API test batch
 
