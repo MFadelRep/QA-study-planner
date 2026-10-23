@@ -172,3 +172,18 @@ MFadelRep/QA-study-planner manages study state, curriculum, continuity rules, va
 ## Updating this record
 
 Follow [Continuity Rules](04_CONTINUITY_RULES.md) for the maintenance process. Add or refine entries only when an observation has reusable value. Label uncertainty, keep examples evidence-based, and do not duplicate the live checkpoint, curriculum requirements, or operational rules.
+
+## Learner-owned test practice
+
+### LL-STUDY-001 — Keep the app implementation and the test-learning exercise separate
+
+**Evidence status: VERIFIED BY REPOSITORY INSPECTION; local execution remains unverified**
+
+**Context/problem:** Workbench QA Lab was built as a controlled SUT, but the first implementation pass also added completed unit/API/browser tests and later RAG/performance test runners. That delivered code while removing the user's intended practice of designing and writing those tests.
+
+**Decision:** Preserve `main` as the completed reference baseline. Use `learn/rag-unit-tests` as the curriculum's learner branch, keep application source intact, and replace generated test implementations with TODO or skipped placeholders until the user implements each batch. Remove ready-made later-stage RAG-evaluation, mutation-testing and k6 workload implementations from the learner branch.
+
+**Reusable rule:** The assistant builds or maintains the app and learning environment. The user owns the curriculum's automation implementations. Before each batch, provide the feature contract, risks, expected outcomes and useful test-design prompts; let the user attempt the code, then review and debug their actual output. Do not paste a complete test implementation before the attempt.
+
+**Limitations:** TODO/skipped tests are not feature coverage. The branch's post-conversion CI and the user's laptop setup must be verified independently. Keep `main` as reference; never report a green runner with TODO tests as proof of application quality.
+
