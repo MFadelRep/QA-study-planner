@@ -1,45 +1,62 @@
 # Current Study State
 
-**State version:** 6.1-WORKBENCH-LEARNER-CI-2026-10-23
-**Last verified:** 2026-10-23 (latest learner-branch CI passed; laptop runtime is unverified)
-**Status:** ACTIVE — accelerated seven-day study sprint on the Workbench learner branch
+**State version:** 6.2-WORKBENCH-LOCAL-API-2026-10-24
+**Last verified:** 2026-10-24 (user-reported local checkout and API readiness)
+**Status:** ACTIVE — accelerated seven-day study sprint
 **Execution mode:** BATCH-FIRST / CODE-FIRST / LEARNER-WRITES-TESTS / EVIDENCE-BASED
 
 ## Position
-- Day: 2
-- Hour: 10
-- Current topic: API testing strategy and test-case design — next: implement the first Workbench API test batch
-- Project: Workbench QA Lab (primary system under test)
-- Application repository: https://github.com/MFadelRep/QA-practice-platform-app
-- Required branch: learn/rag-unit-tests (historically named for the first RAG exercise; now the general learner branch)
-- Local project path: not yet confirmed; the user will set up the learner branch on the laptop
+- Day 2 / Hour 10
+- Topic: API testing strategy and test-case design; first tests are authenticated project creation and validation failure.
+- Primary SUT: Workbench QA Lab
+- App repository: https://github.com/MFadelRep/QA-practice-platform-app
+- Required branch: learn/rag-unit-tests
+- Reported local checkout: `/home/mfadel/QA-practice-platform-app`
+- Last reported branch/commit: `learn/rag-unit-tests` at `5afe645` (`docs: clarify learner coverage and remove whitespace failure`)
 
-The hour number is a curriculum locator, not proof of mastery. The 45-hour catalogue remains required scope; related capabilities are integrated across the accelerated seven-day sequence.
+The hour is a curriculum locator, not proof of mastery. The 45-hour catalogue remains required scope.
 
-## Current checkpoint
-The previous Playwright foundation/architecture work in the separate local project `/run/media/mfadel/New Volume/Projects/QA/automation-platform` is recorded as complete through Day 1 / Hour 6. Evidence from 2026-10-19: 15 Playwright UI tests passed in three consecutive two-worker runs (45/45 total), with TypeScript validation passing. Do not restart those completed exercises by default.
+## Checkpoint
+The separate `/run/media/mfadel/New Volume/Projects/QA/automation-platform` project is complete through Day 1 / Hour 6: 15 Playwright UI tests passed in three consecutive two-worker runs (45/45 total), and TypeScript validation passed. Do not restart this by default.
 
-The learning vehicle has now changed to Workbench QA Lab because the user explicitly wants a controlled website/API/database they own and can use as the system under test. The app repository already contains the implemented React/Vite UI, NestJS API, PostgreSQL schema/seed data, authentication/RBAC, tenant-scoped workspaces, collaboration, notifications, audit, deterministic RAG, fault lab, observability and OpenAPI docs.
-
-The learner branch is separate from `main`. `main` retains the completed assistant-authored tests as reference. On `learn/rag-unit-tests`, completed automated test implementations were replaced with TODO exercises or skipped Playwright placeholders, and ready-made RAG evaluation, mutation-testing configuration, and k6 workload scripts were removed for later learner-authored exercises. TODO/skipped output is not functional coverage.
+Workbench QA Lab is the primary controlled website/API/database for practice. `main` retains completed reference tests; learner branch `learn/rag-unit-tests` deliberately contains TODO/skipped exercises. TODO/skipped output is not feature coverage.
 
 ## Verified versus unverified
-- **Verified before conversion:** remote `main` had a passing CI run for its completed reference suite.
-- **Verified by repository inspection on 2026-10-23:** the learner branch exists; application source is retained; completed assistant-authored test implementations were replaced with learner TODOs or skipped Playwright placeholders; setup and exercise guides are present.
-- **Verified by learner-branch CI:** [run 39952194483 passed](https://github.com/MFadelRep/QA-practice-platform-app/actions/runs/39952194483) on commit `5afe645612b93b3af0840144265ede8f936e2d9e`. Typecheck, build, test runners, API/database runner, contract runner, browser runner, patch-format check and secret scan passed.
-- **Evidence limitation:** CI's TODO/skipped test cases are not feature coverage; the passing run verifies that the learner scaffold builds and runs, not that the TODO scenarios are implemented.
-- **Not verified:** local Docker/browser startup, database migration/seed, local tests, and the exact laptop checkout/path.
-- Do not describe TODO/skipped tests as passing feature coverage. Re-check current GitHub Actions and the user's local output before reporting a result as verified.
+- GitHub inspection confirmed the learner branch, `STUDY_GUIDE.md`, and eight TODOs in `apps/api/test/projects-work-items.e2e-spec.ts`.
+- Learner-branch CI run 39952194483 passed on commit `5afe645612b93b3af0840144265ede8f936e2d9e`. This validates scaffold/build/runner execution, not functional coverage of TODOs.
+- User terminal reported checkout path, branch and commit above. Request to `http://127.0.0.1:3000/api/health/ready` returned HTTP 200 with `{"status":"ok","service":"workbench-api","database":"ready"}`.
+- The readiness response proves an API on port 3000 reported database readiness at that moment. It does not prove the process came from this checkout, the frontend works, or migrations/tests passed locally.
+- `git status --short` output, Node/npm/Docker versions, frontend availability, migrations, seed, typecheck and local tests remain unconfirmed. Never claim the worktree is clean or local tests passed without evidence.
 
-## Project and environment constraints
-- Use Workbench QA Lab as the primary SUT for API, SQL, browser integration, CI, performance, fault handling, observability, RAG/security, and capstone exercises.
-- The local app repository is separate from `MFadelRep/QA-study-planner` and from the older `/run/media/mfadel/New Volume/Projects/QA/automation-platform` and `/run/media/mfadel/New Volume/playwright-course` directories.
-- Never assume a local path, clean worktree, current branch, or Docker state. Inspect before switching branches or editing; preserve local changes.
-- Do not merge the learning branch into `main` wholesale. `main` is the reference baseline.
-- Keep services bound to loopback; demo accounts are fictional and local-only; don't expose the app/database to the LAN or public internet.
-- Test implementations are learner-owned for this plan. Coach with requirements, case-design prompts, progressive hints, code review and actual failure diagnosis; do not write the complete exercise before the user attempts it.
+## Local startup and URLs
+Root `npm run dev` starts API and web together. For the existing checkout, after preserving local changes and confirming `.env` targets the intended local Workbench database:
+```bash
+cd "/home/mfadel/QA-practice-platform-app" || exit 1
+npm run db:up
+npm run dev
+```
+Keep the dev command running. Verify from another terminal:
+```bash
+curl -sS -i --max-time 5 http://127.0.0.1:3000/api/health/ready
+```
+Expected HTTP 200 and `"database":"ready"`. Do not blindly rerun setup or overwrite `.env`.
+- UI: http://localhost:5173 (configured URL; not independently verified reachable)
+- API: http://127.0.0.1:3000
+- API docs: http://127.0.0.1:3000/api/docs
+- Node.js 22.12+ and Docker Compose are required.
+- Never run `npm run db:reset` unless `.env` is confirmed to point to a disposable local Workbench database. Use app `STUDY_GUIDE.md` for fresh setup only if needed.
 
-## Exact next action
-When the user types `STUDY` in a new chat, read this live state and the Workbench `STUDY_GUIDE.md`, then resume Day 2 API testing without asking the user to restate the goal. Since laptop setup may have happened after this checkpoint, first verify the local checkout with one grouped diagnostic: `git status --short`, `git branch --show-current`, `git log -1 --oneline`, `node --version`, `npm --version`, and `docker compose version`. If setup has not been done, guide the user using the clone/setup steps in Workbench `STUDY_GUIDE.md`; do not overwrite an existing folder or local changes.
+## Exact next action for STUDY
+1. Read this state, `04_CONTINUITY_RULES.md`, app `STUDY_GUIDE.md`, and `docs/practice/api-testing-exercise.md` on `learn/rag-unit-tests`.
+2. Preserve local work; check `git status --short`, `git branch --show-current`, and `git log -1 --oneline` before edits or branch operations.
+3. Inspect the real project API implementation/docs for request fields, authentication, response contract, validation and persistence.
+4. In `apps/api/test/projects-work-items.e2e-spec.ts`, first implement two learner-authored tests: successful authenticated project creation, and one meaningful missing/invalid-field validation failure. Assert the response contract and verify persistence with a follow-up GET or database check.
+5. The other TODOs cover retrieval/listing, unauthenticated access, work-item creation, cross-workspace isolation, update/delete permissions, boundaries and unexpected properties.
+6. Run focused API e2e tests and typecheck based on actual output. Coach with design, hints, review and debugging; do not paste a completed suite. Record progress only after real execution.
 
-Once on the learner branch with Workbench running, open `http://127.0.0.1:3000/api/docs` and begin `docs/practice/api-testing-exercise.md`. The first coding target is `apps/api/test/projects-work-items.e2e-spec.ts`: the user should replace a small pair of TODOs with executable tests for a successful authenticated project creation and a meaningful validation failure, check the response body, then verify persisted state through a follow-up GET or database check. The assistant should challenge expected results and review/debug the user's attempt, not paste a completed test suite. Run the relevant API e2e command and typecheck based on actual local output before expanding to auth/RBAC, boundaries, contracts, UI/API hybrid testing, and SQL.
+## Constraints
+- Keep Workbench separate from the study planner and older `automation-platform` / `playwright-course` projects.
+- Do not assume a clean worktree or synced remote changes; preserve local edits.
+- Do not merge the learner branch into `main` wholesale.
+- Keep services loopback-only and use fictional local data; do not expose the app/database to the LAN or internet.
+- Protect study time: practical outcomes over unnecessary scaffolding.
